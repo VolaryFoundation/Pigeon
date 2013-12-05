@@ -24,6 +24,10 @@ rivets.formatters.preventDefault = function(fn) {
   }
 }
 
+rivets.formatters.asJSON = function(data) {
+  return JSON.stringify(data)
+}
+
 rivets.configure({
   handler: function(target, event, binding) {
     this.call(binding.model, event, target)

@@ -2,8 +2,8 @@ var http = require('http')
 var PORT = process.env.PORT || 3000
 var static = require('node-static');
 var assetTypes = [ 'css', 'js', 'img' ]
-var assets = new static.Server('./public')
-var widgets = new static.Server('./widgets')
+var assets = new static.Server('./public', { cache: false })
+var widgets = new static.Server('./widgets', { cache: false })
 var lookingForAsset = function(req) {
   return assetTypes.filter(function(t) { return req.url.indexOf(t) > -1 }).length
 }

@@ -193,11 +193,20 @@
   var filters = new Filters
 
   var grn = {
-    searcher: searcher,
-    filters: filters,
-    embedder: embedder,
-    hub: hub,
-    noop: function() {}
+
+    processHash: function(hash) {
+      var params = utils.params.deserialize(hash.substr(1))
+      this.viewModel.styles = params.styles || {}
+      this.viewModel.title = params.title || ''
+    },
+
+    viewModel: {
+      searcher: searcher,
+      filters: filters,
+      embedder: embedder,
+      hub: hub,
+      noop: function() {}
+    }
   }
 
   global.grn = grn

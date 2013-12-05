@@ -1,18 +1,26 @@
 <!DOCTYPE html>
 <html>
-	<head>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<title>Big Widget</title>
+<head>
+
 </head>
 <body>
-	asadfasfasdfasdfsadfasd
 
-  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-  <script src="http://cdnjs.cloudflare.com/ajax/libs/lodash.js/2.3.0/lodash.min.js"></script>
-  <script src="http://cdnjs.cloudflare.com/ajax/libs/backbone.js/1.1.0/backbone-min.js"></script>
-  <script src="js/vendor/rivets.min.js"></script>
-  <script src="js/rivets_config.js"></script>
-  <script src="js/utils.js"></script>
-  <script src="js/app.js"></script>
+  <h1 class="title" rv-text="title"> </h1>
+
+  <ul rv-each-result="searcher.results"> </ul>
+
+  <div rv-text="styles | asJSON"> </div>
+
+  <script src="/js/vendor/jquery.min.js"></script>
+  <script src="/js/vendor/lodash.min.js"></script>
+  <script src="/js/vendor/backbone.min.js"></script>
+  <script src="/js/vendor/rivets.min.js"></script>
+  <script src="/js/rivets_config.js"></script>
+  <script src="/js/utils.js"></script>
+  <script src="/js/app.js"></script>
+  <script>
+    grn.processHash(window.location.hash)
+    rivets.bind(document.body, grn.viewModel) 
+  </script>
 </body>
 </html>
