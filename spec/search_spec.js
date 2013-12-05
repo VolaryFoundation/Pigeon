@@ -1,8 +1,8 @@
 global._ = require('lodash')
 global.Backbone = require('backbone')
 global.rivets = require('rivets')
-require('../public/js/utils')
-require('../public/js/app')
+global.utils = require('../public/js/utils').utils
+global.grn = require('../public/js/app').grn
 var grn = global.grn
 var assert = require('assert')
 

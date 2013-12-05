@@ -7,7 +7,9 @@
 
   <h1 class="title" rv-text="title"> </h1>
 
-  <ul rv-each-result="searcher.results"> </ul>
+  <ul rv-each-result="searcher:results"> 
+    <li rv-text="result:name"></li>
+  </ul>
 
   <div rv-text="styles | asJSON"> </div>
 
@@ -21,6 +23,8 @@
   <script>
     grn.processHash(window.location.hash)
     rivets.bind(document.body, grn.viewModel) 
+    window.grn = grn
+    console.log(grn)
   </script>
 </body>
 </html>

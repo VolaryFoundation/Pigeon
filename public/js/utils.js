@@ -73,4 +73,4 @@ var utils = {
 
 global.utils = utils
 
-})(global || this)
+})(typeof exports === 'undefined' ? this : exports)

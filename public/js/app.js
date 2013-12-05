@@ -211,4 +211,4 @@
   }
 
   global.grn = grn
-})(global || this)
+})(typeof exports === 'undefined' ? this : exports)
