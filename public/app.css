@@ -1,0 +1,16 @@
+body {
+  background: #21a2ce;
+}
+
+.tag {
+  border: none;
+  background: white;
+}
+
+.tag.on {
+  background: green;
+}
+
+.tag.off {
+  background: red;
+}

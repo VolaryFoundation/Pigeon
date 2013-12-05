@@ -1,0 +1,25 @@
+{
+  "name": "volary-widgets",
+  "version": "0.0.0",
+  "description": "Volary widgets",
+  "main": "app.js",
+  "dependencies": {
+    "backbone": "~1.1.0",
+    "lodash": "~2.4.0",
+    "rivets": "~0.6.5"
+  },
+  "devDependencies": {
+    "mocha": "~1.15.0"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/VolaryFoundation/widgets"
+  },
+  "author": "",
+  "license": "BSD",
+  "readmeFilename": "README.md",
+  "gitHead": "d446c53b6e4bf718dd3eb3a8731453de6e367d1d"
+}
