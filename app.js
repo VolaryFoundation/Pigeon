@@ -1,30 +1,19 @@
 var http = require('http')
-var url = require('url')
-var fs = require('fs')
 var PORT = process.env.PORT || 3000
-
-function extractFileName(url) { return url.substr(1) }
-
-function ok(res, data) { 
-  res.writeHead(200, { 'Content-Type': 'text/html' })
-  res.end(data)
+var static = require('node-static');
+var assetTypes = [ 'css', 'js', 'img' ]
+var assets = new static.Server('./public')
+var widgets = new static.Server('./widgets')
+var lookingForAsset = function(req) {
+  return assetTypes.filter(function(t) { return req.url.indexOf(t) > -1 }).length
 }
 
-function doh(res, data) { 
-  res.writeHead(500, { 'Content-Type': 'text/html' })
-  res.end(data)
-}
-
-function handleRequest(req, res) {
-
-  var fileName = extractFileName(req.url)
-  var handleFile = function(err, data) {
-    (data) ? ok(res, data) : doh(res, err)
-  }
-
-  fs.readFile('./widgets/' + fileName + '.html', handleFile)
-}
-
-http
-  .createServer(handleRequest)
-  .listen(PORT)
+http.createServer(function(req, res) {
+  req.addListener('end', function () {
+      if (lookingForAsset(req)) {
+        assets.serve(req, res)
+      } else {
+        widgets.serve(req, res)
+      }
+  }).resume()
+}).listen(PORT)

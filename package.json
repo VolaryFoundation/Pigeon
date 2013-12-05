@@ -4,6 +4,7 @@
   "description": "Volary widgets",
   "main": "app.js",
   "dependencies": {
+    "node-static": "*",
     "backbone": "~1.1.0",
     "lodash": "~2.4.0",
     "rivets": "~0.6.5"
