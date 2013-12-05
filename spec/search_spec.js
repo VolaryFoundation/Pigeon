@@ -1,9 +1,9 @@
 global._ = require('lodash')
 global.Backbone = require('backbone')
 global.rivets = require('rivets')
-global.utils = require('../public/js/utils')
-global.rivets = require('rivets')
-var grn = require('../public/js/app').grn
+require('../public/js/utils')
+require('../public/js/app')
+var grn = global.grn
 var assert = require('assert')
 
 describe('app', function() {
@@ -30,9 +30,9 @@ describe('app', function() {
     describe('#toggle', function() {
 
       it ('should toggle true/false the "showing" property', function() {
-        assert(grn.embedder.get('showing') == false)
-        grn.embedder.toggle()
-        assert(grn.embedder.get('showing') == true)
+        assert(grn.viewModel.embedder.get('showing') == false)
+        grn.viewModel.embedder.toggle()
+        assert(grn.viewModel.embedder.get('showing') == true)
       })
     })
   })
@@ -49,7 +49,7 @@ describe('app', function() {
   describe('noop', function() {
 
     it ('should be a noop', function() {
-      assert(undefined == grn.noop())
+      assert(undefined == grn.viewModel.noop())
     })
   })
 })

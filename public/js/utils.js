@@ -73,4 +73,4 @@ var utils = {
 
 global.utils = utils
 
-})(this)
+})(global || this)

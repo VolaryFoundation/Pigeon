@@ -200,14 +200,15 @@
       this.viewModel.title = params.title || ''
     },
 
+    hub: hub,
+
     viewModel: {
       searcher: searcher,
       filters: filters,
       embedder: embedder,
-      hub: hub,
       noop: function() {}
     }
   }
 
   global.grn = grn
-})(this)
+})(global || this)

@@ -1,5 +1,6 @@
 global._ = require('lodash')
-var utils = require('../public/js/utils')
+require('../public/js/utils')
+var utils = global.utils
 var assert = require('assert')
 
 describe('utils', function() {
