@@ -4,7 +4,7 @@
 
   var Event = Backbone.Model.extend({ })
   var Events = Backbone.Collection.extend({
-    url: '/api/events',
+    url: 'http://localhost:9393/events',
     model: Event,
     initialize: function() {
 
@@ -20,7 +20,7 @@
 
   var Group = Backbone.Model.extend({ })
   var Groups = Backbone.Collection.extend({
-    url: '/api/groups',
+    url: 'http://localhost:9393/groups',
     model: Group,
     initialize: function() {
 
@@ -198,6 +198,11 @@
       var params = utils.params.deserialize(hash.substr(1))
       this.viewModel.styles = params.styles || {}
       this.viewModel.title = params.title || ''
+      if (params.filters) {
+        _.each(params.filters, function(v, k) {
+          this.viewModel.filters.set(k, v, { silent: true })
+        }, this)
+      }
     },
 
     hub: hub,

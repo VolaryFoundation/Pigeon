@@ -23,8 +23,7 @@
   <script>
     grn.processHash(window.location.hash)
     rivets.bind(document.body, grn.viewModel) 
-    window.grn = grn
-    console.log(grn)
+    grn.viewModel.searcher.search(grn.viewModel.filters)
   </script>
 </body>
 </html>
