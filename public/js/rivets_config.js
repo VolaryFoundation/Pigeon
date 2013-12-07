@@ -34,6 +34,9 @@ rivets.formatters.tagValue = function(raw, tagName) {
 	})
 }
 
+rivets.formatters.date = function(value){
+  return moment(value).format('MMM DD, YYYY')
+}
 
 rivets.formatters.asJSON = function(data) {
   return JSON.stringify(data)

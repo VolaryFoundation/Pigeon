@@ -2,6 +2,7 @@
 <html>
 <head>
 <link href="css/widgets.css" rel="stylesheet" type="text/css">
+<link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
 </head>
 <body>
 
@@ -15,7 +16,7 @@
 		<div class="content">
 			<p rv-text="result:description"></p>
 			<p rv-text="result:tags | tagValue event_type"></p>
-			<p rv-text="start_at"></p>
+			<p rv-text="start_at | date"></p>
 			<div class="location">{result:location.city}, {result:location.state}</div>   
 		</div>
 		<div class="footer">  
@@ -26,6 +27,7 @@
   <div rv-text="styles | asJSON"> </div>
 
   <script src="/js/vendor/jquery.min.js"></script>
+  <script src="/js/vendor/moment.min.js"></script>
   <script src="/js/vendor/lodash.min.js"></script>
   <script src="/js/vendor/backbone.min.js"></script>
   <script src="/js/vendor/rivets.min.js"></script>
