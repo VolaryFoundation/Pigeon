@@ -7,7 +7,8 @@
     "node-static": "*",
     "backbone": "~1.1.0",
     "lodash": "~2.4.0",
-    "rivets": "~0.6.5"
+    "rivets": "~0.6.5",
+    "sass" : "*"
   },
   "devDependencies": {
     "mocha": "~1.15.0"

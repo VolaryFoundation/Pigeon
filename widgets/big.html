@@ -1,14 +1,26 @@
 <!DOCTYPE html>
 <html>
 <head>
-
+<link href="css/widgets.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 
   <h1 class="title" rv-text="title"> </h1>
 
-  <ul rv-each-result="searcher:results"> 
-    <li rv-text="result:name"></li>
+  <ul class="event" > 
+    <li rv-each-result="searcher:results">
+    	<div class="header">
+    		<h3 rv-text="result:name"></h3>
+		</div>
+		<div class="content">
+			<p rv-text="result:description"></p>
+			<p rv-text="result:tags | tagValue event_type"></p>
+			<p rv-text="start_at"></p>
+			<div class="location">{result:location.city}, {result:location.state}</div>   
+		</div>
+		<div class="footer">  
+		</div>
+    </li>
   </ul>
 
   <div rv-text="styles | asJSON"> </div>

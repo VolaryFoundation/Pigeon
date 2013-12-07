@@ -24,6 +24,17 @@ rivets.formatters.preventDefault = function(fn) {
   }
 }
 
+rivets.formatters.tagValue = function(raw, tagName) {
+	var tagNameWithSpaces = tagName.replace(/_/g, ' ')
+	return raw.filter(function(tag) {
+		return tag.split('.')[0] === tagNameWithSpaces
+	}).map(function(tag) {
+		var parts = tag.split('.')
+		return parts[parts.length - 1]
+	})
+}
+
+
 rivets.formatters.asJSON = function(data) {
   return JSON.stringify(data)
 }
