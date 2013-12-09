@@ -47,26 +47,38 @@ var utils = {
       return $.param(obj)
     },
 
-    deserialize: function(str) {
+    deserialize: function(p) {
 
-      return str.split('&').reduce(function(memo, param) {
+      var params = {};
+      var pairs = p.split('&');
+      for (var i=0; i<pairs.length; i++) {
+          var pair = pairs[i].split('=');
+          var accessors = [];
+          var name = decodeURIComponent(pair[0]), value = decodeURIComponent(pair[1]);
+          if (value === 'undefined') continue;
 
-        var parts = param.split('=')
-        var key = decodeURIComponent(parts[0])
-        var value = parts[1] ? decodeURIComponent(parts[1]) : undefined
-        var hashMatch = key.match(/\[(\w+)\]/)
+          var name = name.replace(/\[([^\]]*)\]/g, function(k, acc) { accessors.push(acc); return ""; });
+          accessors.unshift(name);
+          var o = params;
 
-        if (hashMatch) {
-          return utils.addHashValue(memo, key.split('[')[0], hashMatch[1], value)
-        } else if (key.match(/\[\]/)) {
-          return utils.addArrayValue(memo, key.split('[')[0], value)
-        } else if (key && value) {
-          memo[key] = value
-          return memo
-        } else {
-          return memo
-        }
-      }, {})
+          for (var j=0; j<accessors.length-1; j++) {
+              var acc = accessors[j];
+              var nextAcc = accessors[j+1];
+              if (!o[acc]) {
+                  if ((nextAcc == "") || (/^[0-9]+$/.test(nextAcc)))
+                      o[acc] = [];
+                  else
+                      o[acc] = {};
+              }
+              o = o[acc];
+          }
+          acc = accessors[accessors.length-1];
+          if (acc == "")
+              o.push(value);
+          else
+              o[acc] = value;
+      }
+      return params;
     }
   }
 }

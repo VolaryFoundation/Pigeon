@@ -107,5 +107,13 @@ describe('utils', function() {
         assert.deepEqual(utils.params.deserialize(query), { a: { b: 1, c: 2 } })
       })
     })
+
+    describe('crazy nested hash/arrays', function() {
+
+      it ('should return crazy hash/arrays back', function() {
+        var query = 'a[b][c][]=1'
+        assert.deepEqual(utils.params.deserialize(query), { a: { b: { c: [ 1 ] } } })
+      })
+    })
   })
 })
