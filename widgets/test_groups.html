@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+</head>
+<body>
+	<script>
+		var url = "http://localhost:3000/groups_big.html#styles[color1]=FF0000&styles[color2]=FFFF00&title=LOLO LIEKS IT&filters[subject]=groups"
+		var groupWidget = document.getElementById('group-widget')
+		var state = window.location.hash.substr(1)
+		var urlWithState = url + '&filters[keys][location.state]=' + state
+console.log(urlWithState)
+	</script>
+  <iframe height="800px" id="group-widget"></iframe>
+</body>
+</html>
