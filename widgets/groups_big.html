@@ -10,13 +10,26 @@
 
   <ul class="event" > 
     <li rv-each-result="searcher:results">
-    	<div class="header">
-    		<h3 rv-text="result:name"></h3>
+    	<div class="left">
+    		<img src="http://placehold.it/200x150.png">
 		</div>
-		<div class="content">
-			<div class="location">{result:location.city}, {result:location.state}</div>   
+		<div class="center">
+			<div class="center-list">
+				<h3 rv-text="result:name"></h3>
+				<p rv-text="result:description | ellise 200"></p>	
+			</div>
+			<div class="right">
+				<p rv-text="result:tags | tagValue philosophy"></p>
+				<p rv-text="result:range"></p>
+				<p rv-text="result:size"></p>
+				<div class="location">{result:location.address}<br/>{result:location.city}</div>  
+				<div id="share-buttons">
+					<a href="http://www.facebook.com/" target="_blank"><img src="http://w.sharethis.com/images/facebook_16.png" alt="Facebook"></a>
+					<a href="#" target="_blank"><img src="http://w.sharethis.com/images/twitter_16.png" alt="Twitter" /></a>
+					<a href="https://plus.google.com/" target="_blank"><img src="http://w.sharethis.com/images/google_16.png" alt="Google" /></a>
+				</div>
+				</div>
 		</div>
-		<div class="footer">  
 		</div>
     </li>
   </ul>

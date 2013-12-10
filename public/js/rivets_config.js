@@ -34,6 +34,10 @@ rivets.formatters.tagValue = function(raw, tagName) {
 	})
 }
 
+rivets.formatters.ellise = function(value, length) {
+	return value.substr(0, length) + "..."
+}
+
 rivets.formatters.date = function(value){
   return moment(value).format('MMM DD, YYYY')
 }

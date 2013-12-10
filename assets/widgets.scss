@@ -23,16 +23,28 @@ ul {
 
 li {
 	list-style: none;
-	border: 1px solid #595959;
+	border-bottom: 1px solid #595959;
 	margin: 10px;
-	padding: 5px;
-	
-	h3{}
-	
-	.location {}
-
+	padding:10px;
+	background-color:#f8f8f8;
+	overflow: hidden;
+	h3{margin:0px;}
+	.left {}
+	.center {overflow: hidden;}
+	.right {
+	float: right;
+	width: 30%;
+	overflow: hidden;
+		p {
+		  margin:  5px 0;
+		}
+		
+	}
+	.center-list{float:left;width:67%}
 	.date{float:left}
 	
+	img {float:left;height:150px;padding:0 10px 0 0;}
+	.content{}
 }
 
 
@@ -42,6 +54,16 @@ h1.title {
 
 .title {
 	padding:8px 0 8px 22px;
-width: 278px;
+	width:40%;
+min-width: 400px;
+}
+
+#share-buttons img {
+width: 16px;
+height: 16px;
+padding: 5px;
+border: 0;
+box-shadow: 0;
+display: inline;
 }
 
