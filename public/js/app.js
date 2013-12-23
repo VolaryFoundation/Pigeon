@@ -18,7 +18,7 @@
     }
   })
 
-  var Group = Backbone.Model.extend({ })
+  var Group = Backbone.Model.extend({})
   var Groups = Backbone.Collection.extend({
     url: 'http://localhost:9393/groups',
     model: Group,
@@ -186,11 +186,23 @@
     }
   })
 
+  var UI = Backbone.Model.extend({
+	defaults:{showMore:false, showText:'Show More'},
+	
+	showMore: function(){
+		this.set('showMore', !this.get('showMore'))
+		this.set('showText', (this.get('showText') == 'Show More')? 'Show Less' : 'Show More')
+	}
+	
+	
+})
+
   var groups = new Groups
   var events = new Events
   var embedder = new Embedder
   var searcher = new Searcher
   var filters = new Filters
+  var ui = new UI
 
   var grn = {
 
@@ -211,6 +223,7 @@
       searcher: searcher,
       filters: filters,
       embedder: embedder,
+	  ui: ui,
       noop: function() {}
     }
   }

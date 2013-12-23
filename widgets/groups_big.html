@@ -7,34 +7,29 @@
 <body>
 
   <h1 class="title" rv-text="title"> </h1>
+  
+  <span rv-on-click='ui.showMore' rv-text='ui:showText'></span>
 
-  <ul class="event" > 
-    <li rv-each-result="searcher:results">
-    	<div class="left">
-    		<img src="http://placehold.it/200x150.png">
-		</div>
-		<div class="center">
-			<div class="center-list">
-				<h3 rv-text="result:name"></h3>
-				<p rv-text="result:description | ellise 200"></p>	
+  <ul class="items" rv-class-long="ui:showMore"> 
+    <li rv-each-result="searcher:results" class='result-item'>
+    	<img src="" rv-show='ui:showMore' rv-src="result:image | checkImg">
+			<h3 rv-text="result:name"></h3>
+			<p rv-text="result:description | ellise 200" rv-show='ui:showMore'></p>	
+			<p rv-text="result:description | ellise 50" rv-hide='ui:showMore'></p>
+			<p rv-text="result:tags | tagValue philosophy" rv-show='ui:showMore'></p>
+			<p rv-text="result:range" rv-show='ui:showMore'></p>
+			<p rv-text="result:size" rv-show='ui:showMore'></p>
+			<div class="location">{result:location.address}<br/>{result:location.city}</div>  
+			<div id="share-buttons" rv-show='ui:showMore'>
+				<a href="http://www.facebook.com/" target="_blank"><img src="http://w.sharethis.com/images/facebook_16.png" alt="Facebook"></a>
+				<a href="#" target="_blank"><img src="http://w.sharethis.com/images/twitter_16.png" alt="Twitter" /></a>
+				<a href="https://plus.google.com/" target="_blank"><img src="http://w.sharethis.com/images/google_16.png" alt="Google" /></a>
 			</div>
-			<div class="right">
-				<p rv-text="result:tags | tagValue philosophy"></p>
-				<p rv-text="result:range"></p>
-				<p rv-text="result:size"></p>
-				<div class="location">{result:location.address}<br/>{result:location.city}</div>  
-				<div id="share-buttons">
-					<a href="http://www.facebook.com/" target="_blank"><img src="http://w.sharethis.com/images/facebook_16.png" alt="Facebook"></a>
-					<a href="#" target="_blank"><img src="http://w.sharethis.com/images/twitter_16.png" alt="Twitter" /></a>
-					<a href="https://plus.google.com/" target="_blank"><img src="http://w.sharethis.com/images/google_16.png" alt="Google" /></a>
-				</div>
-				</div>
-		</div>
 		</div>
     </li>
   </ul>
 
-  <div rv-text="styles | asJSON"> </div>
+  <div id= rv-text="styles | asJSON"> </div>
 
   <script src="/js/vendor/jquery.min.js"></script>
   <script src="/js/vendor/moment.min.js"></script>
