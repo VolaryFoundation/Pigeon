@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link href="css/widgets.css" rel="stylesheet" type="text/css">
+<link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+</head>
+<body>
+  <div id='header'>
+    <h1>Some Title</h1>
+  </div>
+  <div id='searchInput'>
+    <form rv-on-submit='noop | preventDefault'>
+      <input rv-value='filters:keywords'></input>
+    </form>
+  </div>
+  
+  <div id='searchTools'>
+    <span rv-on-click='ui.showMore' rv-text='ui:showText'></span>
+    <!--<ul id='tabs'>
+      <li><label for='groups'>Groups</label></li>
+      <li><label for='events'>Events</label></li>
+      <input type='radio' id='groups' value='groups' style='display:none;' name='subjectToggle' rv-checked='filters:subject'></input>
+      <input type='radio' id='events' value='events' style='display:none;'name='subjectToggle' rv-checked='filters:subject'></input>
+    </ul>-->
+  </div>
+  
+  <div id='results-chaos'>
+    <ul class="items groups" > 
+      <li rv-each-result="searcher:results" class='result-item' rv-class-large='ui:showMore'>
+        <a href='' rv-href="result:source | checkUrl"><h3 rv-text="result:name"></h3></a>
+  			<img src="" rv-src="result:image | checkImg" class="float-left main">
+  			<ul>
+  			  <li rv-text="result:location.city" class='bold center-text'></li>
+  			  <li rv-text="result:size | addMemberText" class='center-text'></li>
+  			  <li rv-text="result:range | humanize" class='center-text'></li>
+  			  <li class='right-side-text'><a href='#;'>Show More</a></li>
+  			</ul>
+  			<ul class='extraInfo'>
+  			  <li><p rv-text="result:description"></p></li>
+  			  <li rv-text="result:tags | tagValue philosophy" ></li>
+          <li class='share_button' class='float-left'><!-- Added this div to allow me to center all 3 button even though they are floating -->
+  			    <a href="http://www.facebook.com/" target="_blank" class='share_button'><img src="http://w.sharethis.com/images/facebook_16.png" alt="Facebook"></a>
+  			    <a href="#" target="_blank" class='share_button'><img src="http://w.sharethis.com/images/twitter_16.png" alt="Twitter"  /></a>
+  			    <a href="https://plus.google.com/" target="_blank" class='share_button'><img src="http://w.sharethis.com/images/google_16.png" alt="Google" /></a>
+  			  </li>
+  			  <li class='float-right'><a href='#;'>Show Less</a></li>
+  			</ul>
+      </li>
+    </ul>
+      </li>
+    </ul>
+  </div>
+  
+  <div id='pagination'>
+  </div>
+  
+
+
+  <script src="/js/vendor/jquery.min.js"></script>
+  <script src="/js/vendor/moment.min.js"></script>
+  <script src="/js/vendor/lodash.min.js"></script>
+  <script src="/js/vendor/backbone.min.js"></script>
+  <script src="/js/vendor/rivets.min.js"></script>
+  <script src="/js/rivets_config.js"></script>
+  <script src="/js/utils.js"></script>
+  <script src="/js/app.js"></script>
+  <script>
+    grn.processHash(window.location.hash)
+    rivets.bind(document.body, grn.viewModel) 
+    grn.viewModel.searcher.search(grn.viewModel.filters)
+  </script>
+</body>
+</html>

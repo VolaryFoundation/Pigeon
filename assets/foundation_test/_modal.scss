@@ -1,0 +1,42 @@
+#results-modal {
+	min-width: 800px;
+	min-height: 200px;
+	border-bottom: 1px solid gray;
+	ul{
+		margin: 0px;
+		padding: 0px;
+		overflow: auto;
+		li{
+			list-style: none;
+		}
+		li.result-item.moreInfo {
+			height: 418px;
+			float:none;
+		}
+		li.result-item {
+			h3 {
+				text-align: center;
+			}
+			img.main {
+				padding-left:7px;
+				width:150px;
+				height:113px;
+			}
+			ul{
+				li{
+					padding-bottom: 17px;
+				}
+			}
+			
+			padding: 0px;
+			margin: 1px;
+			overflow:auto;
+			width:49%;
+			height: 200px;
+			padding-top: 7px;
+			padding-bottom: 7px;
+			border: 1px solid gray;
+			float: left;
+		}
+	}
+}
