@@ -2,10 +2,19 @@
 
   var hub = _.extend({}, Backbone.Events)
 
-  var Event = Backbone.Model.extend({ })
+  var Event = Backbone.Model.extend({
+
+    activate: function() {
+      hub.trigger('activateResult', this)
+    }
+  })
+
   var Events = Backbone.Collection.extend({
+
     url: 'http://volary-eagle.herokuapp.com/events',
+
     model: Event,
+
     initialize: function() {
 
       hub.on('search:events', function(filters) {
@@ -15,10 +24,16 @@
       this.on('sync', function() {
         hub.trigger('search:done', this.models)
       }, this)
+    },
+  })
+
+  var Group = Backbone.Model.extend({
+
+    activate: function() {
+      hub.trigger('activateResult', this)
     }
   })
 
-  var Group = Backbone.Model.extend({})
   var Groups = Backbone.Collection.extend({
     url: 'http://volary-eagle.herokuapp.com/groups',
     model: Group,
@@ -31,7 +46,7 @@
       this.on('sync', function() {
         hub.trigger('search:done', this.models)
       }, this)
-    }
+    },
   })
 
   var Embedder = Backbone.Model.extend({
@@ -187,15 +202,71 @@
   })
 
   var UI = Backbone.Model.extend({
-	defaults:{showMore:false, showText:'Show More'},
-	
-	showMore: function(){
-		this.set('showMore', !this.get('showMore'))
-		this.set('showText', (this.get('showText') == 'Show More')? 'Show Less' : 'Show More')
-	}
-	
-	
-})
+
+    defaults: {
+      showMore: false, 
+      showText: 'Show More'
+    },
+
+    initialize: function() {
+      hub.on('activateResult', function(activeResult) {
+        var current = this.get('activeResult')
+        if (current) current.set('active', false)
+        this.set('activeResult', activeResult)
+        activeResult.set('active', true)
+      }, this)
+    },
+
+    showMore: function(){
+      this.set('showMore', !this.get('showMore'))
+      this.set('showText', (this.get('showText') == 'Show More')? 'Show Less' : 'Show More')
+    }
+  })
+
+  function lat_lng(place) {
+    var ll = place.get('last').data.location.lng_lat
+    return [ ll[1], ll[0] ]
+  }
+  
+  var Map = Backbone.Model.extend({
+    
+    initialize: function() {
+      hub.on('results:updated', this.update, this)
+      hub.on('activateResult', function(place) {
+        this.panTo(place)
+      }, this)
+    },
+
+    panTo: function(place) {
+      this.get('mb').panTo(lat_lng(place))
+    },
+
+    update: function(places) {
+      this.updateMarkers(places)
+      this.focus(places)
+    },
+
+    updateMarkers: function(places) {
+      var markers = this.get('markers') || (this.attributes.markers = L.layerGroup().addTo(this.get('mb')))
+      markers.clearLayers()
+      places.forEach(function(place) {
+        var last = place.get('last')
+        var marker = L.marker(lat_lng(place), { title: last.data.name })
+        marker.on('click', function(e) {
+          hub.trigger('activateResult', place)
+        })
+        markers.addLayer(marker)
+      })
+    },
+
+    focus: function(places) {
+      this.get('mb').fitBounds(
+        places.map(function(place) {
+          return lat_lng(place)
+        })
+      )
+    }
+  })
 
   var groups = new Groups
   var events = new Events
@@ -203,6 +274,7 @@
   var searcher = new Searcher
   var filters = new Filters
   var ui = new UI
+  var map = new Map
 
   var grn = {
 
@@ -223,7 +295,8 @@
       searcher: searcher,
       filters: filters,
       embedder: embedder,
-	  ui: ui,
+      ui: ui,
+      map: map,
       noop: function() {}
     }
   }

@@ -13,6 +13,17 @@ rivets.adapters[':'] = {
   }
 }
 
+rivets.binders.map = function(el, mapModel) {
+  mapModel.set('mb', L.mapbox.map(el, 'volary.gn97f0pd'))
+}
+
+rivets.binders.autoscroll = function(el, target) {
+  if (!target) return
+  var id = target.get('_id')
+  var $target = $('#' + id)
+  $(el).animate({ scrollTop: $target.offset().top })
+}
+
 rivets.formatters.eq = function(a, b) {
   return a == b
 }

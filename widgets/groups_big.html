@@ -4,33 +4,44 @@
 <link href="css/widgets.css" rel="stylesheet" type="text/css">
 <link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
 <link href='//api.tiles.mapbox.com/mapbox.js/v1.5.2/mapbox.css' rel='stylesheet' />
+<style>
+
+  * { margin: 0; padding: 0 }
+
+  #widget {
+    width: 800px;
+    height: 600px;
+  }
+
+  #map { height: 100%; width: 600px }
+
+  sidebar {
+    float: right;
+    width: 200px;
+    height: 100%;
+    overflow: auto
+  }
+
+  li {
+    margin: 10px;
+    padding: 10px 0;
+  }
+
+  .active {
+    background: #ddd;
+  }
+</style>
 </head>
 <body>
 
-  <h1 class="title" rv-text="title"> </h1>
-  
-  <span rv-on-click='ui.showMore' rv-text='ui:showText'></span>
-
-  <ul class="items" rv-class-long="ui:showMore"> 
-    <li rv-each-result="searcher:results" class='result-item'>
-    	<img src="" rv-show='ui:showMore' rv-src="result:image | checkImg">
-			<h3 rv-text="result:name"></h3>
-			<p rv-text="result:description | ellise 200" rv-show='ui:showMore'></p>	
-			<p rv-text="result:description | ellise 50" rv-hide='ui:showMore'></p>
-			<p rv-text="result:tags | tagValue philosophy" rv-show='ui:showMore'></p>
-			<p rv-text="result:range" rv-show='ui:showMore'></p>
-			<p rv-text="result:size" rv-show='ui:showMore'></p>
-			<div class="location">{result:location.address}<br/>{result:location.city}</div>  
-			<div id="share-buttons" rv-show='ui:showMore'>
-				<a href="http://www.facebook.com/" target="_blank"><img src="http://w.sharethis.com/images/facebook_16.png" alt="Facebook"></a>
-				<a href="#" target="_blank"><img src="http://w.sharethis.com/images/twitter_16.png" alt="Twitter" /></a>
-				<a href="https://plus.google.com/" target="_blank"><img src="http://w.sharethis.com/images/google_16.png" alt="Google" /></a>
-			</div>
-		</div>
-    </li>
-  </ul>
-
-  <div rv-text="styles | asJSON"> </div>
+  <div id="widget">
+    <sidebar rv-autoscroll="ui:activeResult">
+      <ul>
+        <li rv-each-result="searcher:results" rv-on-click="result.activate | preventDefault" rv-class-active="result:active" rv-id="result:_id">{ result:last.data.name }</li>
+      </ul>
+    </sidebar>
+    <div rv-map="map" id="map"></div>
+  </div>
 
   <script src='//api.tiles.mapbox.com/mapbox.js/v1.5.2/mapbox.js'></script>
   <script src="/js/vendor/jquery.min.js"></script>
