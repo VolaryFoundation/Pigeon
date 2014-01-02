@@ -37,8 +37,7 @@ relative-for-links {
   overflow: auto; }
 
 #header {
-  text-align: center;
-  background-color: #2783b9; }
+  text-align: center; }
   #header h1 {
     padding: 7px;
     margin: 0;
@@ -46,7 +45,6 @@ relative-for-links {
 
 #searchInput {
   min-width: 800px;
-  background-color: #2783b9;
   padding-top: 7px;
   padding-bottom: 7px; }
   #searchInput input {
@@ -58,7 +56,7 @@ relative-for-links {
 #searchTools {
   min-width: 800px;
   min-height: 50px;
-  border-bottom: 1px solid purple;
+  border-bottom: 1px solid gray;
   position: relative; }
   #searchTools ul#tabs {
     width: 205px;
@@ -252,6 +250,55 @@ relative-for-links {
         height: 113px; }
       #results-modal ul li.result-item ul li {
         padding-bottom: 17px; }
+
+#results-loren {
+  min-width: 800px;
+  min-height: 200px;
+  border-bottom: 1px solid gray; }
+  #results-loren ul {
+    box-sizing: border-box;
+    margin: 0px;
+    padding: 0px;
+    overflow: auto; }
+    #results-loren ul li {
+      list-style: none; }
+    #results-loren ul li.result-item {
+      box-sizing: border-box;
+      padding: 0px;
+      margin: 0 auto;
+      overflow: auto;
+      width: 97%;
+      border: 1px solid #7C7C7C;
+      background-color: white;
+      margin: 12px;
+      box-shadow: 1px 2px #cccccc, inset 0 0 2px 1px #eaeaea;
+      border-radius: 4px; }
+      #results-loren ul li.result-item ul.sideInfo {
+        background-color: inherit;
+        width: 65%;
+        margin-top: 15px; }
+        #results-loren ul li.result-item ul.sideInfo h3 {
+          margin-top: 0; }
+      #results-loren ul li.result-item img {
+        padding: 12px; }
+      #results-loren ul li.result-item ul.bottomInfo {
+        box-sizing: border-box;
+        background-color: #eaeaea;
+        width: 100%;
+        border-top: 1px solid #7C7C7C;
+        margin: 0;
+        padding: 7px; }
+        #results-loren ul li.result-item ul.bottomInfo li.right {
+          float: left;
+          width: 25%;
+          text-align: right; }
+        #results-loren ul li.result-item ul.bottomInfo li.center {
+          float: left;
+          width: 50%;
+          text-align: center; }
+        #results-loren ul li.result-item ul.bottomInfo li.left {
+          float: left;
+          width: 25%; }
 
 #pagination {
   min-width: 800px;

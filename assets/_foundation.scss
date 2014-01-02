@@ -48,7 +48,6 @@ relative-for-links {
 
 #header {
 	text-align: center;
-	background-color: rgb(39, 131, 185);
 	h1 {
 		padding: 7px;
 		margin:0;
@@ -58,7 +57,6 @@ relative-for-links {
 
 #searchInput {
 	min-width: 800px;
-	background-color: rgb(39, 131, 185);
 	padding-top: 7px;
 	padding-bottom: 7px;
 	input {
@@ -72,7 +70,7 @@ relative-for-links {
 #searchTools {
 	min-width: 800px;
 	min-height: 50px;
-	border-bottom: 1px solid purple;
+	border-bottom: 1px solid gray;
 	position: relative;
 	ul#tabs {
 		width: 205px;
@@ -111,6 +109,7 @@ relative-for-links {
 @import "foundation_test/chaos";
 @import "foundation_test/large";
 @import "foundation_test/modal";
+@import "foundation_test/loren";
 
 
 
