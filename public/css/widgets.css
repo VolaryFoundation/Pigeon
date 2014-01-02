@@ -2,6 +2,8 @@ body {
   font: 100% Helvetica, sans-serif;
   color: #333333;
   margin: 0px;
+  width: 100%;
+  max-width: 810px;
   border: 1px solid gray; }
 
 .bold {
@@ -42,8 +44,11 @@ relative-for-links {
     margin: 0;
     color: white; }
 
+img {
+  max-width: 100%; }
+
 #searchInput {
-  min-width: 800px;
+  width: 98.7%;
   padding-top: 7px;
   padding-bottom: 7px; }
   #searchInput input {
@@ -53,131 +58,9 @@ relative-for-links {
     display: block; }
 
 #searchTools {
-  min-width: 800px;
+  width: 100%;
   min-height: 50px;
-  border-bottom: 1px solid gray;
-  position: relative; }
-  #searchTools ul#tabs {
-    width: 205px;
-    height: 40px;
-    position: absolute;
-    left: 10px;
-    bottom: 0;
-    display: block;
-    margin: 0;
-    padding: 0; }
-    #searchTools ul#tabs li {
-      border-top: 1px solid gray;
-      border-left: 1px solid gray;
-      border-right: 1px solid gray;
-      height: 40px;
-      width: 100px;
-      margin: 0;
-      list-style: none;
-      float: left;
-      text-align: center;
-      position: relative; }
-      #searchTools ul#tabs li span {
-        height: 20px;
-        width: 60px;
-        display: block;
-        margin: auto;
-        position: absolute;
-        top: 0;
-        left: 0;
-        bottom: 0;
-        right: 0; }
-
-#results-aligned {
-  min-width: 800px;
-  min-height: 200px;
   border-bottom: 1px solid gray; }
-  #results-aligned ul {
-    margin: 0px;
-    padding: 0px;
-    overflow: auto; }
-    #results-aligned ul li {
-      list-style: none; }
-    #results-aligned ul li.result-item.moreInfo {
-      height: 418px; }
-    #results-aligned ul li.result-item {
-      position: relative;
-      padding: 0px;
-      margin: 1px;
-      width: 401px;
-      height: 200px;
-      padding-top: 7px;
-      padding-bottom: 7px;
-      border: 1px solid gray; }
-      #results-aligned ul li.result-item:nth-child(odd) {
-        float: left; }
-      #results-aligned ul li.result-item:nth-child(even) {
-        float: right; }
-      #results-aligned ul li.result-item a.header {
-        padding: 0;
-        margin: 0;
-        text-decoration: none; }
-      #results-aligned ul li.result-item h3 {
-        background-color: #2783b9;
-        text-align: center;
-        padding-bottom: 7px;
-        margin-bottom: 7px;
-        padding-top: 7px;
-        margin-top: -7px;
-        color: white; }
-      #results-aligned ul li.result-item img.main {
-        padding-left: 7px;
-        margin-top: 17px;
-        width: 150px;
-        height: 113px; }
-      #results-aligned ul li.result-item ul li {
-        padding-bottom: 17px; }
-      #results-aligned ul li.result-item .sideInfo {
-        overflow: hidden; }
-        #results-aligned ul li.result-item .sideInfo li {
-          max-height: 100px; }
-          #results-aligned ul li.result-item .sideInfo li ul.tagList {
-            margin: 0;
-            padding: 0;
-            text-align: center; }
-            #results-aligned ul li.result-item .sideInfo li ul.tagList li {
-              margin: 0;
-              padding: 0; }
-      #results-aligned ul li.result-item .extraInfo {
-        overflow: hidden;
-        clear: both; }
-
-#results-chaos {
-  min-width: 800px;
-  min-height: 200px;
-  border-bottom: 1px solid gray; }
-  #results-chaos ul {
-    margin: 0px;
-    padding: 0px;
-    overflow: auto; }
-    #results-chaos ul li {
-      list-style: none; }
-    #results-chaos ul li.result-item.moreInfo {
-      height: 418px;
-      float: none; }
-    #results-chaos ul li.result-item {
-      padding: 0px;
-      margin: 1px;
-      overflow: auto;
-      width: 49%;
-      height: 200px;
-      padding-top: 7px;
-      padding-bottom: 7px;
-      border: 1px solid gray;
-      float: left; }
-      #results-chaos ul li.result-item h3 {
-        text-align: center; }
-      #results-chaos ul li.result-item img.main {
-        padding-left: 7px;
-        width: 150px;
-        height: 113px; }
-      #results-chaos ul li.result-item ul li {
-        padding-bottom: 17px; }
 
 #results-large {
   min-width: 800px;
@@ -218,50 +101,31 @@ relative-for-links {
       #results-large ul .result_column_right li {
         margin: 10px; }
 
-#results-modal {
-  min-width: 800px;
-  min-height: 200px;
-  border-bottom: 1px solid gray; }
-  #results-modal ul {
-    margin: 0px;
-    padding: 0px;
-    overflow: auto; }
-    #results-modal ul li {
-      list-style: none; }
-    #results-modal ul li.result-item.moreInfo {
-      height: 418px;
-      float: none; }
-    #results-modal ul li.result-item {
-      padding: 0px;
-      margin: 1px;
-      overflow: auto;
-      width: 49%;
-      height: 200px;
-      padding-top: 7px;
-      padding-bottom: 7px;
-      border: 1px solid gray;
-      float: left; }
-      #results-modal ul li.result-item h3 {
-        text-align: center; }
-      #results-modal ul li.result-item img.main {
-        padding-left: 7px;
-        width: 150px;
-        height: 113px; }
-      #results-modal ul li.result-item ul li {
-        padding-bottom: 17px; }
+@media screen and (max-width: 670px) {
+  .large {
+    display: none; }
 
-#results-loren {
-  min-width: 800px;
+  .small {
+    display: inline;
+    float: none; }
+
+  #results-full-list ul li.result-item ul.bottomInfo li.center.tags {
+    float: none;
+    width: 100%; } }
+#results-full-list {
+  width: 98.7%;
   min-height: 200px;
   border-bottom: 1px solid gray; }
-  #results-loren ul {
+  #results-full-list .small {
+    display: none; }
+  #results-full-list ul {
     box-sizing: border-box;
     margin: 0px;
     padding: 0px;
     overflow: auto; }
-    #results-loren ul li {
+    #results-full-list ul li {
       list-style: none; }
-    #results-loren ul li.result-item {
+    #results-full-list ul li.result-item {
       box-sizing: border-box;
       padding: 0px;
       margin: 0 auto;
@@ -272,30 +136,34 @@ relative-for-links {
       margin: 12px;
       box-shadow: 1px 2px #cccccc, inset 0 0 2px 1px #eaeaea;
       border-radius: 4px; }
-      #results-loren ul li.result-item ul.sideInfo {
+      #results-full-list ul li.result-item ul.sideInfo {
         background-color: inherit;
         width: 65%;
         margin-top: 15px; }
-        #results-loren ul li.result-item ul.sideInfo h3 {
+        #results-full-list ul li.result-item ul.sideInfo h3 {
           margin-top: 0; }
-      #results-loren ul li.result-item img {
+        #results-full-list ul li.result-item ul.sideInfo #description {
+          overflow: hidden;
+          height: 120px; }
+      #results-full-list ul li.result-item img {
+        max-width: 100%;
         padding: 12px; }
-      #results-loren ul li.result-item ul.bottomInfo {
+      #results-full-list ul li.result-item ul.bottomInfo {
         box-sizing: border-box;
         background-color: #eaeaea;
         width: 100%;
         border-top: 1px solid #7C7C7C;
         margin: 0;
         padding: 7px; }
-        #results-loren ul li.result-item ul.bottomInfo li.right {
+        #results-full-list ul li.result-item ul.bottomInfo li.right {
           float: left;
           width: 25%;
           text-align: right; }
-        #results-loren ul li.result-item ul.bottomInfo li.center {
+        #results-full-list ul li.result-item ul.bottomInfo li.center {
           float: left;
           width: 50%;
           text-align: center; }
-        #results-loren ul li.result-item ul.bottomInfo li.left {
+        #results-full-list ul li.result-item ul.bottomInfo li.left {
           float: left;
           width: 25%; }
 

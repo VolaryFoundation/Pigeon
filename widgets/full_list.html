@@ -14,7 +14,7 @@
     </form>
   </div>
   
-  <div id='searchTools'>
+  <!--<div id='searchTools'>-->
     <!--<span rv-on-click='ui.showMore' rv-text='ui:showText'></span>-->
     <!--<ul id='tabs'>
       <li><label for='groups'>Groups</label></li>
@@ -22,20 +22,20 @@
       <input type='radio' id='groups' value='groups' style='display:none;' name='subjectToggle' rv-checked='filters:subject'></input>
       <input type='radio' id='events' value='events' style='display:none;'name='subjectToggle' rv-checked='filters:subject'></input>
     </ul>-->
-  </div>
+  <!--</div>-->
   
-  <div id='results-loren'>
+  <div id='results-full-list'>
     <ul class="items groups" > 
       <li rv-each-result="searcher:results" class='result-item float-left' rv-class-large='ui:showMore'>
   			<img src="" rv-src="result:image | checkImg" class="float-left main">
   			<ul class='sideInfo'>
-  			  <li><a href='' rv-href="result:source | checkUrl" class='header'><h3 rv-text="result:name"></h3></a></li>
-  			  <li class='clear'><p rv-text="result:description | ellise 300"></p></li>
+  			  <li><a href='' rv-href="result:source | checkUrl" class='header'><h3 rv-text="result:last.data.name"></h3></a></li>
+  			  <li class='clear large'><p id='description'rv-html="result:last.data.description"></p></li>
         </ul>
         <ul class='bottomInfo clear'>
-          <li rv-text="result:location.city" class='left'></li>
-  			  <li class='center'><span rv-each-phil="result:tags | tagValue philosophy">{phil}, </span></li>
-  			  <li rv-text="result:range | humanize" class='right'></li>
+          <li rv-text="result:last.data.location.city" class='left large'></li>
+  			  <li class='center tags'><span>Temp, Date, Setup, Tags, And Remove </span></li>
+  			  <li  class='right large'>Temp Range</li>
   			</ul>
       </li>
     </ul>
@@ -56,7 +56,6 @@
   <script src="/js/rivets_config.js"></script>
   <script src="/js/utils.js"></script>
   <script src="/js/app.js"></script>
-  <script src="/js/align.js"></script>
   <script>
     grn.processHash(window.location.hash)
     rivets.bind(document.body, grn.viewModel) 

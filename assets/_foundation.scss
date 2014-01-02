@@ -2,7 +2,8 @@ body {
 	font: 100% $font-stack;
 	color: $primary-color;
 	margin: 0px;
-	width: 810px;
+	width: 100%;
+	max-width: 810px;
 	border: 1px solid gray;
 }
 
@@ -55,8 +56,12 @@ relative-for-links {
 	}
 }
 
+img {
+	max-width: 100%;
+}
+
 #searchInput {
-	min-width: 800px;
+	width: 98.7%;
 	padding-top: 7px;
 	padding-bottom: 7px;
 	input {
@@ -68,48 +73,15 @@ relative-for-links {
 }
 
 #searchTools {
-	min-width: 800px;
+	width: 100%;
 	min-height: 50px;
 	border-bottom: 1px solid gray;
-	position: relative;
-	ul#tabs {
-		width: 205px;
-		height: 40px;
-		position: absolute;
-		left: 10px; bottom: 0;
-		display: block;
-		margin:0;
-		padding:0;
-		li {
-			border-top: 1px solid gray;
-			border-left: 1px solid gray;
-			border-right: 1px solid gray;
-			height: 40px;
-			width: 100px;
-			margin: 0;
-			list-style: none;
-			float:left;	
-			text-align: center;
-			position: relative;
-			
-			span {
-				height: 20px;
-				width: 60px;
-				display:block;
-				margin: auto;
-				position: absolute;
-				top: 0; left: 0; bottom: 0; right: 0;
-			}
-			
-		}
-	}
 }
 
-@import "foundation_test/aligned";
-@import "foundation_test/chaos";
+
 @import "foundation_test/large";
-@import "foundation_test/modal";
-@import "foundation_test/loren";
+@import "foundation_test/full_list";
+@import "foundation_test/map_list";
 
 
 

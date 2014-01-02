@@ -45,8 +45,25 @@ rivets.formatters.tagValue = function(raw, tagName) {
 	})
 }
 
+rivets.formatters.htmlSafe = function(value, length) {
+	if (value != null) {
+		return value.text()
+	}
+	else {
+		return value
+	}
+	
+}
+
+
+
 rivets.formatters.ellise = function(value, length) {
-	return value.substr(0, length) + "..."
+	if (value != null) {
+		return value.substr(0, length) + "..."
+	}
+	else {
+		return "No description avaliable"
+	}
 }
 
 rivets.formatters.date = function(value){

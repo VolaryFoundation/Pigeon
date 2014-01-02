@@ -1,7 +1,33 @@
-#results-loren{
-	min-width: 800px;
+@media screen and (max-width: 670px) {
+	.large {
+		display: none;
+	}
+	.small {
+		display: inline;
+		float: none;
+	}
+	#results-full-list {
+		ul {
+			li.result-item {
+				ul.bottomInfo {
+					li.center.tags {
+						float: none;
+						width: 100%;
+					}
+				}
+			}
+		}
+	}
+}
+
+#results-full-list {
+	width: 98.7%;
 	min-height: 200px;
 	border-bottom: 1px solid gray;
+	.small {
+		display: none;
+	}
+	
 	ul{
 		box-sizing:border-box;
 		margin: 0px;
@@ -28,8 +54,13 @@
 				h3 {
 					margin-top: 0;
 				}
+				#description {
+					overflow: hidden;
+					height: 120px;
+				}
 			}
 			img {
+				max-width: 100%;
 				padding: 12px;
 			}
 			ul.bottomInfo {
