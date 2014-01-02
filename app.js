@@ -10,10 +10,10 @@ var lookingForAsset = function(req) {
 
 http.createServer(function(req, res) {
   req.addListener('end', function () {
-      if (lookingForAsset(req)) {
-        assets.serve(req, res)
-      } else {
-        widgets.serve(req, res)
-      }
+    if (lookingForAsset(req)) {
+      assets.serve(req, res)
+    } else {
+      widgets.serve(req, res)
+    }
   }).resume()
 }).listen(PORT)

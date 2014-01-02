@@ -4,7 +4,7 @@
 
   var Event = Backbone.Model.extend({ })
   var Events = Backbone.Collection.extend({
-    url: 'http://localhost:9393/events',
+    url: 'http://volary-eagle.herokuapp.com/events',
     model: Event,
     initialize: function() {
 
@@ -20,7 +20,7 @@
 
   var Group = Backbone.Model.extend({})
   var Groups = Backbone.Collection.extend({
-    url: 'http://localhost:9393/groups',
+    url: 'http://volary-eagle.herokuapp.com/groups',
     model: Group,
     initialize: function() {
 
