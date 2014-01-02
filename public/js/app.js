@@ -230,7 +230,7 @@
   
   var Map = Backbone.Model.extend({
     
-    initialize: function() {
+    bind: function() {
       hub.on('results:updated', this.update, this)
       hub.on('activateResult', function(place) {
         this.panTo(place)

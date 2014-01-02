@@ -15,6 +15,7 @@ rivets.adapters[':'] = {
 
 rivets.binders.map = function(el, mapModel) {
   mapModel.set('mb', L.mapbox.map(el, 'volary.gn97f0pd'))
+  mapModel.bind()
 }
 
 rivets.binders.autoscroll = function(el, target) {
