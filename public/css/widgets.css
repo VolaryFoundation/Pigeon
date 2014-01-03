@@ -167,6 +167,35 @@ img {
           float: left;
           width: 25%; }
 
+* {
+  margin: 0;
+  padding: 0; }
+
+#widget {
+  width: 800px;
+  height: 600px;
+  position: relative; }
+  #widget #map {
+    height: 100%;
+    width: 100%; }
+  #widget sidebar {
+    position: absolute;
+    top: 0;
+    left: 35px;
+    z-index: 2;
+    width: 225px;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(255, 255, 255, 0.4); }
+    #widget sidebar ul li {
+      margin: 10px;
+      padding: 10px 0;
+      background-color: rgba(255, 255, 255, 0.7);
+      border: 2px ridge rgba(0, 0, 0, 0.2);
+      list-style: none; }
+      #widget sidebar ul li.active {
+        background-color: #ddd; }
+
 #pagination {
   min-width: 800px;
   min-height: 50px; }

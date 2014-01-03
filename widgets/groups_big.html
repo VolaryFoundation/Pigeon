@@ -6,30 +6,7 @@
 <link href='//api.tiles.mapbox.com/mapbox.js/v1.5.2/mapbox.css' rel='stylesheet' />
 <style>
 
-  * { margin: 0; padding: 0 }
 
-  #widget {
-    width: 800px;
-    height: 600px;
-  }
-
-  #map { height: 100%; width: 600px }
-
-  sidebar {
-    float: right;
-    width: 200px;
-    height: 100%;
-    overflow: auto
-  }
-
-  li {
-    margin: 10px;
-    padding: 10px 0;
-  }
-
-  .active {
-    background: #ddd;
-  }
 </style>
 </head>
 <body>
@@ -37,7 +14,11 @@
   <div id="widget">
     <sidebar rv-autoscroll="ui:activeResult">
       <ul>
-        <li rv-each-result="searcher:results" rv-on-click="result.activate | preventDefault" rv-class-active="result:active" rv-id="result:_id">{ result:last.data.name }</li>
+        <li rv-each-result="searcher:results" rv-on-click="result.activate | preventDefault" rv-class-active="result:active" rv-id="result:_id">
+          <span>{ result:last.data.name }</span>
+          <br>
+          <span>{ result:last.data.location.city }, { result:last.data.location.state }</span>
+        </li>
       </ul>
     </sidebar>
     <div rv-map="map" id="map"></div>
