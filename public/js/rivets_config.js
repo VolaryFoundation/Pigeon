@@ -29,6 +29,26 @@ rivets.formatters.eq = function(a, b) {
   return a == b
 }
 
+rivets.formatters.tagFinder = function(value) {
+	if (value != null) {
+		var possiblePhilosphies = ['skeptics', 'skeptic','humanists', 'humanist','atheist', 'atheists', 'unitarian', 'free thinker', 'free thinkers']
+		var words = value.toLowerCase().split(" ")
+		var array = _.uniq(words.filter(function(word) { 
+			return _.contains(possiblePhilosphies, word) 
+		}))
+		if (array.length > 0) {
+			return array[0].charAt(0).toUpperCase() + array[0].slice(1);
+		}
+		else {
+			return "Secular"
+		}
+		
+	}
+	else {
+		return "Secular"
+	}
+}
+
 rivets.formatters.preventDefault = function(fn) {
   return function(e) {
     e.preventDefault()
@@ -55,8 +75,6 @@ rivets.formatters.htmlSafe = function(value, length) {
 	}
 	
 }
-
-
 
 rivets.formatters.ellise = function(value, length) {
 	if (value != null) {
@@ -104,13 +122,6 @@ rivets.formatters.addMemberText = function(value){
 	else {
 	 	return value + " Members";
 	}
-}
-
-rivets.formatters.humanize = function(value){
-	array = value.split('');
-	array[0] = array[0].toUpperCase();
-	string = array.join('');
-	return string;
 }
 
 rivets.formatters.asJSON = function(data) {
