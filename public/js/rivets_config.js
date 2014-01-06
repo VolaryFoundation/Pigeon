@@ -13,6 +13,10 @@ rivets.adapters[':'] = {
   }
 }
 
+rivets.formatters.toJSON = function(val) {
+  return JSON.stringify(val)
+}
+
 rivets.binders.map = function(el, mapModel) {
   mapModel.set('mb', L.mapbox.map(el, 'volary.gn97f0pd'))
   mapModel.bind()
@@ -27,26 +31,6 @@ rivets.binders.autoscroll = function(el, target) {
 
 rivets.formatters.eq = function(a, b) {
   return a == b
-}
-
-rivets.formatters.tagFinder = function(value) {
-	if (value != null) {
-		var possiblePhilosphies = ['skeptics', 'skeptic','humanists', 'humanist','atheist', 'atheists', 'unitarian', 'free thinker', 'free thinkers']
-		var words = value.toLowerCase().split(" ")
-		var array = _.uniq(words.filter(function(word) { 
-			return _.contains(possiblePhilosphies, word) 
-		}))
-		if (array.length > 0) {
-			return array[0].charAt(0).toUpperCase() + array[0].slice(1);
-		}
-		else {
-			return "Secular"
-		}
-		
-	}
-	else {
-		return "Secular"
-	}
 }
 
 rivets.formatters.preventDefault = function(fn) {

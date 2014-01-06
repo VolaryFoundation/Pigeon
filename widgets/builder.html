@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link rel="stylesheet" href="app.css" />
+
+</head>
+<body>
+
+  <div id="wrapper">
+
+    <h3>Configure your widget</h3>
+    <p>Initial filters: { filters.forClientUrl | toJSON }</p>
+
+    <form rv-on-submit="noop | preventDefault">
+      <fieldset>
+      </fieldset>
+    </form>
+  </div>
+
+  <script src="/js/vendor/jquery.min.js"></script>
+  <script src="/js/vendor/moment.min.js"></script>
+  <script src="/js/vendor/lodash.min.js"></script>
+  <script src="/js/vendor/backbone.min.js"></script>
+  <script src="/js/vendor/rivets.min.js"></script>
+  <script src="/js/rivets_config.js"></script>
+  <script src="/js/utils.js"></script>
+  <script src="/js/app.js"></script>
+  <script>
+    grn.processQuery(window.location.search)
+    rivets.bind(document.body, grn.viewModel) 
+    grn.viewModel.searcher.search(grn.viewModel.filters)
+  </script>
+</body>
+</html>

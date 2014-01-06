@@ -29,6 +29,16 @@
 
   var Group = Backbone.Model.extend({
 
+    getTags: function() {
+
+      var philos = ['skeptics', 'skeptic','humanists', 'humanist','atheist', 'atheists', 'unitarian', 'free thinker', 'free thinkers']
+      var data = this.get('last').data.name + ' ' + this.get('last').data.description
+      
+      var inter = _.intersection(philos, data.split(' ').map(function(word) { return word.toLowerCase() }))
+
+      return inter.length ? inter : 'secular'
+    },
+
     activate: function() {
       hub.trigger('activateResult', this)
     }
@@ -117,12 +127,11 @@
 
       // keep url and form in sync current filter set with URL query
       function update() {
-        if (global.history) global.history.pushState({}, '', '?' + utils.params.serialize(this.forClientUrl()))
+        //if (global.history) global.history.pushState({}, '', '?' + utils.params.serialize(this.forClientUrl()))
         hub.trigger('filters:updated', this)
       }
       this.on('change', update, this)
       this.tags.on('change', update, this)
-      if (global.location) this.set(this.fromClientUrl(utils.params.deserialize(window.location.search.substr(1))))
     },
 
     serialize: function(blacklist) {
@@ -208,6 +217,10 @@
       showText: 'Show More'
     },
 
+    triggerCloner: function() {
+      window.top.postMessage(utils.params.serialize(grn.buildQuery()), '*')
+    },
+
     initialize: function() {
       hub.on('activateResult', function(activeResult) {
         var current = this.get('activeResult')
@@ -273,13 +286,13 @@
   var embedder = new Embedder
   var searcher = new Searcher
   var filters = new Filters
-  var ui = new UI
+  var ui = new UI({ filters: filters })
   var map = new Map
 
   var grn = {
 
-    processHash: function(hash) {
-      var params = utils.params.deserialize(hash.substr(1))
+    processQuery: function(query) {
+      var params = utils.params.deserialize(query.substr(1))
       this.viewModel.styles = params.styles || {}
       this.viewModel.title = params.title || ''
       if (params.filters) {
@@ -287,6 +300,17 @@
           this.viewModel.filters.set(k, v, { silent: true })
         }, this)
       }
+    },
+
+    buildQuery: function() {
+      var query = {}
+      query.styles = this.viewModel.styles || {}
+      query.title = this.viewModel.title || ''
+      query.filters = {}
+      _.each(this.viewModel.filters.attributes, function(v, k) {
+        query.filters[k] = v
+      })
+      return query
     },
 
     hub: hub,
@@ -302,4 +326,5 @@
   }
 
   global.grn = grn
+
 })(typeof exports === 'undefined' ? this : exports)
