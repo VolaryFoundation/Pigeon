@@ -33,6 +33,15 @@ rivets.formatters.eq = function(a, b) {
   return a == b
 }
 
+rivets.formatters.selectFirst = function(val) {
+	return val[0];
+}
+
+rivets.formatters.humanize = function(val) {
+	return val.charAt(0).toUpperCase() + val.slice(1);
+}
+
+
 rivets.formatters.preventDefault = function(fn) {
   return function(e) {
     e.preventDefault()

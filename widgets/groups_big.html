@@ -17,8 +17,8 @@
         <li rv-each-result="searcher:results" rv-on-click="result.activate | preventDefault" rv-class-active="result:active" rv-id="result:_id">
           <span>{ result:last.data.name }</span>
           <br>
-          <span>{ result:last.data.location.city }, { result:last.data.location.state }</span>
-          <span>{ result.getTags | toJSON }</span>
+          <span>{ result:last.data.location.city }</span>
+          <span>{ result.getTags | selectFirst | humanize }</span>
         </li>
       </ul>
     </sidebar>
