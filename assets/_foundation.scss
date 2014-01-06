@@ -1,3 +1,4 @@
+
 body {
 	font: 100% $font-stack;
 	color: $primary-color;
@@ -7,86 +8,85 @@ body {
 	border: 1px solid gray;
 }
 
-.bold {
-	font-weight: bold;
-}
-
-.float-left {
-	float: left;
-}
-
-.float-right {
-	float: right;
-}
-
-.hidden {
-	display: none;
-}
-
-.clear {
-	clear:both;
-}
-
-.center-text {
-	text-align: center;
-}
-
-.right-side-text {
-	text-align: right;
-}
-
-.showMoreLink,  .showLessLink{
-	position: absolute;
-	bottom: 0;
-	left: 0;
-	overflow: auto;
-}
-
-relative-for-links {
-	position: relative;
-	overflow: auto;
-}
-
-#header {
-	text-align: center;
-	h1 {
-		padding: 7px;
-		margin:0;
-		color:white;
+#widget {
+	.bold {
+		font-weight: bold;
+	}
+	
+	.float-left {
+		float: left;
+	}
+	
+	.float-right {
+		float: right;
+	}
+	
+	.hidden {
+		display: none;
+	}
+	
+	.clear {
+		clear:both;
+	}
+	
+	.center-text {
+		text-align: center;
+	}
+	
+	.right-side-text {
+		text-align: right;
+	}
+	
+	.showMoreLink,  .showLessLink{
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		overflow: auto;
+	}
+	
+	.relative-for-links {
+		position: relative;
+		overflow: auto;
+	}
+	
+	#header {
+		text-align: center;
+		h1 {
+			padding: 7px;
+			margin:0;
+			color:white;
+		}
+	}
+	
+	img {
+		max-width: 100%;
+	}
+	
+	#searchInput {
+		width: 98.7%;
+		padding-top: 7px;
+		padding-bottom: 7px;
+		input {
+		  height: 20px;
+		  width: 700px;
+		  margin: 15px auto;
+		  display: block;
+		}
+	}
+	
+	#searchTools {
+		width: 100%;
+		min-height: 50px;
+		border-bottom: 1px solid gray;
+	}
+	
+	#pagination {
+		min-width: 800px;
+		min-height: 50px;
 	}
 }
-
-img {
-	max-width: 100%;
-}
-
-#searchInput {
-	width: 98.7%;
-	padding-top: 7px;
-	padding-bottom: 7px;
-	input {
-	  height: 20px;
-	  width: 700px;
-	  margin: 15px auto;
-	  display: block;
-	}
-}
-
-#searchTools {
-	width: 100%;
-	min-height: 50px;
-	border-bottom: 1px solid gray;
-}
-
 
 @import "foundation_test/large";
 @import "foundation_test/full_list";
 @import "foundation_test/map_list";
-
-
-
-#pagination {
-	min-width: 800px;
-	min-height: 50px;
-}
 

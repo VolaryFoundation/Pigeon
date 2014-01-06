@@ -6,61 +6,52 @@ body {
   max-width: 810px;
   border: 1px solid gray; }
 
-.bold {
+#widget .bold {
   font-weight: bold; }
-
-.float-left {
+#widget .float-left {
   float: left; }
-
-.float-right {
+#widget .float-right {
   float: right; }
-
-.hidden {
+#widget .hidden {
   display: none; }
-
-.clear {
+#widget .clear {
   clear: both; }
-
-.center-text {
+#widget .center-text {
   text-align: center; }
-
-.right-side-text {
+#widget .right-side-text {
   text-align: right; }
-
-.showMoreLink, .showLessLink {
+#widget .showMoreLink, #widget .showLessLink {
   position: absolute;
   bottom: 0;
   left: 0;
   overflow: auto; }
-
-relative-for-links {
+#widget .relative-for-links {
   position: relative;
   overflow: auto; }
-
-#header {
+#widget #header {
   text-align: center; }
-  #header h1 {
+  #widget #header h1 {
     padding: 7px;
     margin: 0;
     color: white; }
-
-img {
+#widget img {
   max-width: 100%; }
-
-#searchInput {
+#widget #searchInput {
   width: 98.7%;
   padding-top: 7px;
   padding-bottom: 7px; }
-  #searchInput input {
+  #widget #searchInput input {
     height: 20px;
     width: 700px;
     margin: 15px auto;
     display: block; }
-
-#searchTools {
+#widget #searchTools {
   width: 100%;
   min-height: 50px;
   border-bottom: 1px solid gray; }
+#widget #pagination {
+  min-width: 800px;
+  min-height: 50px; }
 
 #results-large {
   min-width: 800px;
@@ -171,14 +162,14 @@ img {
   margin: 0;
   padding: 0; }
 
-#widget {
+#map {
   width: 800px;
   height: 600px;
   position: relative; }
-  #widget #map {
+  #map #map {
     height: 100%;
     width: 100%; }
-  #widget sidebar {
+  #map sidebar {
     position: absolute;
     top: 0;
     left: 35px;
@@ -187,15 +178,11 @@ img {
     height: 100%;
     overflow: auto;
     background-color: rgba(255, 255, 255, 0.4); }
-    #widget sidebar ul li {
+    #map sidebar ul li {
       margin: 10px;
       padding: 10px 0;
       background-color: rgba(255, 255, 255, 0.7);
       border: 2px ridge rgba(0, 0, 0, 0.2);
       list-style: none; }
-      #widget sidebar ul li.active {
+      #map sidebar ul li.active {
         background-color: #ddd; }
-
-#pagination {
-  min-width: 800px;
-  min-height: 50px; }
