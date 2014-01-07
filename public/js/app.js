@@ -36,7 +36,7 @@
       
       var inter = _.intersection(philos, data.split(' ').map(function(word) { return word.toLowerCase() }))
 
-      return inter.length ? inter : 'secular'
+      return inter.length ? inter : ['secular']
     },
 
     activate: function() {

@@ -11,14 +11,13 @@
 </head>
 <body>
 
-  <div id="map">
+  <div id="map-widget">
     <sidebar rv-autoscroll="ui:activeResult">
       <ul>
         <li rv-each-result="searcher:results" rv-on-click="result.activate | preventDefault" rv-class-active="result:active" rv-id="result:_id">
-          <span>{ result:last.data.name }</span>
-          <br>
+          <a href="#"><h3>{ result:last.data.name }</h3></a>
           <span>{ result:last.data.location.city }</span>
-          <span>{ result.getTags | selectFirst | humanize }</span>
+          <span class='tag'>{ result.getTags | selectFirst | humanize }</span>
         </li>
       </ul>
     </sidebar>

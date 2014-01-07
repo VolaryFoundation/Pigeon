@@ -8,15 +8,15 @@ body {
 	border: 1px solid gray;
 }
 
-#volary-menu {
-	position: absolute;
-	top: 0;
-	right: 0;
-	z-index: 2;
-	background-color: white;
-}
-
 #widget {
+	#volary-menu {
+		position: absolute;
+		top: 0;
+		right: 0;
+		z-index: 2;
+		background-color: white;
+	}
+	
 	.bold {
 		font-weight: bold;
 	}

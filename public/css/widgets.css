@@ -1,18 +1,17 @@
 body {
-  font: 100% Helvetica, sans-serif;
+  font: 100% lato, Helvetica, sans-serif;
   color: #333333;
   margin: 0px;
   width: 100%;
   max-width: 800px;
   border: 1px solid gray; }
 
-#volary-menu {
+#widget #volary-menu {
   position: absolute;
   top: 0;
   right: 0;
   z-index: 2;
   background-color: white; }
-
 #widget .bold {
   font-weight: bold; }
 #widget .float-left {
@@ -169,27 +168,51 @@ body {
   margin: 0;
   padding: 0; }
 
-#map {
+#map-widget {
   width: 800px;
   height: 600px;
   position: relative; }
-  #map #map {
+  #map-widget #volary-menu {
+    display: none;
+    position: absolute;
+    bottom: -0;
+    left: 0;
+    z-index: 2;
+    background-color: white; }
+  #map-widget #map {
     height: 100%;
     width: 100%; }
-  #map sidebar {
+    #map-widget #map .leaflet-left {
+      right: 0 !important; }
+      #map-widget #map .leaflet-left .leaflet-control {
+        margin-right: 10px; }
+  #map-widget sidebar {
     position: absolute;
     top: 0;
-    left: 35px;
-    z-index: 2;
-    width: 225px;
+    right: 0px;
+    z-index: 100000;
+    width: 225px !important;
     height: 100%;
     overflow: auto;
     background-color: rgba(255, 255, 255, 0.4); }
-    #map sidebar ul li {
-      margin: 10px;
-      padding: 10px 0;
-      background-color: rgba(255, 255, 255, 0.7);
-      border: 2px ridge rgba(0, 0, 0, 0.2);
-      list-style: none; }
-      #map sidebar ul li.active {
-        background-color: #ddd; }
+    #map-widget sidebar span {
+      font-size: 16px; }
+    #map-widget sidebar a {
+      color: #2880ca;
+      text-decoration: none; }
+    #map-widget sidebar h3 {
+      padding-bottom: 5px;
+      margin-bottom: 5px;
+      border-bottom: 1px solid #ccc; }
+    #map-widget sidebar ul li {
+      margin: 7px 5px;
+      padding: 10px;
+      background: #fff;
+      border: 1px ridge rgba(0, 0, 0, 0.2);
+      border-radius: 4px;
+      list-style: none;
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3); }
+      #map-widget sidebar ul li.active {
+        background-color: #f3f3f3; }
+      #map-widget sidebar ul li .tag {
+        float: right; }
