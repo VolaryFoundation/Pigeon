@@ -13,6 +13,22 @@
   function createWidget(src) {
     var iframe = document.createElement('iframe')
     iframe.src = src
+	var parser = document.createElement('a');
+	parser.href = src;
+	var data = parser.search.split("&");
+    var result = {};
+    for(var i=0; i<data.length; i++) {
+      var item = data[i].split("=");
+      result[item[0]] = item[1];
+    }
+    if (result.size != null) {
+		var width = result.size.split('x')[0];
+		var height = result.size.split('x')[1];
+	} else {
+		var width = 800;
+		var height = 600;
+	}
+    iframe.setAttribute('style', "width: " + width + "px; height: " + height +"px")
     return iframe
   }
 
