@@ -30,13 +30,27 @@
   var Group = Backbone.Model.extend({
 
     getTags: function() {
+		var skeptics = ['skeptics', 'skeptic', 'critical thinker', 'critical thinkers']
+		var atheists = ['atheists', 'atheist', 'godless', 'heathen', 'heathens']
+		var humanists = ['humanists', 'humanist']
+		var free_thinkers = ['free thinkers', 'free thinker']
+		var unitarians = ['unitarians', 'unitarian']
+		var philos = [skeptics, atheists, humanists, free_thinkers, unitarians]
+		var data = this.get('last').data.name + ' ' + this.get('last').data.description
+		var tags = []
+		
+		philos.forEach(function(entry) {
+			var inter = _.intersection(entry, data.split(' ').map(function(word) { return word.toLowerCase() }))
+			if (inter.length) {
+				tags.push(entry[0])
+			}
+		})
 
-      var philos = ['skeptics', 'skeptic','humanists', 'humanist','atheist', 'atheists', 'unitarian', 'free thinker', 'free thinkers']
-      var data = this.get('last').data.name + ' ' + this.get('last').data.description
-      
-      var inter = _.intersection(philos, data.split(' ').map(function(word) { return word.toLowerCase() }))
+      return tags.length ? tags : ['secular']
+    },
 
-      return inter.length ? inter : ['secular']
+	sendOn: function(val) {
+		window.open(val.currentTarget.attributes.href.value, '_blank')
     },
 
     activate: function() {

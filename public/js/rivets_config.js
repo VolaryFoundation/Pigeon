@@ -37,6 +37,14 @@ rivets.formatters.selectFirst = function(val) {
 	return val[0];
 }
 
+rivets.formatters.selectNumber = function(val, number) {
+	return val[0];
+}
+
+rivets.formatters.humanizeEach = function(val) {
+	return _.map(val, rivets.formatters.humanize).join(', ')
+}
+
 rivets.formatters.humanize = function(val) {
 	return val.charAt(0).toUpperCase() + val.slice(1);
 }

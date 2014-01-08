@@ -194,6 +194,7 @@ body {
     width: 225px !important;
     height: 100%;
     overflow: auto;
+    overflow-x: hidden;
     background-color: rgba(255, 255, 255, 0.4); }
     #map-widget sidebar span {
       font-size: 16px; }
@@ -201,6 +202,8 @@ body {
       color: #2880ca;
       text-decoration: none; }
     #map-widget sidebar h3 {
+      color: #2880ca; }
+    #map-widget sidebar .seperator {
       padding-bottom: 5px;
       margin-bottom: 5px;
       border-bottom: 1px solid #ccc; }
@@ -214,5 +217,9 @@ body {
       box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3); }
       #map-widget sidebar ul li.active {
         background-color: #f3f3f3; }
-      #map-widget sidebar ul li .tag {
+      #map-widget sidebar ul li .readMoreLink {
         float: right; }
+      #map-widget sidebar ul li .tags {
+        width: 100%;
+        clear: both;
+        display: block; }

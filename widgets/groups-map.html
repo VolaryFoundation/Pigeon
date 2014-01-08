@@ -11,33 +11,34 @@
 </head>
 <body>
 
-  <div id="map-widget">
-    <sidebar rv-autoscroll="ui:activeResult">
-      <ul>
-        <li rv-each-result="searcher:results" rv-on-click="result.activate | preventDefault" rv-class-active="result:active" rv-id="result:_id">
-          <a href="#"><h3>{ result:last.data.name }</h3></a>
-          <span>{ result:last.data.location.city }</span>
-          <span class='tag'>{ result.getTags | selectFirst | humanize }</span>
-        </li>
-      </ul>
-    </sidebar>
-    <div id="volary-menu" rv-on-click="ui.triggerCloner">Clone this widget</div>
-    <div rv-map="map" id="map"></div>
-  </div>
+    <div id="map-widget">
+      <sidebar rv-autoscroll="ui:activeResult">
+        <ul>
+          <li rv-each-result="searcher:results" rv-on-click="result.activate | preventDefault" rv-class-active="result:active" rv-id="result:_id">
+            <h3 class='seperator'>{ result:last.data.name }</h3>
+            <span class='tags seperator'>{ result.getTags | humanizeEach }</span>
+            <span>{ result:last.data.location.city }</span>
+            <a class='readMoreLink' rv-href="result:last.data.website" href='#' rv-on-click='result.sendOn | preventDefault'>Details</a>
+          </li>
+        </ul>
+      </sidebar>
+      <div id="volary-menu" rv-on-click="ui.triggerCloner">Clone this widget</div>
+      <div rv-map="map" id="map"></div>
+    </div>
 
-  <script src='//api.tiles.mapbox.com/mapbox.js/v1.5.2/mapbox.js'></script>
-  <script src="/js/vendor/jquery.min.js"></script>
-  <script src="/js/vendor/moment.min.js"></script>
-  <script src="/js/vendor/lodash.min.js"></script>
-  <script src="/js/vendor/backbone.min.js"></script>
-  <script src="/js/vendor/rivets.min.js"></script>
-  <script src="/js/rivets_config.js"></script>
-  <script src="/js/utils.js"></script>
-  <script src="/js/app.js"></script>
-  <script>
-    grn.processQuery(window.location.search)
-    rivets.bind(document.body, grn.viewModel) 
-    grn.viewModel.searcher.search(grn.viewModel.filters)
-  </script>
+    <script src='//api.tiles.mapbox.com/mapbox.js/v1.5.2/mapbox.js'></script>
+    <script src="/js/vendor/jquery.min.js"></script>
+    <script src="/js/vendor/moment.min.js"></script>
+    <script src="/js/vendor/lodash.min.js"></script>
+    <script src="/js/vendor/backbone.min.js"></script>
+    <script src="/js/vendor/rivets.min.js"></script>
+    <script src="/js/rivets_config.js"></script>
+    <script src="/js/utils.js"></script>
+    <script src="/js/app.js"></script>
+    <script>
+      grn.processQuery(window.location.search)
+      rivets.bind(document.body, grn.viewModel) 
+      grn.viewModel.searcher.search(grn.viewModel.filters)
+    </script>
 </body>
 </html>

@@ -34,15 +34,19 @@
 		width: 225px !important;
 		height: 100%;
 		overflow: auto;
+		overflow-x: hidden;
 		background-color: hsla(0, 0.0000%, 100%, 0.4);
 		span{
 			font-size: 16px;
 		}
 		a {
-		color:#2880ca;
-		 text-decoration: none;
+			color:#2880ca;
+			text-decoration: none;
 		}
 		h3 {
+			color:#2880ca;
+		}
+		.seperator {
 		padding-bottom: 5px;
 		margin-bottom: 5px;
 		border-bottom: 1px solid #ccc;
@@ -59,8 +63,13 @@
 				&.active {
 				  background-color: #f3f3f3;
 				}
-				.tag {
+				.readMoreLink {
 					float: right;
+				}
+				.tags {
+					width: 100%;
+					clear: both;
+					display: block;
 				}
 			}
 		}
