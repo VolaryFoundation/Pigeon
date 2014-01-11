@@ -41,8 +41,12 @@ rivets.formatters.selectNumber = function(val, number) {
 	return val[0];
 }
 
-rivets.formatters.humanizeEach = function(val) {
-	return _.map(val, rivets.formatters.humanize).join(', ')
+rivets.formatters.selectNumber = function(val, number) {
+	return val[0];
+}
+
+rivets.formatters.toURLString = function(val) {
+	if (typeof val != 'undefined') return utils.params.serialize(val)
 }
 
 rivets.formatters.humanize = function(val) {

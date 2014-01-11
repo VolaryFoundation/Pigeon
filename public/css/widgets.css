@@ -6,6 +6,9 @@ body {
   max-width: 800px;
   border: 1px solid gray; }
 
+#widget #embedCode {
+  background: white;
+  color: white; }
 #widget #volary-menu {
   position: absolute;
   top: 0;

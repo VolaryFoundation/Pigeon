@@ -96,6 +96,7 @@
 
   var Filters = Backbone.Model.extend({
 
+	defaults: { changeVersion: 0 },
     initialize: function() {
 
       // bind a complex collection for the UI with a simple array in .attributes for serialization
@@ -143,6 +144,7 @@
       function update() {
         //if (global.history) global.history.pushState({}, '', '?' + utils.params.serialize(this.forClientUrl()))
         hub.trigger('filters:updated', this)
+
       }
       this.on('change', update, this)
       this.tags.on('change', update, this)
@@ -229,13 +231,16 @@
     defaults: {
       showMore: false, 
       showText: 'Show More'
-    },
+	},
 
     triggerCloner: function() {
       window.top.postMessage(utils.params.serialize(grn.buildQuery()), '*')
     },
 
     initialize: function() {
+	  hub.on('filters:updated', function(filters) {
+		this.set('embedCode', filters.forClientUrl())
+	  }, this)
       hub.on('activateResult', function(activeResult) {
         var current = this.get('activeResult')
         if (current) current.set('active', false)

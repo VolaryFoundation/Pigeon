@@ -14,3 +14,8 @@ body {
 .tag.off {
   background: red;
 }
+
+div#emmbedCode {
+	background: white;
+	color: black;
+}

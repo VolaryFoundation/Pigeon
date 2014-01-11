@@ -3,21 +3,92 @@
 
 <head>
   <link rel="stylesheet" href="app.css" />
-
 </head>
 <body>
 
   <div id="wrapper">
 
     <h3>Configure your widget</h3>
-    <p>Initial filters: { filters.forClientUrl | toJSON }</p>
+    <p>Initial filters: { ui:embedCode | toJSON }</p>
+    <div id='emmbedCode'>
+      &lt;div class=&quot;volary-widget&quot; data-src=&quot;http://localhost:3000/groups_big.html?{ ui:embedCode | toURLString }&quot;&gt;&lt;/div&gt;<br/><br/>  &lt;script src=&quot;http://localhost:3000/js/widget_loader.js&quot;&gt;&lt;/script&gt;
+    </div>
 
     <form rv-on-submit="noop | preventDefault">
       <fieldset>
       </fieldset>
     </form>
   </div>
+  
+  <div id='search'>
+    <form rv-on-submit='noop | preventDefault'>
+      <p>
+        <label> events </label>
+        <input rv-checked ='filters:subject' type='radio' name='subject' value='events'></input>
+      </p>
+      <p>
+        <label>groups</label>
+        <input rv-checked='filters:subject' type='radio' name='subject' value='groups'></input>
+      </p>
+      <input rv-value='filters:keyword' type='text' name='keyword' placeholder='search...'> </input>
+      <input rv-value='filters:inputtedLocation' type='text' name='location' placeholder='location to search near...'> </input>
+      <fieldset rv-show='filters:subject | eq events'>
+        <h4> price </h4>
+        <div rv-each-price='filters.prices.models'>
+          <p>
+            <label rv-text='price:text'></label>
+            <input rv-checked='price:active' type='checkbox'></input>
+          </p>
+        </div>
+      </fieldset>
+      <fieldset rv-show='filters:subject | eq events'>
+        <h4> attendance </h4>
+        <div rv-each-type='filters.attendance.models'>
+          <p>
+            <label rv-text='type:text'></label>
+            <input rv-checked='type:active' type='checkbox'></input>
+          </p>
+        </div>
+      </fieldset>
+      <fieldset rv-show='filters:subject | eq groups'>
+        <h4> member count </h4>
+        <div rv-each-type='filters.memberCount.models'>
+          <p>
+            <label rv-text='type:text'></label>
+            <input rv-checked='type:active' type='checkbox'></input>
+          </p>
+        </div>
+      </fieldset>
+      <fieldset rv-show='filters:subject | eq groups'>
+        <h4> size </h4>
+        <div rv-each-size='filters.size.models'>
+          <p>
+            <label rv-text='size:text' ></label>
+            <input rv-checked='size:active' type='checkbox' ></input>
+          </p>
+        </div>
+      </fieldset>
 
+      <h4> Tags </h4>
+      <div rv-each-tag='filters.tags.models'>
+        <button class='tag' rv-class-on='tag:status | eq 1' rv-class-off='tag:status | eq 2' rv-text='tag:name' rv-on-click='tag.toggle | preventDefault'/>
+      </div>
+      <p>
+        <p class='js-embed' rv-on-click='embedder.toggle'></p>
+      </p>
+      <div class='embedder' rv-show='embedder:showing'>
+        <p>
+          <label> Background color: </label>
+          <select class='js-bg-color'>
+            <option value='ffffff'>White</option>
+            <option value='ff0000'>Red </option>
+          </select>
+        </p>
+        <textarea></textarea>
+        <iframe id='iframe' src=''></iframe>
+      </div>
+    </form>
+  </div>
   <script src="/js/vendor/jquery.min.js"></script>
   <script src="/js/vendor/moment.min.js"></script>
   <script src="/js/vendor/lodash.min.js"></script>
