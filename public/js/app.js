@@ -239,7 +239,7 @@
 
     initialize: function() {
 	  hub.on('filters:updated', function(filters) {
-		this.set('embedCode', filters.forClientUrl())
+		this.set('embedCode', grn.buildQuery())
 	  }, this)
       hub.on('activateResult', function(activeResult) {
         var current = this.get('activeResult')
