@@ -10,7 +10,7 @@ Setup:
 *Clone the code base from git hub*  
     `git clone git@github.com:VolaryFoundation/Pigeon.git`
     
-*Load the node bundles:*  
+*Load the node packages:*  
     `npm install`
 
 *Load the server*  
@@ -18,8 +18,8 @@ Setup:
     
 *Notes:*  
 The server default URL is: http://localhost:3000/  
-There is an example page showing different widgets at /example.html  
-
+There is an example page showing different widgets at /example.html
+The server is pulling from the live site API (Eagle). Internet connection required
 
 
 For Development
