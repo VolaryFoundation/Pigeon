@@ -1,3 +1,4 @@
+require('newrelic');
 var http = require('http')
 var PORT = process.env.PORT || 3000
 var static = require('node-static');
