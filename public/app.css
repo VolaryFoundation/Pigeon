@@ -1,10 +1,63 @@
+* { margin: 0; padding: 0; }
+
 body {
-  background: #21a2ce;
+  background: #eee;
+  font-family: Helvetica, sans-serif;
+}
+
+header {
+  padding: 10px 20px;
+  border-bottom: 1px solid #ddd;
+}
+
+h3 {
+  display: inline-block;
+  margin: 0 20px 0 0;
+}
+
+header a {
+  display: inline-block;
+  text-decoration: none;
+  margin-right: 20px;
+}
+
+fieldset {
+  border: none;
+  margin-bottom: 15px;
+}
+
+h4 {
+  margin-bottom: 6px;
+}
+
+#search {
+  padding: 20px;
+}
+
+.checks p {
+  float: left;
+  padding: 5px 10px;
+  background: #eee;
+  border: #ddd;
+  margin: 5px;
+}
+
+.checks p.on {
+  background: #fff;
+}
+
+.checks input {
+  float: left;
+  margin: 3px 6px 0 0;
 }
 
 .tag {
   border: none;
-  background: white;
+  background: #bbb;
+  font-size: 24px;
+  display: inline-block;
+  padding: 4px 8px;
+  margin-right: 10px;
 }
 
 .tag.on {
@@ -18,4 +71,11 @@ body {
 div#emmbedCode {
 	background: white;
 	color: black;
+}
+
+input, textarea {
+  background: #fff;
+  border: 1px solid #ddd;
+  padding: 5px;
+  display: block;
 }

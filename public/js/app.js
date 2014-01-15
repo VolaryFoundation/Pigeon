@@ -138,7 +138,7 @@
         { text: '1000+ Members', name: '1000+' }
       ])
 
-      this.tags = new Tags([ { name: 'foo' } ])
+      this.tags = new Tags([ { name: 'foo' }, { name: 'bar' } ])
 
       // keep url and form in sync current filter set with URL query
       function update() {
@@ -211,7 +211,6 @@
       hub.on('search:done', function(data) {
         /// wtf backbone, wont trigger change usually, because mysteriously already being set somewhere
         this.set('results', '', { silent: true })
-        console.log('data', data)
         this.set('results', data)
       }, this)
 
@@ -232,16 +231,16 @@
     defaults: {
       showMore: false, 
       showText: 'Show More'
-	},
+    },
 
     triggerCloner: function() {
       window.top.postMessage(utils.params.serialize(grn.buildQuery()), '*')
     },
 
     initialize: function() {
-	  hub.on('filters:updated', function(filters) {
-		this.set('embedCode', grn.buildQuery())
-	  }, this)
+      hub.on('filters:updated', function(filters) {
+        this.set('embedCode', grn.buildQuery())
+      }, this)
       hub.on('activateResult', function(activeResult) {
         var current = this.get('activeResult')
         if (current) current.set('active', false)
