@@ -12,7 +12,7 @@ exports.config = {
   /**
    * Your New Relic license key.
    */
-  license_key : 'see heroku config var',
+  license_key : 'ae2a26ed604113df5200c5124bdea3ecc370f7d7',
   logging : {
     /**
      * Level at which to log. 'trace' is most useful to New Relic when diagnosing
