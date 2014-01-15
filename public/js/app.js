@@ -30,21 +30,21 @@
   var Group = Backbone.Model.extend({
 
     getTags: function() {
-		var skeptics = ['skeptics', 'skeptic', 'critical thinker', 'critical thinkers']
-		var atheists = ['atheists', 'atheist', 'godless', 'heathen', 'heathens']
-		var humanists = ['humanists', 'humanist']
-		var free_thinkers = ['free thinkers', 'free thinker']
-		var unitarians = ['unitarians', 'unitarian']
-		var philos = [skeptics, atheists, humanists, free_thinkers, unitarians]
-		var data = this.get('last').data.name + ' ' + this.get('last').data.description
-		var tags = []
-		
-		philos.forEach(function(entry) {
-			var inter = _.intersection(entry, data.split(' ').map(function(word) { return word.toLowerCase() }))
-			if (inter.length) {
-				tags.push(entry[0])
-			}
-		})
+      var skeptics = ['skeptics', 'skeptic', 'critical thinker', 'critical thinkers']
+      var atheists = ['atheists', 'atheist', 'godless', 'heathen', 'heathens']
+      var humanists = ['humanists', 'humanist']
+      var free_thinkers = ['free thinkers', 'free thinker']
+      var unitarians = ['unitarians', 'unitarian']
+      var philos = [skeptics, atheists, humanists, free_thinkers, unitarians]
+      var data = this.get('name') + ' ' + this.get('description')
+      var tags = []
+      
+      philos.forEach(function(entry) {
+        var inter = _.intersection(entry, data.split(' ').map(function(word) { return word.toLowerCase() }))
+        if (inter.length) {
+          tags.push(entry[0])
+        }
+      })
 
       return tags.length ? tags : ['secular']
     },
@@ -211,6 +211,7 @@
       hub.on('search:done', function(data) {
         /// wtf backbone, wont trigger change usually, because mysteriously already being set somewhere
         this.set('results', '', { silent: true })
+        console.log('data', data)
         this.set('results', data)
       }, this)
 
@@ -256,7 +257,7 @@
   })
 
   function lat_lng(place) {
-    var ll = place.get('last').data.location.lng_lat
+    var ll = place.get('location').lng_lat
     return [ ll[1], ll[0] ]
   }
   
@@ -282,8 +283,7 @@
       var markers = this.get('markers') || (this.attributes.markers = L.layerGroup().addTo(this.get('mb')))
       markers.clearLayers()
       places.forEach(function(place) {
-        var last = place.get('last')
-        var marker = L.marker(lat_lng(place), { title: last.data.name })
+        var marker = L.marker(lat_lng(place), { title: place.get('name') })
         marker.on('click', function(e) {
           hub.trigger('activateResult', place)
         })

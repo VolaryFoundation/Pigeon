@@ -15,10 +15,10 @@
       <sidebar rv-autoscroll="ui:activeResult">
         <ul>
           <li rv-each-result="searcher:results" rv-on-click="result.activate | preventDefault" rv-class-active="result:active" rv-id="result:_id">
-            <h3 class='seperator'>{ result:last.data.name }</h3>
+            <h3 class='seperator'>{ result:name }</h3>
             <span class='tags seperator'>{ result.getTags | humanizeEach }</span>
-            <span>{ result:last.data.location.city }</span>
-            <a class='readMoreLink' rv-href="result:last.data.website" href='#' rv-on-click='result.sendOn | preventDefault'>Details</a>
+            <span>{ result:location.city }</span>
+            <a class='readMoreLink' rv-href="result:website" href='#' rv-on-click='result.sendOn | preventDefault'>Details</a>
           </li>
         </ul>
       </sidebar>
