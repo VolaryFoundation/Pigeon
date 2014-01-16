@@ -5,6 +5,25 @@ body {
   font-family: Helvetica, sans-serif;
 }
 
+.hidden {
+  display: none
+}
+
+.tab {
+  border: 1px solid #aaa;
+  border-bottom: none;
+  border-radius: 5px 5px 0 0;
+  padding: 5px;
+}
+
+.tab:hover {
+  cursor: pointer;
+}
+
+.tab.active {
+  border-color: #000
+}
+
 header {
   padding: 10px 20px;
   border-bottom: 1px solid #ddd;
