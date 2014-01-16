@@ -25,8 +25,7 @@ rivets.binders.map = function(el, mapModel) {
 rivets.binders.autoscroll = function(el, target) {
   if (!target) return
   var id = target.get('_id')
-  var $target = $('#' + id)
-  $(el).animate({ scrollTop: $target.offset().top })
+  $('#' + id).scrollintoview()
 }
 
 rivets.formatters.eq = function(a, b) {

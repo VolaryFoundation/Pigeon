@@ -1,22 +1,227 @@
-/*
-Errno::ENOENT: No such file or directory - assets/application.scss
+body {
+  font: 100% lato, Helvetica, sans-serif;
+  color: #333333;
+  margin: 0px;
+  width: 100%;
+  max-width: 800px;
+  border: 1px solid gray; }
 
-Backtrace:
-/Users/suddenlyaware/.rvm/gems/ruby-1.9.3-p286/gems/sass-3.2.10/lib/sass/plugin/compiler.rb:360:in `read'
-/Users/suddenlyaware/.rvm/gems/ruby-1.9.3-p286/gems/sass-3.2.10/lib/sass/plugin/compiler.rb:360:in `update_stylesheet'
-/Users/suddenlyaware/.rvm/gems/ruby-1.9.3-p286/gems/sass-3.2.10/lib/sass/plugin/compiler.rb:203:in `block in update_stylesheets'
-/Users/suddenlyaware/.rvm/gems/ruby-1.9.3-p286/gems/sass-3.2.10/lib/sass/plugin/compiler.rb:201:in `each'
-/Users/suddenlyaware/.rvm/gems/ruby-1.9.3-p286/gems/sass-3.2.10/lib/sass/plugin/compiler.rb:201:in `update_stylesheets'
-/Users/suddenlyaware/.rvm/gems/ruby-1.9.3-p286/gems/sass-3.2.10/lib/sass/plugin/compiler.rb:283:in `block in watch'
-/Users/suddenlyaware/.rvm/gems/ruby-1.9.3-p286/gems/listen-0.7.3/lib/listen/multi_listener.rb:108:in `call'
-/Users/suddenlyaware/.rvm/gems/ruby-1.9.3-p286/gems/listen-0.7.3/lib/listen/multi_listener.rb:108:in `on_change'
-/Users/suddenlyaware/.rvm/gems/ruby-1.9.3-p286/gems/listen-0.7.3/lib/listen/multi_listener.rb:117:in `block in initialize_adapter'
-/Users/suddenlyaware/.rvm/gems/ruby-1.9.3-p286/gems/listen-0.7.3/lib/listen/adapter.rb:198:in `call'
-/Users/suddenlyaware/.rvm/gems/ruby-1.9.3-p286/gems/listen-0.7.3/lib/listen/adapter.rb:198:in `report_changes'
-/Users/suddenlyaware/.rvm/gems/ruby-1.9.3-p286/gems/listen-0.7.3/lib/listen/adapter.rb:210:in `poll_changed_dirs'
-/Users/suddenlyaware/.rvm/gems/ruby-1.9.3-p286/gems/listen-0.7.3/lib/listen/adapters/darwin.rb:38:in `block in start'
-*/
-body:before {
-  white-space: pre;
-  font-family: monospace;
-  content: "Errno::ENOENT: No such file or directory - assets/application.scss"; }
+#widget #embedCode {
+  background: white;
+  color: white; }
+#widget #volary-menu {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 2;
+  background-color: white; }
+#widget .bold {
+  font-weight: bold; }
+#widget .float-left {
+  float: left; }
+#widget .float-right {
+  float: right; }
+#widget .hidden {
+  display: none; }
+#widget .clear {
+  clear: both; }
+#widget .center-text {
+  text-align: center; }
+#widget .right-side-text {
+  text-align: right; }
+#widget .showMoreLink, #widget .showLessLink {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  overflow: auto; }
+#widget .relative-for-links {
+  position: relative;
+  overflow: auto; }
+#widget #header {
+  text-align: center; }
+  #widget #header h1 {
+    padding: 7px;
+    margin: 0;
+    color: white; }
+#widget img {
+  max-width: 100%; }
+#widget #searchInput {
+  width: 98.7%;
+  padding-top: 7px;
+  padding-bottom: 7px; }
+  #widget #searchInput input {
+    height: 20px;
+    width: 700px;
+    margin: 15px auto;
+    display: block; }
+#widget #searchTools {
+  width: 100%;
+  min-height: 50px;
+  border-bottom: 1px solid gray; }
+#widget #pagination {
+  min-width: 800px;
+  min-height: 50px; }
+
+#results-large {
+  min-width: 800px;
+  min-height: 200px;
+  border-bottom: 1px solid gray; }
+  #results-large ul {
+    margin: 0px;
+    padding: 0px;
+    overflow: auto; }
+    #results-large ul li {
+      list-style: none; }
+    #results-large ul li.result-item {
+      padding: 0px;
+      margin: 1px;
+      overflow: auto;
+      width: 100%;
+      padding-top: 7px;
+      padding-bottom: 7px;
+      border: 1px solid gray; }
+    #results-large ul .result_column_left {
+      float: left;
+      width: 22%;
+      margin-left: 7px; }
+    #results-large ul .result_column_center {
+      float: left;
+      width: 54%;
+      margin-top: 0px;
+      margin-left: 5px; }
+      #results-large ul .result_column_center a h3 {
+        margin: 0; }
+      #results-large ul .result_column_center li {
+        margin: 0;
+        padding: 7px; }
+    #results-large ul .result_column_right {
+      float: left;
+      width: 22%;
+      text-align: center; }
+      #results-large ul .result_column_right li {
+        margin: 10px; }
+
+@media screen and (max-width: 670px) {
+  .large {
+    display: none; }
+
+  .small {
+    display: inline;
+    float: none; }
+
+  #results-full-list ul li.result-item ul.bottomInfo li.center.tags {
+    float: none;
+    width: 100%; } }
+#results-full-list {
+  width: 98.7%;
+  min-height: 200px;
+  border-bottom: 1px solid gray; }
+  #results-full-list .small {
+    display: none; }
+  #results-full-list ul {
+    box-sizing: border-box;
+    margin: 0px;
+    padding: 0px;
+    overflow: auto; }
+    #results-full-list ul li {
+      list-style: none; }
+    #results-full-list ul li.result-item {
+      box-sizing: border-box;
+      padding: 0px;
+      margin: 0 auto;
+      overflow: auto;
+      width: 97%;
+      border: 1px solid #7C7C7C;
+      background-color: white;
+      margin: 12px;
+      box-shadow: 1px 2px #cccccc, inset 0 0 2px 1px #eaeaea;
+      border-radius: 4px; }
+      #results-full-list ul li.result-item ul.sideInfo {
+        background-color: inherit;
+        width: 65%;
+        margin-top: 15px; }
+        #results-full-list ul li.result-item ul.sideInfo h3 {
+          margin-top: 0; }
+        #results-full-list ul li.result-item ul.sideInfo #description {
+          overflow: hidden;
+          height: 120px; }
+      #results-full-list ul li.result-item img {
+        max-width: 100%;
+        padding: 12px; }
+      #results-full-list ul li.result-item ul.bottomInfo {
+        box-sizing: border-box;
+        background-color: #eaeaea;
+        width: 100%;
+        border-top: 1px solid #7C7C7C;
+        margin: 0;
+        padding: 7px; }
+        #results-full-list ul li.result-item ul.bottomInfo li.right {
+          float: left;
+          width: 25%;
+          text-align: right; }
+        #results-full-list ul li.result-item ul.bottomInfo li.center {
+          float: left;
+          width: 50%;
+          text-align: center; }
+        #results-full-list ul li.result-item ul.bottomInfo li.left {
+          float: left;
+          width: 25%; }
+
+* {
+  margin: 0;
+  padding: 0; }
+
+#map-widget {
+  width: 800px;
+  height: 600px;
+  position: relative; }
+  #map-widget #volary-menu {
+    position: absolute;
+    bottom: -0;
+    left: 0;
+    z-index: 2;
+    background-color: white; }
+  #map-widget #map {
+    height: 100%;
+    width: 100%; }
+    #map-widget #map .leaflet-left {
+      right: 0 !important; }
+      #map-widget #map .leaflet-left .leaflet-control {
+        margin-right: 10px; }
+  #map-widget sidebar {
+    position: absolute;
+    top: 0;
+    right: 0px;
+    z-index: 100000;
+    width: 225px !important;
+    height: 100%;
+    overflow: auto;
+    overflow-x: hidden;
+    background-color: rgba(255, 255, 255, 0.4); }
+    #map-widget sidebar span {
+      font-size: 16px; }
+    #map-widget sidebar a {
+      color: #2880ca;
+      text-decoration: none; }
+    #map-widget sidebar h3 {
+      color: #2880ca; }
+    #map-widget sidebar .seperator {
+      padding-bottom: 5px;
+      margin-bottom: 5px;
+      border-bottom: 1px solid #ccc; }
+    #map-widget sidebar ul li {
+      margin: 7px 5px;
+      padding: 10px;
+      background: #fff;
+      border: 1px ridge rgba(0, 0, 0, 0.2);
+      border-radius: 4px;
+      list-style: none;
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3); }
+      #map-widget sidebar ul li.active {
+        background-color: #f3f3f3; }
+      #map-widget sidebar ul li .readMoreLink {
+        float: right; }
+      #map-widget sidebar ul li .tags {
+        width: 100%;
+        clear: both;
+        display: block; }
