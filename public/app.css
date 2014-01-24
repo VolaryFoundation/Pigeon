@@ -101,7 +101,7 @@ label {
 
 .tag-container {
   height: 200px;
-  overflow: scroll;
+  overflow: auto;
 }
 
 .tag {
