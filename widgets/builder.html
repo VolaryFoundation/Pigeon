@@ -10,10 +10,13 @@
 
     <header>
       <h3>Configure your widget</h3>
-      <a href="#" rv-on-click="ui.showPreview | preventDefault">Preview</a>
+      <a href="#" rv-on-click="ui.showPreview" target="_blank">Preview</a>
       <a href="#" rv-on-click="ui.toggleShowingCode | preventDefault">View Code</a>
-      <div rv-show="ui:showingCode" id='embedCode'>
-        &lt;div class=&quot;volary-widget&quot; data-src=&quot;http://localhost:3000/groups_big.html?{ ui:embedQuery | toURLString }&quot;&gt;&lt;/div&gt;<br/><br/>  &lt;script src=&quot;http://localhost:3000/js/widget_loader.js&quot;&gt;&lt;/script&gt;
+      <div id="embedCode" rv-show="ui:showingCode">
+        <h5>Copy this code and paste it wherever you want this widget to be.</h5>
+        <textarea rv-autohighlight="ui:showingCode" disabled>
+&lt;div class=&quot;volary-widget&quot; data-src=&quot;http://localhost:3000/groups_big.html?{ ui:embedQuery | toURLString }&quot;&gt;&lt;/div&gt;<br/>&lt;script src=&quot;http://localhost:3000/js/widget_loader.js&quot;&gt;&lt;/script&gt;
+        </textarea>
       </div>
     </header>
   
@@ -21,40 +24,29 @@
       <form rv-on-submit='noop | preventDefault'>
 
         <fieldset>
-          <label class="tab" for="groups" rv-class-active="filters:subject | eq groups">Groups</label>
-          <input class="hidden" type="radio" rv-checked="filters:subject" name="subject" id="groups" value="groups" />
-          <label class="tab" for="events" rv-class-active="filters:subject | eq events">Events</label>
-          <input class="hidden" type="radio" rv-checked="filters:subject" name="subject" id="events" value="events" />
-        </fieldset>
-
-        <fieldset>
           <h4>Keywords</h4>
           <input rv-value='filters:keywords' type='text' name='keyword'> </input>
         </fieldset>
 
-        <fieldset rv-show='filters:subject | eq events'>
-          <h4>Price</h4>
-          <div class="checks" rv-each-price='filters.prices.models'>
-            <p>
-              <input rv-checked='price:active' type='checkbox'></input>
-              <label rv-text='price:text'></label>
-            </p>
+        <fieldset id="location">
+          <h4>Location</h4>
+          <div>
+            <label>Country</label>
+            <input type="text" rv-value="filters:location-country | toUpperCase" />
           </div>
-        </fieldset>
-
-        <fieldset rv-show='filters:subject | eq events'>
-          <h4>Attendance</h4>
-          <div class="checks" rv-each-type='filters.attendance.models'>
-            <p>
-              <input rv-checked='type:active' type='checkbox'></input>
-              <label rv-text='type:text'></label>
-            </p>
+          <div>
+            <label>State</label>
+            <input type="text" size="2" rv-value="filters:location-state | toUpperCase" />
+          </div>
+          <div>
+            <label>City</label>
+            <input type="text" rv-value="filters:location-city | toUpperCase" />
           </div>
         </fieldset>
 
         <fieldset rv-show='filters:subject | eq groups'>
           <h4>Membership size</h4>
-          <div class="checks" rv-each-type='filters.memberCount.models'>
+          <div class="checks" rv-each-type='filters.memberCounts.models'>
             <p>
               <input rv-checked='type:active' type='checkbox' rv-id="type:text" />
               <label rv-text='type:text' rv-for="type:text"></label>
@@ -63,8 +55,8 @@
         </fieldset>
 
         <fieldset rv-show='filters:subject | eq groups'>
-          <h4>Organizational size</h4>
-          <div class="checks" rv-each-size='filters.size.models'>
+          <h4>Organizational Range</h4>
+          <div class="checks" rv-each-size='filters.ranges.models'>
             <p>
               <input rv-checked='size:active' type='checkbox' rv-id="size:text" />
               <label rv-text='size:text' rv-for="size:text"></label>
@@ -98,7 +90,7 @@
   <script>
 
     var filters = new Filters
-    var ui = new BuilderUI
+    var ui = new BuilderUI({ filters: filters })
 
     filters.fromQuery(window.location.search)
     ui.fromQuery(window.location.search)

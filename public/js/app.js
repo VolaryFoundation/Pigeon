@@ -2,10 +2,9 @@
 
   var groups = new Groups
   var events = new Events
-  var embedder = new Embedder
   var searcher = new Searcher
   var filters = new Filters
-  var ui = new UI({ filters: filters })
+  var ui = new WidgetUI({ filters: filters })
   var map = new Map
 
   var grn = {
@@ -37,7 +36,6 @@
     viewModel: {
       searcher: searcher,
       filters: filters,
-      embedder: embedder,
       ui: ui,
       map: map,
       noop: function() {}

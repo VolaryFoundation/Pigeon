@@ -3,14 +3,32 @@ var WidgetUI = Backbone.Model.extend({
 
   defaults: {
     showMore: false, 
-    showText: 'Show More'
+    showText: 'Show More',
+    showingFilters: false,
+    promptingForEmail: false
   },
 
   triggerCloner: function() {
-    window.top.postMessage(utils.params.serialize(grn.buildQuery()), '*')
+    //window.top.postMessage(utils.params.serialize(grn.buildQuery()), '*')
+    window.open(location.protocol + '//' + location.host + '/builder.html?' + utils.params.serialize(grn.buildQuery()), 'WidgetCloner')
   },
 
-  initialize: function() {
+  toggleEmailPrompt: function() {
+    this.set('promptingForEmail', !this.get('promptingForEmail'))
+  },
+
+  saveEmail: function() {
+    this.toggleEmailPrompt()
+    setTimeout(function() {
+      this.set('message', 'Email address saved.')
+      setTimeout(function() {
+        this.set('message', '')
+      }.bind(this), 2000)
+    }.bind(this), 500)
+  },
+
+  initialize: function(config) {
+    this.filters = config.filters
     hub.on('filters:updated', function(filters) {
       this.set('embedCode', grn.buildQuery())
     }, this)
@@ -25,5 +43,9 @@ var WidgetUI = Backbone.Model.extend({
   showMore: function(){
     this.set('showMore', !this.get('showMore'))
     this.set('showText', (this.get('showText') == 'Show More')? 'Show Less' : 'Show More')
+  },
+
+  toggleShowFilters: function() {
+    this.set('showingFilters', !this.get('showingFilters'))
   }
 })

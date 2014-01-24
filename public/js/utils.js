@@ -3,6 +3,7 @@
 var utils = {
 
   bindArrayToCollection: function(obj, key, arr) {
+    obj.set(key, [])
     obj[key] = new Backbone.Collection(arr)
     obj[key].on('change', function() {
       this.set(key, this[key].filter(function(t) { return t.get('active') }).map(function(t) { return t.get('name') }))

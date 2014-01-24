@@ -1,28 +1,90 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link href="css/widgets.css" rel="stylesheet" type="text/css">
-<link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
-<link href='//api.tiles.mapbox.com/mapbox.js/v1.5.2/mapbox.css' rel='stylesheet' />
-<style>
-
-
-</style>
+  <link href="css/widgets.css" rel="stylesheet" type="text/css">
+  <link href="app.css" rel="stylesheet" type="text/css">
+  <link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+  <link href='//api.tiles.mapbox.com/mapbox.js/v1.5.2/mapbox.css' rel='stylesheet' />
 </head>
 <body>
 
     <div id="map-widget">
+
+      <div rv-class-showing="ui:message" class="message">{ ui:message }</div>
+
+      <div rv-show="ui:promptingForEmail" id="backdrop" rv-on-click="ui.toggleEmailPrompt"></div>
+      <div rv-show="ui:promptingForEmail" class="overlay">
+        <h4>Enter your email to be notified when these results change.</h4>
+        <input type="text" placeholder="user@example.com" />
+        <button rv-on-click="ui.toggleEmailPrompt | preventDefault">Cancel</button>
+        <button rv-on-click="ui.saveEmail | preventDefault">Save</button>
+      </div>
+
+
+      <div id="controls">
+        <button rv-on-click="ui.toggleShowFilters | preventDefault">Filter</button>
+        <button rv-on-click="ui.triggerCloner | preventDefault">Clone</button>
+        <button rv-on-click="ui.toggleEmailPrompt | preventDefault">Keep up to date</button>
+      </div>
+
+      <header rv-class-showing="ui:showingFilters">
+        <button class="hide" rv-on-click="ui.toggleShowFilters | preventDefault">Hide</button>
+        <h3>Filters - <span>Refine your search here. <br /> { searcher:results | count } Results</span></h3>
+        <form>
+          <fieldset>
+            <label>Keywords</label>
+            <input type="text" rv-value="filters:keywords" />
+          </fieldset>
+          <fieldset>
+            <label>Range of group</label>
+            <div rv-class-active="size:active" class="dynamic checks" rv-each-size='filters.ranges.models'>
+              <p>
+                <input rv-id="size:text" rv-checked='size:active' type='checkbox'></input>
+                <label rv-for="size:text" rv-text='size:text'></label>
+              </p>
+            </div>
+          </fieldset>
+          <fieldset id="location">
+            <h4>Location</h4>
+            <div>
+              <label>Country</label>
+              <input type="text" rv-value="filters:location-country" />
+            </div>
+            <div>
+              <label>State</label>
+              <input type="text" size="2" rv-value="filters:location-state | toUpperCase" />
+            </div>
+            <div>
+              <label>City</label>
+              <input type="text" rv-value="filters:location-city" />
+            </div>
+          </fieldset>
+          <fieldset>
+            <label>Member Count</label>
+            <div rv-class-active="membercount:active" class="dynamic checks" rv-each-membercount='filters.memberCounts.models'>
+              <p>
+                <input rv-id="membercount:text" rv-checked='membercount:active' type='checkbox'></input>
+                <label rv-for="membercount:text" rv-text='membercount:text'></label>
+              </p>
+            </div>
+          </fieldset>
+          <fieldset class="tag-container">
+            <h4>Tags</h4>
+            <button rv-each-tag='filters.tags.models' class='tag' rv-class-on='tag:status | eq 1' rv-class-off='tag:status | eq 2' rv-text='tag:name' rv-on-click='tag.toggle | preventDefault'/>
+          </fieldset>
+        </form>
+      </header>
+
       <sidebar rv-autoscroll="ui:activeResult">
         <ul>
           <li rv-each-result="searcher:results" rv-on-click="result.activate | preventDefault" rv-class-active="result:active" rv-id="result:_id">
             <h3 class='seperator'>{ result:name }</h3>
-            <span class='tags seperator'>{ result.getTags | humanizeEach }</span>
+            <span class='tags seperator'>{ result:tags | asList }</span>
             <span>{ result:location.city }</span>
-            <a class='readMoreLink' rv-href="result:website" href='#' rv-on-click='result.sendOn | preventDefault'>Details</a>
+            <a class='readMoreLink' rv-href="result:_id | toMockingBird" href='#' rv-on-click='result.sendOn | preventDefault'>Details</a>
           </li>
         </ul>
       </sidebar>
-      <div id="volary-menu" rv-on-click="ui.triggerCloner">Clone this widget</div>
       <div rv-map="map" id="map"></div>
     </div>
 
@@ -34,12 +96,20 @@
     <script src="/js/vendor/rivets.min.js"></script>
     <script src="/js/rivets_config.js"></script>
     <script src="/js/utils.js"></script>
+    <script src="/js/hub.js"></script>
+    <script src="/js/modules/groups.js"></script>
+    <script src="/js/modules/widget_ui.js"></script>
+    <script src="/js/modules/map.js"></script>
+    <script src="/js/modules/searcher.js"></script>
+    <script src="/js/modules/events.js"></script>
+    <script src="/js/modules/filters.js"></script>
     <script src="/js/app.js"></script>
     <script src="/js/vendor/jquery.scrollintoview.js"></script>
     <script>
       grn.processQuery(window.location.search)
-      rivets.bind(document.body, grn.viewModel) 
+      rivets.bind(document.body, grn.viewModel)
       grn.viewModel.searcher.search(grn.viewModel.filters)
+      grn.viewModel.filters.fromQuery(window.location.search)
     </script>
 </body>
 </html>

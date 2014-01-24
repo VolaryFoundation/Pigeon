@@ -11,6 +11,7 @@
       hub.on('results:updated', this.update, this)
       hub.on('activateResult', function(place) {
         this.panTo(place)
+        this.getMarker(place.get('name')).openPopup()
       }, this)
     },
 
@@ -19,8 +20,13 @@
     },
 
     update: function(places) {
+      if (!places.length) return
       this.updateMarkers(places)
       this.focus(places)
+    },
+
+    getMarker: function(name) {
+      return _.find(this.get('markers').getLayers(), function(marker) { return marker.options.title == name })
     },
 
     updateMarkers: function(places) {
@@ -28,6 +34,7 @@
       markers.clearLayers()
       places.forEach(function(place) {
         var marker = L.marker(lat_lng(place), { title: place.get('name') })
+        marker.bindPopup("<p style='margin: 10px 0 5px;'>" + place.get('name') + "</p>")
         marker.on('click', function(e) {
           hub.trigger('activateResult', place)
         })

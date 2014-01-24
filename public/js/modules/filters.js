@@ -12,14 +12,13 @@ var Tags = Backbone.Collection.extend({ model: Tag })
 var Filters = Backbone.Model.extend({
 
   defaults: { 
-    changeVersion: 0,
     subject: 'groups'
   },
   initialize: function() {
 
     // bind a complex collection for the UI with a simple array in .attributes for serialization
     // this MAY need some refactoring in the future, but at least its encapsulated
-    utils.bindArrayToCollection(this, 'size', [
+    utils.bindArrayToCollection(this, 'ranges', [
       { text: 'local', name: 'local' },
       { text: 'regional', name: 'regional' },
       { text: 'national', name: 'national' },
@@ -33,7 +32,7 @@ var Filters = Backbone.Model.extend({
       { text: '$$$$', name: '$$$$' }
     ])
 
-    utils.bindArrayToCollection(this, 'attendance', [
+    utils.bindArrayToCollection(this, 'attendances', [
       { text: '1-10', name: '1-10' },
       { text: '11-25', name: '11-25' },
       { text: '26-50', name: '26-50' },
@@ -44,7 +43,7 @@ var Filters = Backbone.Model.extend({
       { text: '1000+', name: '1000+' }
     ])
 
-    utils.bindArrayToCollection(this, 'memberCount', [
+    utils.bindArrayToCollection(this, 'memberCounts', [
       { text: 'No membership', name: 'none' },
       { text: '1-10 Members', name: '1-10' },
       { text: '11-25 Members', name: '11-25' },
@@ -56,16 +55,30 @@ var Filters = Backbone.Model.extend({
       { text: '1000+ Members', name: '1000+' }
     ])
 
-    this.tags = new Tags([ { name: 'foo' }, { name: 'bar' } ])
+    this.tags = new Tags([])
 
     // keep url and form in sync current filter set with URL query
     function update() {
       //if (global.history) global.history.pushState({}, '', '?' + utils.params.serialize(this.forClientUrl()))
       hub.trigger('filters:updated', this)
-
     }
+
+    this.on('change', this.updateTags)
     this.on('change', update, this)
-    this.tags.on('change', update, this)
+    this.tags.on('change:status', update, this)
+
+    setTimeout(this.updateTags.bind(this), 500)
+  },
+
+  updateTags: function() {
+    $.get('http://volary-eagle.herokuapp.com/groups/tags?' + utils.params.serialize(this.serializeObject(this.attributes, [ 'subject' ])), function(tags) {
+      this.tags.reset((tags || []).filter(function(tag) { return tag }).sort(function(a, b) { 
+        if (a < b) return -1
+        else if (b < a) return 1
+        else return 0
+      }).map(function(tag) { return { name: tag } }))
+    }.bind(this))
+
   },
 
   serialize: function(blacklist) {
@@ -80,7 +93,14 @@ var Filters = Backbone.Model.extend({
       if (k === 'tags') {
         this.tags.reset(this.deserializeTags(v))
       } else {
-        memo[k] = v
+        if (k === 'keys') {
+          _.extend(memo, _.reduce(v, function(memo, v, k) {
+            memo[k.replace(/\./g, '-')] = v
+            return memo
+          }, {}))
+        } else {
+          memo[k] = v
+        }
       }
       return memo
     }.bind(this), {})
@@ -97,7 +117,15 @@ var Filters = Backbone.Model.extend({
 
   serializeObject: function(obj, blacklist) {
     return _.reduce(obj, function(memo, v, k) {
-      if (!_.contains(blacklist, k) && v) memo[k] = v 
+      if (!_.contains(blacklist, k) && v) {
+        if (k.indexOf('-') > -1) {
+          var dotted = k.replace(/-/g, '.')
+          memo.keys = memo.keys || {}
+          memo.keys[dotted] = v
+        } else {
+          memo[k] = v 
+        }
+      }
       return memo
     }, {})
   },
@@ -118,6 +146,8 @@ var Filters = Backbone.Model.extend({
 
   // DIRTY
   fromQuery: function(query) {
-    return this.deserialize(query)
+    var data = this.deserialize(utils.params.deserialize(query.substr(1)).filters)
+    this.set(data)
+    return data
   }
 })

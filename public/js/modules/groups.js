@@ -21,8 +21,8 @@ var Group = Backbone.Model.extend({
     return tags.length ? tags : ['secular']
   },
 
-sendOn: function(val) {
-  window.open(val.currentTarget.attributes.href.value, '_blank')
+  sendOn: function(val) {
+    window.open(val.currentTarget.attributes.href.value, '_blank')
   },
 
   activate: function() {

@@ -5,8 +5,20 @@
 </head>
 <body>
 
-  <div class="volary-widget" data-src="http://localhost:3000/groups-map.html?filters[subject]=groups&filters[keys][location.state]=ca"></div>
+  <div id="preview" class="volary-widget"></div>
 
-  <script src="http://localhost:3000/js/widget_loader.js"></script>
+  <script id="loader-script"></script>
+
+  <script src="/js/utils.js"></script>
+  <script>
+    
+    function load() {
+      var query = utils.params.serialize(location.search.substr(1))
+      var url = location.host + '/' query.widget + '.html?' + location.search.substr(1)
+      document.getElementById('preview').setAttribute('data-src', url)
+      var loaderURL = "http://localhost:3000/js/widget_loader.js"
+      document.getElementById('loader-script').src = loaderUrl
+    }
+  </script>
 </body>
 </html>

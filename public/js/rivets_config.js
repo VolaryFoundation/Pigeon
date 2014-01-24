@@ -28,6 +28,10 @@ rivets.binders.autoscroll = function(el, target) {
   $('#' + id).scrollintoview()
 }
 
+rivets.formatters.toUpperCase = function(val) {
+  if (val) return val.toUpperCase();
+}
+
 rivets.formatters.eq = function(a, b) {
   return a == b
 }
@@ -46,6 +50,26 @@ rivets.formatters.selectNumber = function(val, number) {
 
 rivets.formatters.toURLString = function(val) {
 	if (typeof val != 'undefined') return utils.params.serialize(val)
+}
+
+rivets.binders.autohighlight = function(el, showing) {
+  if (showing) {
+    el.focus()
+    el.select()
+  }
+}
+
+rivets.formatters.count = function(val) {
+  if (!val || !val.length) return 0
+  return val.length;
+}
+
+rivets.formatters.toMockingBird = function(id) {
+  return "http://volary-mockingbird.herokuapp.com/groups/" + id
+}
+
+rivets.formatters.asList = function(arr) {
+  if (arr) return arr.join(', ')
 }
 
 rivets.formatters.humanize = function(val) {

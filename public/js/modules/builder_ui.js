@@ -3,10 +3,10 @@ var BuilderUI = Backbone.Model.extend({
 
   defaults: { params: {} },
 
-  initialize: function() {
+  initialize: function(config) {
+    this.filters = config.filters
     hub.on('filters:updated', function(filters) {
-      console.log('filters updated ', filters.attributes)
-      this.set('embedQuery', { filters: filters.toClientUrl(), ui: this.toClientUrl() })
+      this.set('embedQuery', this.toClientUrl())
     }, this)
   },
 
@@ -15,11 +15,13 @@ var BuilderUI = Backbone.Model.extend({
   },
 
   toClientUrl: function() {
-    return this.get('params')
+    return { filters: this.filters.toClientUrl(), ui: this.get('params') }
   },
 
-  showPreview: function() {
-    console.log('showing preview!')
+  showPreview: function(e) {
+    var query = this.toClientUrl()
+    query.widget = 'groups-map'
+    e.target.href = location.protocol + '//' + location.host + '/preview.html?' + utils.params.serialize(query)
   },
 
   toggleShowingCode: function() {
