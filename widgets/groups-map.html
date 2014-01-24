@@ -46,10 +46,12 @@
           </fieldset>
           <fieldset id="location">
             <h4>Location</h4>
+            <!--
             <div>
               <label>Country</label>
               <input type="text" rv-value="filters:location-country" />
             </div>
+            -->
             <div>
               <label>State</label>
               <input type="text" size="2" rv-value="filters:location-state | toUpperCase" />
@@ -68,7 +70,7 @@
               </p>
             </div>
           </fieldset>
-          <fieldset class="tag-container">
+          <fieldset rv-show="filters.tags.models | count" class="tag-container">
             <h4>Tags</h4>
             <button rv-each-tag='filters.tags.models' class='tag' rv-class-on='tag:status | eq 1' rv-class-off='tag:status | eq 2' rv-text='tag:name' rv-on-click='tag.toggle | preventDefault'/>
           </fieldset>
