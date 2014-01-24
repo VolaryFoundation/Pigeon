@@ -15,7 +15,7 @@
       <div id="embedCode" rv-show="ui:showingCode">
         <h5>Copy this code and paste it wherever you want this widget to be.</h5>
         <textarea rv-autohighlight="ui:showingCode" disabled>
-&lt;div class=&quot;volary-widget&quot; data-src=&quot;http://localhost:3000/groups_big.html?{ ui:embedQuery | toURLString }&quot;&gt;&lt;/div&gt;<br/>&lt;script src=&quot;http://localhost:3000/js/widget_loader.js&quot;&gt;&lt;/script&gt;
+          &lt;div class=&quot;volary-widget&quot; data-src=&quot;http://{ ui:currentHost }/groups_big.html?{ ui:embedQuery | toURLString }&quot;&gt;&lt;/div&gt;<br/>&lt;script src=&quot;http://localhost:3000/js/widget_loader.js&quot;&gt;&lt;/script&gt;
         </textarea>
       </div>
     </header>

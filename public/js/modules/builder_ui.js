@@ -5,6 +5,7 @@ var BuilderUI = Backbone.Model.extend({
 
   initialize: function(config) {
     this.filters = config.filters
+    this.set('currentHost', location.host)
     hub.on('filters:updated', function(filters) {
       this.set('embedQuery', this.toClientUrl())
     }, this)
