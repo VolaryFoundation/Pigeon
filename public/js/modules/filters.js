@@ -131,7 +131,7 @@ var Filters = Backbone.Model.extend({
         if (k.indexOf('-') > -1) {
           var dotted = k.replace(/-/g, '.')
           memo.keys = memo.keys || {}
-          memo.keys[dotted] = v
+          if (v) memo.keys[dotted] = v
         } else {
           memo[k] = v 
         }
