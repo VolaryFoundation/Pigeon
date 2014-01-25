@@ -131,7 +131,7 @@ var Filters = Backbone.Model.extend({
         if (k.indexOf('-') === -1) {
           if (v) {
             if (_.isObject(v)) {
-              if (_.values(v)[0])
+              if (_.values(v)[0]) {
                 memo[k] = v 
               }
             } else {
