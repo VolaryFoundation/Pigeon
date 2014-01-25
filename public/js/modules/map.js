@@ -3,7 +3,7 @@
   function lat_lng(place) {
     var ll = place.get('location').lng_lat
     if (!ll[0]) {
-      var mb = _.find(place.get('props').location || [], function(loc) { return loc.source === 'mockingbird' })
+      var mb = _.find(place.get('location') || [], function(loc) { return loc.source === 'mockingbird' })
       ll = mb.value.lng_lat
     }
     return [ ll[1], ll[0] ]
