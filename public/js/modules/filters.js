@@ -128,12 +128,16 @@ var Filters = Backbone.Model.extend({
   serializeObject: function(obj, blacklist) {
     return _.reduce(obj, function(memo, v, k) {
       if (!_.contains(blacklist, k) && v) {
-        if (k.indexOf('-') > -1) {
-          var dotted = k.replace(/-/g, '.')
-          memo.keys = memo.keys || {}
-          if (v) memo.keys[dotted] = v
-        } else {
-          if (v) memo[k] = v 
+        if (k.indexOf('-') === -1) {
+          if (v) {
+            if (_.isObject(v)) {
+              if (_.values(v)[0])
+                memo[k] = v 
+              }
+            } else {
+              memo[k] = v 
+            }
+          }
         }
       }
       return memo
