@@ -84,6 +84,7 @@ rivets.formatters.asList = function(arr, cap) {
       leftover = true
       return memo.replace(/, $/, '...')
     }
+    return memo
   }, '')
 
   return list.replace(/, $/, (leftover ? '...' : ''))
