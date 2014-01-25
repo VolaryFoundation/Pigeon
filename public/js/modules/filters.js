@@ -133,7 +133,7 @@ var Filters = Backbone.Model.extend({
           memo.keys = memo.keys || {}
           if (v) memo.keys[dotted] = v
         } else {
-          memo[k] = v 
+          if (v) memo[k] = v 
         }
       }
       return memo
