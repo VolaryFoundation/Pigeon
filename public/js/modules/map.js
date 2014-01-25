@@ -2,7 +2,7 @@
 
   function lat_lng(place) {
     var ll = (place.get('location') || {}).lng_lat
-    if (!ll[0]) {
+    if (ll && !ll[0]) {
       var mb = _.find(place.get('props').location || [], function(loc) { return loc.source === 'mockingbird' })
       ll = mb.value.lng_lat
     }
