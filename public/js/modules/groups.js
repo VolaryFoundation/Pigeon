@@ -36,6 +36,9 @@ var Groups = Backbone.Collection.extend({
   initialize: function() {
 
     hub.on('search:groups', function(filters) {
+      if (filters.tags && _.isEmpty(filters.tags)) {
+        delete filters.tags
+      }
       this.fetch({ data: filters })
     }, this)
 
