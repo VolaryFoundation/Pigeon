@@ -1,8 +1,9 @@
 (function() {
 
   function lat_lng(place) {
-    var ll = (place.get('location') || {}).lng_lat
-    if (ll && !ll[0]) {
+    var ll = place.get('location').lng_lat
+    if (!ll[0]) {
+      return
       var mb = _.find(place.get('props').location || [], function(loc) { return loc.source === 'mockingbird' })
       ll = mb.value.lng_lat
     }
