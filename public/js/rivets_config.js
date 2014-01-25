@@ -68,8 +68,25 @@ rivets.formatters.toMockingBird = function(id) {
   return "http://volary-mockingbird.herokuapp.com/groups/" + id
 }
 
-rivets.formatters.asList = function(arr) {
-  if (arr) return arr.join(', ')
+rivets.formatters.capitalize = function(str) {
+  return str.charAt(0).toUpperCase() + str.substr(1)
+}
+
+rivets.formatters.asList = function(arr, cap) {
+  cap = cap || Infinity
+  var leftover = false
+  if (!arr) return ''
+
+  var list = arr.reduce(function(memo, item) {
+    var next = item + ', '
+    if (memo.length + next.length < cap) return memo + item + ', '
+    else if (cap < Infinity) {
+      leftover = true
+      return memo.replace(/, $/, '...')
+    }
+  }, '')
+
+  return list.replace(/, $/, (leftover ? '...' : ''))
 }
 
 rivets.formatters.humanize = function(val) {

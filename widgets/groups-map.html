@@ -81,8 +81,8 @@
         <ul>
           <li rv-each-result="searcher:results" rv-on-click="result.activate | preventDefault" rv-class-active="result:active" rv-id="result:_id">
             <h3 class='seperator'>{ result:name }</h3>
-            <span class='tags seperator'>{ result:tags | asList }</span>
-            <span>{ result:location.city }</span>
+            <span class='tags seperator'>{ result:tags | asList 75 }</span>
+            <span>{ result:location.city | capitalize }</span>
             <a class='readMoreLink' rv-href="result:_id | toMockingBird" href='#' rv-on-click='result.sendOn | preventDefault'>Details</a>
           </li>
         </ul>
