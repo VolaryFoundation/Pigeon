@@ -68,12 +68,15 @@ var Filters = Backbone.Model.extend({
     this.tags.on('change:status', update, this)
 
     this.on('change:location-city', function() {
+      this.attributes.keys = this.attributes.keys || {}
       this.attributes.keys['location.city'] = this.get('location-city')
     }, this)
     this.on('change:location-state', function() {
+      this.attributes.keys = this.attributes.keys || {}
       this.attributes.keys['location.state'] = this.get('location-state')
     }, this)
     this.on('change:location-country', function() {
+      this.attributes.keys = this.attributes.keys || {}
       this.attributes.keys['location.country'] = this.get('location-country')
     }, this)
 
