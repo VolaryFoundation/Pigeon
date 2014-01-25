@@ -80,7 +80,7 @@ rivets.formatters.asList = function(arr, cap) {
   var list = arr.reduce(function(memo, item) {
     var next = item + ', '
     if (memo.length + next.length < cap) return memo + item + ', '
-    else if (cap < Infinity) {
+    else if (cap < Infinity && !leftover) {
       leftover = true
       return memo.replace(/, $/, '...')
     }
