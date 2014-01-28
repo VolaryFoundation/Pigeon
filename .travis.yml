@@ -1,3 +1,19 @@
 language: node_js
 node_js:
   - "0.10.x"
+deploy:
+  provider: heroku
+  api_key:
+    secure: ZvohGFV7m2ANUfd8J5s+fPR/fGQs3CWHXmNZHH1aRVGEPkAB5IO4XaYQJMyaJGwqkz3TSuR8o4NJm/BBy9/9z+N/9ihkqeLdbUcF9LjCyKJuColvQ0nhfuLthkFvToO+27FCce3qt7JqaE8uGURccPpYke1+nc6Z7LpVbb/AVrY=
+  app: volary-pigeon-staging
+  on:     
+    repo: VolaryFoundation/Pigeon
+notifications:
+  email:
+    recipients:
+      - nick@volary.org
+      - lorne@volary.org
+      - brendan@volary.org
+      - michael@volary.org
+    on_success: change
+    on_failure: always
