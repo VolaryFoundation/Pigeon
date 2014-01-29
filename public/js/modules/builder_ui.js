@@ -1,3 +1,6 @@
+var hub = require('../hub')
+var utils = require('../utils')
+var Backbone = require('backbone')
 
 var BuilderUI = Backbone.Model.extend({
 
@@ -29,3 +32,5 @@ var BuilderUI = Backbone.Model.extend({
     this.set('showingCode', !this.get('showingCode'))
   }
 })
+
+module.exports = BuilderUI

@@ -1,4 +1,9 @@
 
+var hub = require('../hub')
+var utils = require('../utils')
+var Backbone = require('backbone')
+var _ = require('lodash')
+
 var Group = Backbone.Model.extend({
 
   getTags: function() {
@@ -39,7 +44,7 @@ var Groups = Backbone.Collection.extend({
       if (filters.tags && _.isEmpty(filters.tags)) {
         delete filters.tags
       }
-      this.fetch({ data: filters })
+      this.fetch({ data: _.extend(filters, { skip: 0, limit: 10 }) })
     }, this)
 
     this.on('sync', function() {
@@ -47,3 +52,5 @@ var Groups = Backbone.Collection.extend({
     }, this)
   },
 })
+
+module.exports = Groups

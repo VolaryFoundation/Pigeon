@@ -1,3 +1,6 @@
+var hub = require('../hub')
+var utils = require('../utils')
+var Backbone = require('backbone')
 
 var Searcher = Backbone.Model.extend({
 
@@ -20,3 +23,5 @@ var Searcher = Backbone.Model.extend({
     hub.trigger('search:' + filters.get('subject'), filters.toApiUrl())
   }
 })
+
+module.exports = Searcher

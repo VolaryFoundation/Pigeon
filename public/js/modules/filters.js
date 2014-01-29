@@ -1,4 +1,9 @@
 
+var utils = require('../utils')
+var hub = require('../hub')
+var Backbone = require('backbone')
+var _ = require('lodash')
+
 var Tag = Backbone.Model.extend({ 
   defaults: { status: 0 },
   toggle: function() { 
@@ -11,9 +16,6 @@ var Tags = Backbone.Collection.extend({ model: Tag })
 
 var Filters = Backbone.Model.extend({
 
-  defaults: { 
-    subject: 'groups'
-  },
   initialize: function() {
 
     // bind a complex collection for the UI with a simple array in .attributes for serialization
@@ -174,3 +176,5 @@ var Filters = Backbone.Model.extend({
     return data
   }
 })
+
+module.exports = Filters

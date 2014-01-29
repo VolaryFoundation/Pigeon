@@ -1,3 +1,6 @@
+var rivets = require('rivets')
+var $ = require('jquery')
+
 rivets.adapters[':'] = {
   subscribe: function(obj, keypath, callback) {
     obj.on('change:' + keypath, callback)

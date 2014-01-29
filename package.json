@@ -6,12 +6,16 @@
   "dependencies": {
     "node-static": "*",
     "backbone": "~1.1.0",
-    "lodash": "~2.4.0",
+    "lodash": "~2.4.1",
     "rivets": "~0.6.5",
-    "sass" : "*"
+    "sass": "*",
+    "jquery": "~2.1.0"
   },
   "devDependencies": {
-    "mocha": "~1.15.0"
+    "mocha": "~1.15.0",
+    "gulp": "~3.5.0",
+    "gulp-util": "~2.2.13",
+    "gulp-browserify": "~0.3.4"
   },
   "scripts": {
     "test": "./node_modules/mocha/bin/mocha spec/"

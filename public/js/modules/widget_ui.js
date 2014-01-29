@@ -1,4 +1,8 @@
 
+var hub = require('../hub')
+var utils = require('../utils')
+var Backbone = require('backbone')
+
 var WidgetUI = Backbone.Model.extend({
 
   defaults: {
@@ -29,9 +33,6 @@ var WidgetUI = Backbone.Model.extend({
 
   initialize: function(config) {
     this.filters = config.filters
-    hub.on('filters:updated', function(filters) {
-      this.set('embedCode', grn.buildQuery())
-    }, this)
     hub.on('activateResult', function(activeResult) {
       var current = this.get('activeResult')
       if (current) current.set('active', false)
@@ -49,3 +50,5 @@ var WidgetUI = Backbone.Model.extend({
     this.set('showingFilters', !this.get('showingFilters'))
   }
 })
+
+module.exports = WidgetUI

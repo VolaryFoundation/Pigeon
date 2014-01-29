@@ -1,3 +1,6 @@
+var hub = require('../hub')
+var utils = require('../utils')
+var Backbone = require('backbone')
 
 var Event = Backbone.Model.extend({
 
@@ -23,3 +26,5 @@ var Events = Backbone.Collection.extend({
     }, this)
   },
 })
+
+module.exports = Events

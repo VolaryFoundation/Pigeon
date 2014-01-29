@@ -1,4 +1,5 @@
- (function(global) {
+var Backbone = require('backbone')
+var _ = require('lodash')
 
 var utils = {
 
@@ -84,6 +85,4 @@ var utils = {
   }
 }
 
-global.utils = utils
-
-})(typeof exports === 'undefined' ? this : exports)
+module.exports = utils
