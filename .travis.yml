@@ -6,6 +6,7 @@ deploy:
   api_key:
     secure: WtvQky9+4Zh/A5b++/Zy3omYBAiIrWQE3GueJQ2/9uu215jSMJpoO4LV0uXHPz4ip3FBq5H9Te/ZyW+aw1axBd6dfv1GNtLpU4A3QZFQrmQZUTO+Ae6pjzrMwY9YjxXkI6N8dTigkXrXzV0ti/LBptSnB1rLA0yVFGTr8+qA4DA=
   app: volary-pigeon-staging
+  buildpack: nodejs
   on:     
     repo: VolaryFoundation/Pigeon
 notifications:
