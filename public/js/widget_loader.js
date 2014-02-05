@@ -22,13 +22,14 @@
       result[item[0]] = item[1];
     }
     if (result.size != null) {
-		var width = result.size.split('x')[0];
-		var height = result.size.split('x')[1];
-	} else {
-		var width = 800;
-		var height = 600;
-	}
+      var width = result.size.split('x')[0];
+      var height = result.size.split('x')[1];
+    } else {
+      var width = 800;
+      var height = 600;
+    }
     iframe.setAttribute('style', "width: " + width + "px; height: " + height +"px")
+    iframe.style.overflow = 'hidden'
     return iframe
   }
 

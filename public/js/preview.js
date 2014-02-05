@@ -7,4 +7,4 @@ setTimeout(function() {
   document.getElementById('preview').setAttribute('data-src', url)
   var loaderURL = location.protocol + '//' + location.host + "/js/widget_loader.js"
   document.getElementById('loader-script').src = loaderURL
-}, 500)
+}, 1000)
