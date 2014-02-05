@@ -14,7 +14,7 @@ var WidgetUI = Backbone.Model.extend({
 
   triggerCloner: function() {
     //window.top.postMessage(utils.params.serialize(grn.buildQuery()), '*')
-    window.open(location.protocol + '//' + location.host + '/builder.html?' + utils.params.serialize(grn.buildQuery()), 'WidgetCloner')
+    window.open(location.protocol + '//' + location.host + '/builder.html?' + utils.params.serialize({ filters: this.filters.toClientUrl() }), 'WidgetCloner')
   },
 
   toggleEmailPrompt: function() {

@@ -18,6 +18,13 @@ gulp.task('buildJS', function() {
      debug : !gulp.env.production
    }))
    .pipe(gulp.dest('public/js/build'))
+
+ gulp.src('public/js/preview.js')
+   .pipe(browserify({
+     insertGlobals : true,
+     debug : !gulp.env.production
+   }))
+   .pipe(gulp.dest('public/js/build'))
 })
 
 gulp.task('test', function(){

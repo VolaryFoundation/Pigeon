@@ -1,5 +1,6 @@
 var Backbone = require('backbone')
 var _ = require('lodash')
+var $ = require('jquery')
 
 var utils = {
 

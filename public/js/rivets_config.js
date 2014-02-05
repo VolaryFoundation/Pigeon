@@ -1,5 +1,6 @@
 var rivets = require('rivets')
 var $ = require('jquery')
+var utils = require('./utils')
 
 rivets.adapters[':'] = {
   subscribe: function(obj, keypath, callback) {

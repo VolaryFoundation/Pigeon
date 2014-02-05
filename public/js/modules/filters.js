@@ -2,6 +2,7 @@
 var utils = require('../utils')
 var hub = require('../hub')
 var Backbone = require('backbone')
+var $ = require('jquery')
 var _ = require('lodash')
 
 var Tag = Backbone.Model.extend({ 

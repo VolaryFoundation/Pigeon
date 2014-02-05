@@ -15,7 +15,7 @@
       <div id="embedCode" rv-show="ui:showingCode">
         <h5>Copy this code and paste it wherever you want this widget to be.</h5>
         <textarea rv-autohighlight="ui:showingCode" readonly>
-          &lt;div class=&quot;volary-widget&quot; data-src=&quot;http://{ ui:currentHost }/groups-map.html?{ ui:embedQuery | toURLString }&quot;&gt;&lt;/div&gt;<br/>&lt;script src=&quot;http://volary-pigeon.herokuapp.com/js/widget_loader.js&quot;&gt;&lt;/script&gt;
+          &lt;div class=&quot;volary-widget&quot; data-src=&quot;http://{ ui:currentHost }/groups-map.html?{ ui:embedQuery | toURLString }&quot;&gt;&lt;/div&gt;<br/>&lt;script src=&quot;http://{ ui:currentHost }/js/widget_loader.js&quot;&gt;&lt;/script&gt;
         </textarea>
       </div>
     </header>
@@ -70,36 +70,6 @@
     </div>
   </div>
 
-  <!-- external libs -->
-  <script src="/js/vendor/jquery.min.js"></script>
-  <script src="/js/vendor/moment.min.js"></script>
-  <script src="/js/vendor/lodash.min.js"></script>
-  <script src="/js/vendor/backbone.min.js"></script>
-  <script src="/js/vendor/rivets.min.js"></script>
-
-  <!-- our utilities -->
-  <script src="/js/rivets_config.js"></script>
-  <script src="/js/hub.js"></script>
-  <script src="/js/utils.js"></script>
-
-  <!-- modules -->
-  <script src="/js/modules/builder_ui.js"></script>
-  <script src="/js/modules/filters.js"></script>
-
-  <!-- initialize this show -->
-  <script>
-
-    var filters = new Filters
-    var ui = new BuilderUI({ filters: filters })
-
-    filters.fromQuery(window.location.search)
-    ui.fromQuery(window.location.search)
-
-    rivets.bind($('#wrapper'), {
-      filters: filters,
-      ui: ui,
-      noop: _.noop
-    }) 
-  </script>
+  <script src="/js/build/builder.js"></script>
 </body>
 </html>
