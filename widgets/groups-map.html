@@ -70,10 +70,12 @@
               </p>
             </div>
           </fieldset>
-          <fieldset rv-show="filters.tags.models | count" class="tag-container">
-            <h4>Tags</h4>
-            <button rv-each-tag='filters.tags.models' class='tag' rv-class-on='tag:status | eq 1' rv-class-off='tag:status | eq 2' rv-text='tag:name' rv-on-click='tag.toggle | preventDefault'/>
-          </fieldset>
+          <div class="tag-container"><!--Fix for firefox bug. No overflow hidden on fieldsets></!-->
+            <fieldset rv-show="filters.tags.models | count">
+              <h4>Tags</h4>
+              <button rv-each-tag='filters.tags.models' class='tag' rv-class-on='tag:status | eq 1' rv-class-off='tag:status | eq 2' rv-text='tag:name' rv-on-click='tag.toggle | preventDefault'/>
+            </fieldset>
+          </div>
         </form>
       </header>
 
