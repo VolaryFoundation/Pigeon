@@ -58,6 +58,7 @@ body {
     color: #222; }
 
 #map-widget {
+  overflow: hidden;
   position: relative; }
   #map-widget header {
     -webkit-transition: top 1s;
