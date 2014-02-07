@@ -36,7 +36,7 @@ var Group = Backbone.Model.extend({
 })
 
 var Groups = Backbone.Collection.extend({
-  url: 'http://volary-eagle.herokuapp.com/groups',
+  url: 'http://api.secularconnect.org/groups',
   model: Group,
   initialize: function() {
 

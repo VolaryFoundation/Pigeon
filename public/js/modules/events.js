@@ -11,7 +11,7 @@ var Event = Backbone.Model.extend({
 
 var Events = Backbone.Collection.extend({
 
-  url: 'http://volary-eagle.herokuapp.com/events',
+  url: 'http://api.secularconnect.org/events',
 
   model: Event,
 

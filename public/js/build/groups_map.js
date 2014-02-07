@@ -21376,7 +21376,7 @@ var Event = Backbone.Model.extend({
 
 var Events = Backbone.Collection.extend({
 
-  url: 'http://volary-eagle.herokuapp.com/events',
+  url: 'http://api.secularconnect.org/events',
 
   model: Event,
 
@@ -21490,7 +21490,7 @@ var Filters = Backbone.Model.extend({
   },
 
   updateTags: function() {
-    $.get('http://volary-eagle.herokuapp.com/groups/tags?' + utils.params.serialize(this.serializeObject(this.attributes, [ 'subject' ])), function(tags) {
+    $.get('http://api.secularconnect.org/groups/tags?' + utils.params.serialize(this.serializeObject(this.attributes, [ 'subject' ])), function(tags) {
       this.tags.reset((tags || []).filter(function(tag) { return tag }).sort(function(a, b) { 
         if (a < b) return -1
         else if (b < a) return 1
@@ -21616,7 +21616,7 @@ var Group = Backbone.Model.extend({
 })
 
 var Groups = Backbone.Collection.extend({
-  url: 'http://volary-eagle.herokuapp.com/groups',
+  url: 'http://api.secularconnect.org/groups',
   model: Group,
   initialize: function() {
 
