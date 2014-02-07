@@ -45,7 +45,7 @@
   })
 
   window.onmessage = function(e) {
-    var cloner = createWidget('http://localhost:3000/builder.html?' + e.data)
+    var cloner = createWidget('http://widget.secularconnect.org/builder.html?' + e.data)
     cloner.setAttribute('style', "z-index:100; position: absolute; left: 50%; top: 50%; width: 600px; height: 300px; margin-top: -150px; margin-left: -300px;")
     var backdrop = document.createElement('div')
     backdrop.setAttribute('style', "z-index: 99; position:absolute;left:0;right:0;top:0;bottom:0;opacity:.4;background:#000;")
