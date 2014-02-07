@@ -69,7 +69,7 @@ rivets.formatters.count = function(val) {
 }
 
 rivets.formatters.toMockingBird = function(id) {
-  return "http://volary-mockingbird.herokuapp.com/groups/" + id
+  return "http://directory.secularconnect.org/groups/" + id
 }
 
 rivets.formatters.capitalize = function(str) {
