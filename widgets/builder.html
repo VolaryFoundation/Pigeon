@@ -21,52 +21,50 @@
     </header>
   
     <div id='search'>
-      <form rv-on-submit='noop | preventDefault'>
 
-        <fieldset>
-          <h4>Keywords</h4>
-          <input rv-value='filters:keywords' type='text' name='keyword'> </input>
-        </fieldset>
+      <fieldset>
+        <h4>Keywords</h4>
+        <input rv-value='filters:keywords' type='text' name='keyword'> </input>
+      </fieldset>
 
-        <fieldset id="location">
-          <h4>Location</h4>
-          <div>
-            <label>Country</label>
-            <input type="text" rv-value="filters:location-country | toUpperCase" />
-          </div>
-          <div>
-            <label>State</label>
-            <input type="text" size="2" rv-value="filters:location-state | toUpperCase" />
-          </div>
-          <div>
-            <label>City</label>
-            <input type="text" rv-value="filters:location-city | toUpperCase" />
-          </div>
-        </fieldset>
+      <fieldset id="location">
+        <h4>Location</h4>
+        <div>
+          <label>Country</label>
+          <input type="text" rv-value="filters:location-country | toUpperCase" />
+        </div>
+        <div>
+          <label>State</label>
+          <input type="text" size="2" rv-value="filters:location-state | toUpperCase" />
+        </div>
+        <div>
+          <label>City</label>
+          <input type="text" rv-value="filters:location-city | toUpperCase" />
+        </div>
+      </fieldset>
 
-        <fieldset rv-show='filters:subject | eq groups'>
-          <h4>Membership size</h4>
-          <div class="checks" rv-each-type='filters.memberCounts.models'>
-            <p>
-              <input rv-checked='type:active' type='checkbox' rv-id="type:text" />
-              <label rv-text='type:text' rv-for="type:text"></label>
-            </p>
-          </div>
-        </fieldset>
+      <fieldset rv-show='filters:subject | eq groups'>
+        <h4>Membership size</h4>
+        <div class="checks" rv-each-type='filters.memberCounts.models'>
+          <p>
+            <input rv-checked='type:active' type='checkbox' rv-id="type:text" />
+            <label rv-text='type:text' rv-for="type:text"></label>
+          </p>
+        </div>
+      </fieldset>
 
-        <fieldset rv-show='filters:subject | eq groups'>
-          <h4>Organizational Range</h4>
-          <div class="checks" rv-each-size='filters.ranges.models'>
-            <p>
-              <input rv-checked='size:active' type='checkbox' rv-id="size:text" />
-              <label rv-text='size:text' rv-for="size:text"></label>
-            </p>
-          </div>
-        </fieldset>
+      <fieldset rv-show='filters:subject | eq groups'>
+        <h4>Organizational Range</h4>
+        <div class="checks" rv-each-size='filters.ranges.models'>
+          <p>
+            <input rv-checked='size:active' type='checkbox' rv-id="size:text" />
+            <label rv-text='size:text' rv-for="size:text"></label>
+          </p>
+        </div>
+      </fieldset>
 
-        <h4> Tags </h4>
-        <button rv-each-tag='filters.tags.models' class='tag' rv-class-on='tag:status | eq 1' rv-class-off='tag:status | eq 2' rv-text='tag:name' rv-on-click='tag.toggle | preventDefault'/>
-      </form>
+      <h4> Tags </h4>
+      <button rv-each-tag='filters.tags.models' class='tag' rv-class-on='tag:status | eq 1' rv-class-off='tag:status | eq 2' rv-text='tag:name' rv-on-click='tag.toggle | preventDefault'/>
     </div>
   </div>
 

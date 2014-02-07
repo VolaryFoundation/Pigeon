@@ -30,53 +30,49 @@
       <header rv-class-showing="ui:showingFilters">
         <button class="hide" rv-on-click="ui.toggleShowFilters | preventDefault">Hide</button>
         <h3>Filters - <span>Refine your search here. <br /> { searcher:results | count } Results</span></h3>
-        <form>
-          <fieldset>
-            <label>Keywords</label>
-            <input type="text" rv-value="filters:keywords" />
-          </fieldset>
-          <fieldset>
-            <label>Range of group</label>
-            <div rv-class-active="size:active" class="dynamic checks" rv-each-size='filters.ranges.models'>
-              <p>
-                <input rv-id="size:text" rv-checked='size:active' type='checkbox'></input>
-                <label rv-for="size:text" rv-text='size:text'></label>
-              </p>
-            </div>
-          </fieldset>
-          <fieldset id="location">
-            <h4>Location</h4>
-            <!--
-            <div>
-              <label>Country</label>
-              <input type="text" rv-value="filters:location-country" />
-            </div>
-            -->
-            <div>
-              <label>State</label>
-              <input type="text" size="2" rv-value="filters:location-state | toUpperCase" />
-            </div>
-            <div>
-              <label>City</label>
-              <input type="text" rv-value="filters:location-city" />
-            </div>
-          </fieldset>
-          <fieldset>
-            <label>Member Count</label>
-            <div rv-class-active="membercount:active" class="dynamic checks" rv-each-membercount='filters.memberCounts.models'>
-              <p>
-                <input rv-id="membercount:text" rv-checked='membercount:active' type='checkbox'></input>
-                <label rv-for="membercount:text" rv-text='membercount:text'></label>
-              </p>
-            </div>
-          </fieldset>
-          <div class="tag-container"><!--Fix for firefox bug. No overflow hidden on fieldsets></!-->
-            <fieldset rv-show="filters.tags.models | count">
-              <h4>Tags</h4>
-              <button rv-each-tag='filters.tags.models' class='tag' rv-class-on='tag:status | eq 1' rv-class-off='tag:status | eq 2' rv-text='tag:name' rv-on-click='tag.toggle | preventDefault'/>
-            </fieldset>
+        <fieldset>
+          <label>Keywords</label>
+          <input type="text" rv-value="filters:keywords" />
+        </fieldset>
+        <fieldset>
+          <label>Range of group</label>
+          <div rv-class-active="size:active" class="dynamic checks" rv-each-size='filters.ranges.models'>
+            <p>
+              <input rv-id="size:text" rv-checked='size:active' type='checkbox'></input>
+              <label rv-for="size:text" rv-text='size:text'></label>
+            </p>
           </div>
-        </form>
+        </fieldset>
+        <fieldset id="location">
+          <h4>Location</h4>
+          <!--
+          <div>
+            <label>Country</label>
+            <input type="text" rv-value="filters:location-country" />
+          </div>
+          -->
+          <div>
+            <label>State</label>
+            <input type="text" size="2" rv-value="filters:location-state | toUpperCase" />
+          </div>
+          <div>
+            <label>City</label>
+            <input type="text" rv-value="filters:location-city" />
+          </div>
+        </fieldset>
+        <fieldset>
+          <label>Member Count</label>
+          <div rv-class-active="membercount:active" class="dynamic checks" rv-each-membercount='filters.memberCounts.models'>
+            <p>
+              <input rv-id="membercount:text" rv-checked='membercount:active' type='checkbox'></input>
+              <label rv-for="membercount:text" rv-text='membercount:text'></label>
+            </p>
+          </div>
+        </fieldset>
+        <fieldset rv-show="filters.tags.models | count" class="tag-container">
+          <h4>Tags</h4>
+          <button rv-each-tag='filters.tags.models' class='tag' rv-class-on='tag:status | eq 1' rv-class-off='tag:status | eq 2' rv-text='tag:name' rv-on-click='tag.toggle | preventDefault'/>
+        </fieldset>
       </header>
 
       <sidebar rv-autoscroll="ui:activeResult">
