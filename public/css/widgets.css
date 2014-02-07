@@ -59,6 +59,7 @@ body {
 
 #map-widget {
   overflow: hidden;
+  width: 100%;
   position: relative; }
   #map-widget header {
     -webkit-transition: top 1s;
@@ -271,7 +272,6 @@ body {
   padding: 0; }
 
 #map-widget {
-  width: 800px;
   height: 600px;
   position: relative; }
   #map-widget #volary-menu {

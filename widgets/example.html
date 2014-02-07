@@ -5,20 +5,10 @@
 </head>
 <body>
 
-  <div id="preview" class="volary-widget"></div>
-
-  <script id="loader-script"></script>
-
-  <script src="/js/utils.js"></script>
-  <script>
-    
-    function load() {
-      var query = utils.params.serialize(location.search.substr(1))
-      var url = location.host + '/' query.widget + '.html?' + location.search.substr(1)
-      document.getElementById('preview').setAttribute('data-src', url)
-      var loaderURL = "http://localhost:3000/js/widget_loader.js"
-      document.getElementById('loader-script').src = loaderUrl
-    }
-  </script>
+  <div class="volary-widget" data-src="http://localhost:3000/groups-map.html?filters%5Bsubject%5D=groups&filters%5Bkeys%5D%5Blocation.state%5D=CA"></div>
+  
+  <div class="volary-widget" data-src="http://localhost:3000/groups-map.html?filters%5Bsubject%5D=groups&filters%5Bkeys%5D%5Blocation.state%5D=CA&size=600x600"></div>
+  <script src="http://volary-pigeon.herokuapp.com/js/widget_loader.js"></script>
+  
 </body>
 </html>
