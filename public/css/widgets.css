@@ -2,9 +2,11 @@ body {
   font: 100% lato, Helvetica, sans-serif;
   color: #333333;
   margin: 0px;
-  width: 100%;
-  max-width: 800px;
-  border: 1px solid gray; }
+  width: 99%;
+  height: 99%;
+  border: 1px solid gray;
+  margin: 0 auto;
+  background-color: transparent; }
   body input[type="text"] {
     border: none;
     padding: 3px; }
@@ -243,7 +245,7 @@ body {
   #map-widget sidebar {
     position: absolute;
     top: 0;
-    right: 0px;
+    right: 3px;
     z-index: 1000;
     width: 225px !important;
     height: 100%;
