@@ -73,6 +73,7 @@ rivets.formatters.toMockingBird = function(id) {
 }
 
 rivets.formatters.capitalize = function(str) {
+  if (!str) return ''
   return str.charAt(0).toUpperCase() + str.substr(1)
 }
 
