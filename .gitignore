@@ -1,2 +1,3 @@
 .sass-cache
 newrelic_agent.log
+.DS_store

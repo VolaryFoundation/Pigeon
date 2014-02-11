@@ -2,4 +2,9 @@ $font-stack:   lato, Helvetica, sans-serif;
 $primary-color: #333;
 $primary-bg: #82ba00;
 
-@import 'foundation';
+@import "utilities/variables";
+@import "utilities/fonts";
+@import "utilities/mixins";
+@import "partials/main";
+@import "partials/list";
+@import "partials/map";

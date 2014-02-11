@@ -1,0 +1,113 @@
+//Future file for the builder spcific styles
+* { margin: 0; padding: 0; }
+
+body {
+  background: #eee;
+  font-family: Helvetica, sans-serif;
+  #builder {
+    .hidden {
+      display: none
+    }
+    .tab {
+      border: 1px solid #aaa;
+      border-bottom: none;
+      border-radius: 5px 5px 0 0;
+      padding: 5px;
+    }
+    .tab:hover {
+      cursor: pointer;
+    }
+    .tab.active {
+      border-color: #000
+    }
+    header {
+      padding: 10px 20px;
+      border-bottom: 1px solid #ddd;
+    }
+    h3 {
+      display: inline-block;
+      margin: 0 20px 0 0;
+    }
+    header a {
+      display: inline-block;
+      text-decoration: none;
+      margin-right: 20px;
+    }
+    fieldset {
+      border: none;
+      margin-bottom: 15px;
+    }
+    #embedCode{
+      background:white;
+      width: 500px;
+      padding: 10px;
+      border: 1px solid #888;
+      height: 100px;
+      margin-top: 10px;
+    }
+    #embedCode textarea {
+      width: 480px;
+      height: 60px;
+      border: none;
+    }
+    fieldset#location div {
+      display: inline-block;
+    }
+    h4 {
+      margin-bottom: 6px;
+    }
+    #search {
+      padding: 20px;
+    }
+    .checks p {
+      float: left;
+      padding-right: 20px;
+      margin: 0;
+    }
+
+    .checks p.on {
+      background: #fff;
+    }
+    .checks input {
+      float: left;
+      margin: 3px 6px 0 0;
+    }
+    label {
+      font-size: 16px;
+    }
+    .dynamic {
+      opacity: .7
+    }
+    .dynamic.active {
+      opacity: 1
+    }
+    .tag-container {
+      height: 200px;
+      overflow: auto;
+    }
+    .tag {
+      border: none;
+      background: #bbb;
+      font-size: 16px;
+      display: inline-block;
+      padding: 2px 4px;
+      margin: 2px 5px;
+    }
+    .tag.on {
+      background: green;
+    }
+    .tag.off {
+      background: red;
+    }
+    div#emmbedCode {
+    	background: white;
+    	color: black;
+    }
+    input, textarea {
+      background: #fff;
+      border: 1px solid #ddd;
+      padding: 5px;
+      display: block;
+    }
+  }
+}
