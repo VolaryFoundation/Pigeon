@@ -2,9 +2,6 @@ body {
   font: 100% lato, Helvetica, sans-serif;
   color: #333333;
   margin: 0px;
-  width: 99%;
-  height: 99%;
-  border: 1px solid gray;
   margin: 0 auto;
   background-color: transparent; }
   body input[type="text"] {
