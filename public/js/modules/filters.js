@@ -17,6 +17,10 @@ var Tags = Backbone.Collection.extend({ model: Tag })
 
 var Filters = Backbone.Model.extend({
 
+  defaults: {
+    activeTags: []
+  },
+
   initialize: function() {
 
     // bind a complex collection for the UI with a simple array in .attributes for serialization

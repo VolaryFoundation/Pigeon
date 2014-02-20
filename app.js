@@ -1,6 +1,6 @@
 require('newrelic');
 var http = require('http')
-var PORT = process.env.PORT || 3000
+var PORT = process.env.PORT || 3001
 var static = require('node-static');
 var assetTypes = [ 'css', 'js', 'img' ]
 var assets = new static.Server('./public', { cache: false })

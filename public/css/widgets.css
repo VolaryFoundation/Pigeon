@@ -223,9 +223,17 @@ body {
   margin: 0;
   padding: 0; }
 
+body {
+  width: 1000px; }
+
+.message {
+  display: none !important; }
+
 #map-widget {
   height: 600px;
-  position: relative; }
+  position: relative;
+  padding-bottom: 200px;
+  padding-top: 100px; }
   #map-widget #volary-menu {
     position: absolute;
     bottom: -0;
@@ -239,43 +247,64 @@ body {
       right: 0 !important; }
       #map-widget #map .leaflet-left .leaflet-control {
         margin-right: 10px; }
-  #map-widget sidebar {
+  #map-widget #simple-filters {
     position: absolute;
     top: 0;
+    left: 0;
+    right: 0;
+    height: 100px; }
+    #map-widget #simple-filters fieldset {
+      float: left;
+      margin: 0 20px 0 0; }
+    #map-widget #simple-filters .tags select {
+      width: 400px; }
+    #map-widget #simple-filters .tags li {
+      list-style: none; }
+  #map-widget footer {
+    position: absolute;
+    bottom: 0;
     right: 3px;
     z-index: 1000;
-    width: 225px !important;
-    height: 100%;
-    overflow: auto;
-    overflow-x: hidden;
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
     background-color: rgba(255, 255, 255, 0.4); }
-    #map-widget sidebar span {
+    #map-widget footer span {
       font-size: 16px; }
-    #map-widget sidebar a {
+    #map-widget footer a {
       color: #2880ca;
       text-decoration: none; }
-    #map-widget sidebar h3 {
+    #map-widget footer h3 {
       color: #2880ca; }
-    #map-widget sidebar .seperator {
+    #map-widget footer .seperator {
       padding-bottom: 5px;
       margin-bottom: 5px;
       border-bottom: 1px solid #ccc; }
-    #map-widget sidebar ul li {
-      margin: 7px 5px;
-      padding: 10px;
-      background: #fff;
-      border: 1px ridge rgba(0, 0, 0, 0.2);
-      border-radius: 4px;
-      list-style: none;
-      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3); }
-      #map-widget sidebar ul li.active {
-        background-color: #f3f3f3; }
-      #map-widget sidebar ul li .readMoreLink {
-        float: right; }
-      #map-widget sidebar ul li .tags {
-        width: 100%;
-        clear: both;
-        display: block; }
+    #map-widget footer #list-container {
+      overflow-x: auto;
+      overflow-y: hidden; }
+      #map-widget footer #list-container ul {
+        overflow-y: hidden;
+        width: 99999px; }
+        #map-widget footer #list-container ul li {
+          overflow-y: hidden;
+          width: 250px;
+          margin: 7px 5px;
+          padding: 10px;
+          background: #fff;
+          border: 1px ridge rgba(0, 0, 0, 0.2);
+          border-radius: 4px;
+          list-style: none;
+          box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+          float: left; }
+          #map-widget footer #list-container ul li.active {
+            background-color: #ff0000; }
+          #map-widget footer #list-container ul li .readMoreLink {
+            float: right; }
+          #map-widget footer #list-container ul li .tags {
+            width: 100%;
+            clear: both;
+            display: block; }
 
 body#builder-page {
   background-color: #eee;

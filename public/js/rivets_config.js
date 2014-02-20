@@ -1,5 +1,6 @@
 var rivets = require('rivets')
 var $ = require('jquery')
+require('./vendor/chosen.jquery')
 var utils = require('./utils')
 
 rivets.adapters[':'] = {
@@ -21,6 +22,10 @@ rivets.formatters.toJSON = function(val) {
   return JSON.stringify(val)
 }
 
+rivets.binders.chosen = function(el) {
+  setTimeout(function() { $(el).chosen() }, 500)
+}
+
 rivets.binders.map = function(el, mapModel) {
   mapModel.set('mb', L.mapbox.map(el, 'volary.gn97f0pd'))
   mapModel.bind()
@@ -29,7 +34,8 @@ rivets.binders.map = function(el, mapModel) {
 rivets.binders.autoscroll = function(el, target) {
   if (!target) return
   var id = target.get('_id')
-  $('#' + id).scrollintoview()
+  $('#' + id).scrollintoview({ directions: { x: true } })
+  
 }
 
 rivets.formatters.toUpperCase = function(val) {

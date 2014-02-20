@@ -2,6 +2,7 @@
 var hub = require('../hub')
 var utils = require('../utils')
 var Backbone = require('backbone')
+var _ = require('lodash')
 
 var WidgetUI = Backbone.Model.extend({
 
@@ -9,7 +10,8 @@ var WidgetUI = Backbone.Model.extend({
     showMore: false, 
     showText: 'Show More',
     showingFilters: false,
-    promptingForEmail: false
+    promptingForEmail: false,
+    activeTags: []
   },
 
   triggerCloner: function() {
@@ -33,6 +35,13 @@ var WidgetUI = Backbone.Model.extend({
 
   initialize: function(config) {
     this.filters = config.filters
+    this.on('change:activeTags', function() {
+      var actives = this.get('activeTags')
+      config.filters.tags.each(function(tag) {
+        if (actives.indexOf(tag.get('name')) > -1) tag.set('status', 1)
+        else tag.set('status', 0)
+      })
+    }, this)
     hub.on('activateResult', function(activeResult) {
       var current = this.get('activeResult')
       if (current) current.set('active', false)

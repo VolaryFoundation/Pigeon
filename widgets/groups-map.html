@@ -2,6 +2,7 @@
 <html>
 <head>
   <link href="css/widgets.css" rel="stylesheet" type="text/css">
+  <link href="css/chosen.css" rel="stylesheet" type="text/css">
   <link href="app.css" rel="stylesheet" type="text/css">
   <link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
   <link href='//api.tiles.mapbox.com/mapbox.js/v1.5.2/mapbox.css' rel='stylesheet' />
@@ -25,6 +26,25 @@
         <button rv-on-click="ui.toggleShowFilters | preventDefault">Filter</button>
         <button rv-on-click="ui.triggerCloner | preventDefault">Clone</button>
         <!--<button rv-on-click="ui.toggleEmailPrompt | preventDefault">Keep up to date</button>-->
+      </div>
+
+      <div id="simple-filters">
+        <fieldset id="location">
+          <h4>Filters</h4>
+          <div>
+            <label>State</label>
+            <input type="text" size="2" rv-value="filters:location-state | toUpperCase" />
+          </div>
+          <div>
+            <label>City</label>
+            <input type="text" rv-value="filters:location-city" />
+          </div>
+        </fieldset>
+        <fieldset class="tags">
+          <select multiple rv-chosen rv-value="ui:activeTags">
+            <option rv-each-tag="filters.tags.models" rv-value="tag:name" rv-text="tag:name"></option>
+          </select>
+        </fieldset>
       </div>
 
       <header rv-class-showing="ui:showingFilters">
@@ -75,16 +95,18 @@
         </fieldset>
       </header>
 
-      <sidebar rv-autoscroll="ui:activeResult">
-        <ul>
-          <li rv-each-result="searcher:results" rv-on-click="result.activate | preventDefault" rv-class-active="result:active" rv-id="result:_id">
-            <h3 class='seperator'>{ result:name }</h3>
-            <span class='tags seperator'>{ result:tags | asList 75 }</span>
-            <span>{ result:location.city | capitalize }</span>
-            <a class='readMoreLink' rv-href="result:_id | toMockingBird" href='#' rv-on-click='result.sendOn | preventDefault'>Details</a>
-          </li>
-        </ul>
-      </sidebar>
+      <footer rv-autoscroll="ui:activeResult">
+        <div id="list-container">
+          <ul>
+            <li rv-each-result="searcher:results" rv-on-click="result.activate | preventDefault" rv-class-active="result:active" rv-id="result:_id">
+              <h3 class='seperator'>{ result:name }</h3>
+              <span class='tags seperator'>{ result:tags | asList 75 }</span>
+              <span>{ result:location.city | capitalize }</span>
+              <a class='readMoreLink' rv-href="result:_id | toMockingBird" href='#' rv-on-click='result.sendOn | preventDefault'>Details</a>
+            </li>
+          </ul>
+        </div>
+      </footer>
       <div rv-map="map" id="map"></div>
     </div>
 
