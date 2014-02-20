@@ -35,8 +35,13 @@ var WidgetUI = Backbone.Model.extend({
 
   initialize: function(config) {
     this.filters = config.filters
+    this.filters.tags.on('reset', function() {
+      var actives = this.filters.tags.filter(function(tag) { return tag.get('status') })
+      this.set('activeTags', _.invoke(actives, 'get', 'name'))
+      hub.trigger('updateChosen')
+    }, this)
     this.on('change:activeTags', function() {
-      var actives = this.get('activeTags')
+      var actives = this.get('activeTags') || []
       config.filters.tags.each(function(tag) {
         if (actives.indexOf(tag.get('name')) > -1) tag.set('status', 1)
         else tag.set('status', 0)

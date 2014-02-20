@@ -2,6 +2,7 @@ var rivets = require('rivets')
 var $ = require('jquery')
 require('./vendor/chosen.jquery')
 var utils = require('./utils')
+var hub = require('./hub')
 
 rivets.adapters[':'] = {
   subscribe: function(obj, keypath, callback) {
@@ -23,7 +24,10 @@ rivets.formatters.toJSON = function(val) {
 }
 
 rivets.binders.chosen = function(el) {
-  setTimeout(function() { $(el).chosen() }, 500)
+  $(el).chosen()
+  hub.on('updateChosen', function() {
+    $(el).trigger('chosen:updated')
+  })
 }
 
 rivets.binders.map = function(el, mapModel) {

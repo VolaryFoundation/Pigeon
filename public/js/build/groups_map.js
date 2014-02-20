@@ -20162,11 +20162,9 @@ var Filters = Backbone.Model.extend({
 
     // keep url and form in sync current filter set with URL query
     function update() {
-      //if (global.history) global.history.pushState({}, '', '?' + utils.params.serialize(this.forClientUrl()))
       hub.trigger('filters:updated', this)
     }
 
-    this.on('change', this.updateTags)
     this.on('change', update, this)
     this.tags.on('change:status', update, this)
 
@@ -20189,16 +20187,16 @@ var Filters = Backbone.Model.extend({
       else delete this.attributes.keys['location.country']
     }, this)
 
-    setTimeout(this.updateTags.bind(this), 500)
+    this.updateTags()
   },
 
   updateTags: function() {
-    $.get('http://api.secularconnect.org/groups/tags?' + utils.params.serialize(this.serializeObject(this.attributes, [ 'subject' ])), function(tags) {
-      this.tags.reset((tags || []).filter(function(tag) { return tag }).sort(function(a, b) { 
-        if (a < b) return -1
-        else if (b < a) return 1
-        else return 0
-      }).map(function(tag) { return { name: tag } }))
+    $.get('http://api.secularconnect.org/groups/tags', function(tags) {
+      var existing = this.tags
+      var filtered = (tags || [])
+        .filter(function(tag) { return tag })
+        .map(function(tag) { return { name: tag, status: (existing.find(function(e) { return e.get('name') == tag && e.get('status') }) ? 1 : 0) } })
+      this.tags.reset(filtered)
     }.bind(this))
 
   },
@@ -20468,8 +20466,13 @@ var WidgetUI = Backbone.Model.extend({
 
   initialize: function(config) {
     this.filters = config.filters
+    this.filters.tags.on('reset', function() {
+      var actives = this.filters.tags.filter(function(tag) { return tag.get('status') })
+      this.set('activeTags', _.invoke(actives, 'get', 'name'))
+      hub.trigger('updateChosen')
+    }, this)
     this.on('change:activeTags', function() {
-      var actives = this.get('activeTags')
+      var actives = this.get('activeTags') || []
       config.filters.tags.each(function(tag) {
         if (actives.indexOf(tag.get('name')) > -1) tag.set('status', 1)
         else tag.set('status', 0)
@@ -20500,6 +20503,7 @@ var rivets = require('rivets')
 var $ = require('jquery')
 require('./vendor/chosen.jquery')
 var utils = require('./utils')
+var hub = require('./hub')
 
 rivets.adapters[':'] = {
   subscribe: function(obj, keypath, callback) {
@@ -20521,7 +20525,10 @@ rivets.formatters.toJSON = function(val) {
 }
 
 rivets.binders.chosen = function(el) {
-  setTimeout(function() { $(el).chosen() }, 500)
+  $(el).chosen()
+  hub.on('updateChosen', function() {
+    $(el).trigger('chosen:updated')
+  })
 }
 
 rivets.binders.map = function(el, mapModel) {
@@ -20693,7 +20700,7 @@ rivets.configure({
   }
 })
 
-},{"./utils":15,"./vendor/chosen.jquery":16,"jquery":3,"rivets":5}],15:[function(require,module,exports){
+},{"./hub":7,"./utils":15,"./vendor/chosen.jquery":16,"jquery":3,"rivets":5}],15:[function(require,module,exports){
 var Backbone = require('backbone')
 var _ = require('lodash')
 var $ = require('jquery')
