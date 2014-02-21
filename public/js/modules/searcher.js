@@ -14,6 +14,7 @@ var Searcher = Backbone.Model.extend({
 
     this.on('change:results', function() { 
       hub.trigger('results:updated', this.get('results'))
+      if (this.get('results').length) hub.trigger('activateResult', this.get('results')[0])
     }, this)
 
     hub.on('filters:updated', this.search, this)

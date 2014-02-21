@@ -20,7 +20,7 @@ var groups = new Groups
 var events = new Events
 var searcher = new Searcher
 var filters = new Filters
-var ui = new WidgetUI({ filters: filters })
+var ui = new WidgetUI({ filters: filters, searcher: searcher })
 var map = new Map
 
 filters.fromQuery(window.location.search)

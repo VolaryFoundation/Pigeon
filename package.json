@@ -19,7 +19,7 @@
     "gulp-browserify": "~0.3.4"
   },
   "scripts": {
-    "test": "./node_modules/mocha/bin/mocha spec/"
+    "test": "./node_modules/mocha/bin/mocha --require ./spec/helper.js spec/"
   },
   "repository": {
     "type": "git",

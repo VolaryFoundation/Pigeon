@@ -4,6 +4,7 @@ var _ = require('lodash')
 var Backbone = require('backbone')
 
 function lat_lng(place) {
+  if (!place.get('location')) return
   var ll = place.get('location').lng_lat
   if (!ll[0]) {
     var mb = _.find(place.get('props').location || [], function(loc) { return loc.source === 'mockingbird' })
@@ -40,6 +41,8 @@ var Map = Backbone.Model.extend({
     var markers = this.get('markers') || (this.attributes.markers = L.layerGroup().addTo(this.get('mb')))
     markers.clearLayers()
     places.forEach(function(place) {
+      var ll = lat_lng(place)
+      if (!ll) return
       var marker = L.marker(lat_lng(place), { title: place.get('name') })
       marker.bindPopup("<p style='margin: 10px 0 5px;'>" + place.get('name') + "</p>")
       marker.on('click', function(e) {

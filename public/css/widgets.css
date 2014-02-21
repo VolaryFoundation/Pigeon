@@ -224,17 +224,20 @@ body {
   padding: 0; }
 
 body {
-  width: 1000px; }
+  width: 650px;
+  height: 400px;
+  margin: 0; }
 
 .message {
   display: none !important; }
 
 #map-widget {
-  height: 600px;
+  height: 100%;
   position: relative;
   padding-bottom: 200px;
-  padding-top: 100px; }
-  #map-widget #volary-menu {
+  padding-top: 60px; }
+  #map-widget #controls {
+    display: none;
     position: absolute;
     bottom: -0;
     left: 0;
@@ -248,63 +251,115 @@ body {
       #map-widget #map .leaflet-left .leaflet-control {
         margin-right: 10px; }
   #map-widget #simple-filters {
+    line-height: 60px;
     position: absolute;
     top: 0;
     left: 0;
-    right: 0;
-    height: 100px; }
+    right: 0; }
+    #map-widget #simple-filters h4 {
+      float: left;
+      font-size: 24px;
+      font-weight: normal;
+      margin: 0 30px 0 0; }
     #map-widget #simple-filters fieldset {
       float: left;
       margin: 0 20px 0 0; }
+      #map-widget #simple-filters fieldset input {
+        font-size: 13px;
+        padding: 5px;
+        height: 15px;
+        border: 1px solid #aaa; }
     #map-widget #simple-filters .tags select {
-      width: 400px; }
+      width: 200px; }
     #map-widget #simple-filters .tags li {
       list-style: none; }
   #map-widget footer {
     position: absolute;
     bottom: 0;
-    right: 3px;
     z-index: 1000;
     width: 100%;
     height: 200px;
     overflow: hidden;
-    background-color: rgba(255, 255, 255, 0.4); }
+    background-color: #ddd; }
     #map-widget footer span {
       font-size: 16px; }
     #map-widget footer a {
       color: #2880ca;
       text-decoration: none; }
     #map-widget footer h3 {
-      color: #2880ca; }
+      color: #2880ca;
+      font-weight: normal; }
     #map-widget footer .seperator {
       padding-bottom: 5px;
-      margin-bottom: 5px;
-      border-bottom: 1px solid #ccc; }
+      margin-bottom: 5px; }
+    #map-widget footer .next {
+      position: absolute;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      width: 40px;
+      background: #fff;
+      font-size: 60px;
+      vertical-align: middle;
+      line-height: 186px;
+      background: #ddd;
+      text-indent: 11px; }
+      #map-widget footer .next:hover {
+        cursor: pointer; }
+    #map-widget footer .prev {
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 40px;
+      background: #fff;
+      font-size: 60px;
+      vertical-align: middle;
+      line-height: 186px;
+      text-indent: 11px;
+      background: #ddd; }
+      #map-widget footer .prev:hover {
+        cursor: pointer; }
     #map-widget footer #list-container {
       overflow-x: auto;
-      overflow-y: hidden; }
+      overflow-y: hidden;
+      margin: 0 40px; }
       #map-widget footer #list-container ul {
         overflow-y: hidden;
         width: 99999px; }
         #map-widget footer #list-container ul li {
+          position: relative;
           overflow-y: hidden;
-          width: 250px;
-          margin: 7px 5px;
+          width: 280px;
+          height: 180px;
+          margin: 10px 10px 10px 0;
           padding: 10px;
+          box-sizing: border-box;
           background: #fff;
-          border: 1px ridge rgba(0, 0, 0, 0.2);
           border-radius: 4px;
           list-style: none;
-          box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
           float: left; }
           #map-widget footer #list-container ul li.active {
-            background-color: #ff0000; }
-          #map-widget footer #list-container ul li .readMoreLink {
-            float: right; }
+            background-color: #eee; }
           #map-widget footer #list-container ul li .tags {
             width: 100%;
             clear: both;
             display: block; }
+          #map-widget footer #list-container ul li .foot {
+            line-height: 40px;
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-top: 1px solid #ddd;
+            background: #eee; }
+            #map-widget footer #list-container ul li .foot .half {
+              box-sizing: border-box;
+              float: left;
+              width: 50%;
+              text-align: center; }
+              #map-widget footer #list-container ul li .foot .half:first-child {
+                border-right: 1px solid #ddd; }
 
 body#builder-page {
   background-color: #eee;

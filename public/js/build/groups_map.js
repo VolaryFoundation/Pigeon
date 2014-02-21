@@ -20043,7 +20043,7 @@ var groups = new Groups
 var events = new Events
 var searcher = new Searcher
 var filters = new Filters
-var ui = new WidgetUI({ filters: filters })
+var ui = new WidgetUI({ filters: filters, searcher: searcher })
 var map = new Map
 
 filters.fromQuery(window.location.search)
@@ -20343,6 +20343,7 @@ var _ = require('lodash')
 var Backbone = require('backbone')
 
 function lat_lng(place) {
+  if (!place.get('location')) return
   var ll = place.get('location').lng_lat
   if (!ll[0]) {
     var mb = _.find(place.get('props').location || [], function(loc) { return loc.source === 'mockingbird' })
@@ -20379,6 +20380,8 @@ var Map = Backbone.Model.extend({
     var markers = this.get('markers') || (this.attributes.markers = L.layerGroup().addTo(this.get('mb')))
     markers.clearLayers()
     places.forEach(function(place) {
+      var ll = lat_lng(place)
+      if (!ll) return
       var marker = L.marker(lat_lng(place), { title: place.get('name') })
       marker.bindPopup("<p style='margin: 10px 0 5px;'>" + place.get('name') + "</p>")
       marker.on('click', function(e) {
@@ -20416,6 +20419,7 @@ var Searcher = Backbone.Model.extend({
 
     this.on('change:results', function() { 
       hub.trigger('results:updated', this.get('results'))
+      if (this.get('results').length) hub.trigger('activateResult', this.get('results')[0])
     }, this)
 
     hub.on('filters:updated', this.search, this)
@@ -20445,8 +20449,28 @@ var WidgetUI = Backbone.Model.extend({
     activeTags: []
   },
 
+  nextItem: function() {
+    var active = this.get('activeResult')
+    var results = this.searcher.get('results')
+    var index = _.findIndex(results, function(res) {
+      return res.get('_id') == active.get('_id')
+    })
+    var next = results[index + 1]
+    if (next) hub.trigger('activateResult', next)
+  },
+
+  prevItem: function() {
+    var active = this.get('activeResult')
+    var results = this.searcher.get('results')
+    var index = _.findIndex(results, function(res) {
+      return res.get('_id') == active.get('_id')
+    })
+    var prev = results[index - 1]
+    if (prev) hub.trigger('activateResult', prev)
+
+  },
+
   triggerCloner: function() {
-    //window.top.postMessage(utils.params.serialize(grn.buildQuery()), '*')
     window.open(location.protocol + '//' + location.host + '/builder.html?' + utils.params.serialize({ filters: this.filters.toClientUrl() }), 'WidgetCloner')
   },
 
@@ -20466,6 +20490,7 @@ var WidgetUI = Backbone.Model.extend({
 
   initialize: function(config) {
     this.filters = config.filters
+    this.searcher = config.searcher
     this.filters.tags.on('reset', function() {
       var actives = this.filters.tags.filter(function(tag) { return tag.get('status') })
       this.set('activeTags', _.invoke(actives, 'get', 'name'))

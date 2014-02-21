@@ -14,8 +14,28 @@ var WidgetUI = Backbone.Model.extend({
     activeTags: []
   },
 
+  nextItem: function() {
+    var active = this.get('activeResult')
+    var results = this.searcher.get('results')
+    var index = _.findIndex(results, function(res) {
+      return res.get('_id') == active.get('_id')
+    })
+    var next = results[index + 1]
+    if (next) hub.trigger('activateResult', next)
+  },
+
+  prevItem: function() {
+    var active = this.get('activeResult')
+    var results = this.searcher.get('results')
+    var index = _.findIndex(results, function(res) {
+      return res.get('_id') == active.get('_id')
+    })
+    var prev = results[index - 1]
+    if (prev) hub.trigger('activateResult', prev)
+
+  },
+
   triggerCloner: function() {
-    //window.top.postMessage(utils.params.serialize(grn.buildQuery()), '*')
     window.open(location.protocol + '//' + location.host + '/builder.html?' + utils.params.serialize({ filters: this.filters.toClientUrl() }), 'WidgetCloner')
   },
 
@@ -35,6 +55,7 @@ var WidgetUI = Backbone.Model.extend({
 
   initialize: function(config) {
     this.filters = config.filters
+    this.searcher = config.searcher
     this.filters.tags.on('reset', function() {
       var actives = this.filters.tags.filter(function(tag) { return tag.get('status') })
       this.set('activeTags', _.invoke(actives, 'get', 'name'))
