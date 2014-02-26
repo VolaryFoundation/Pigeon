@@ -13,6 +13,7 @@
     "moment": "~2.5.1"
   },
   "devDependencies": {
+    "jsdom": "*",
     "mocha": "~1.15.0",
     "gulp": "~3.5.0",
     "gulp-util": "~2.2.13",

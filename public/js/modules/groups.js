@@ -44,7 +44,7 @@ var Groups = Backbone.Collection.extend({
       if (filters.tags && _.isEmpty(filters.tags)) {
         delete filters.tags
       }
-      this.fetch({ data: _.extend(filters, {}) })
+      this.fetch({ data: _.extend(filters, { fields: { location: true, name: true, tags: true } }) })
     }, this)
 
     this.on('sync', function() {
