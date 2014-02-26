@@ -31,3 +31,11 @@ For Development
 * strait html (no haml)  
 * Strait javascript (No coffee script (Exception: Testing))  
 * indent spacing (2 spaces)    
+
+
+Testing
+---------------
+
+Unit Test: Mocha
+
+Run test: npm test
