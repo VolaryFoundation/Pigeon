@@ -14,8 +14,8 @@
 
       <div rv-class-showing="ui:message" class="message">{ ui:message }</div>
 
-      <div rv-show="ui:promptingForEmail" id="backdrop" rv-on-click="ui.toggleEmailPrompt"></div>
-      <div rv-show="ui:promptingForEmail" class="overlay">
+      <div style="display: none" rv-show="ui:promptingForEmail" id="backdrop" rv-on-click="ui.toggleEmailPrompt"></div>
+      <div style="display: none" rv-show="ui:promptingForEmail" class="overlay">
         <h4>Enter your email to be notified when these results change.</h4>
         <input type="text" placeholder="user@example.com" />
         <button rv-on-click="ui.toggleEmailPrompt | preventDefault">Cancel</button>
