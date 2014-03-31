@@ -23,6 +23,10 @@ rivets.formatters.toJSON = function(val) {
   return JSON.stringify(val)
 }
 
+rivets.formatters.resultPaginator = function(val) {
+  console.log(val);
+}
+
 rivets.binders.chosen = function(el) {
   $(el).chosen()
   hub.on('updateChosen', function() {

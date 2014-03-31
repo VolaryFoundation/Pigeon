@@ -40,7 +40,7 @@
 
   var placeholders = [].slice.call(document.querySelectorAll('.volary-widget'))
   placeholders.forEach(function(placeholder) {
-    var src = placeholder.getAttribute('data-src')
+    var src = location.protocol + "//" + location.host + placeholder.getAttribute('data-src')
     replacePlaceholder(placeholder, createWidget(src))
   })
 

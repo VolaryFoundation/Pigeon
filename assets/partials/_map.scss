@@ -2,8 +2,18 @@
 * { margin: 0; padding: 0 }
 
 // temp
-body { width: 645px; height: 340px; margin: 0; }
+body { width: 100%; height: 340px; margin: 0; }
 .message { display: none !important; }
+
+#nicks-test {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 9999999999999999999999999999;
+  background-color: white;
+}
 
 #map-widget {
 	height: 100%;
@@ -11,15 +21,14 @@ body { width: 645px; height: 340px; margin: 0; }
   padding-bottom: 200px;
   padding-top: 60px;
 	#controls {
-    display: none;
 		position: absolute;
 		bottom: -0;
 		left: 0;
 		z-index: 2;
 		background-color: white;
 	}
-	#map { 
-		height: 100%; 
+	#map {
+		height: 100%;
     width: 100%;
     .leaflet-left {
       right: 0!important;
@@ -28,31 +37,95 @@ body { width: 645px; height: 340px; margin: 0; }
       }
     }
 	}
-  #simple-filters {
-    line-height: 60px;
-    h4 {
-      float: left;
-      font-size: 24px;
-      font-weight: normal;
-      margin: 0 30px 0 3px;
+  #widget-menu{
+    background: white;
+    position: absolute;
+    right: 0;
+    top: 60px;
+    z-index: 10000000000000;
+    ul{
+      list-style-type: none;
+      li {
+        padding: 7px;
+        border-bottom: 1px solid gray;
+      }
     }
+  }
+  #simple-filters {
+    padding: 0;
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
+    h4 {
+      line-height: 60px;
+      width: 12%;
+      float: left;
+      font-size: 24px;
+      font-weight: normal;
+      margin: 0;
+    }
+
     fieldset {
+      margin: 0;
+      padding: 0 1.5% 0 0;
+      float: left;
+      height: 60px;
       input {
         font-size: 13px;
-        padding: 5px;
         height: 15px;
         border: 1px solid #aaa;
       }
-      float: left;
-      margin: 0 20px 0 0;
+    }
+    fieldset#location {
+      width: 31%;
+      padding-top: 16px;
+      .input_state {
+        padding: 0 7px 0 0;
+        width: 15%;
+        line-height: 0;
+        input {
+          height: 20px;
+          width: 100%;
+        }
+      }
+      .input_city {
+        width: 70%;
+        padding: 0;
+        line-height: 0;
+        input {
+          height: 20px;
+          width: 100%;
+        }
+      }
+    }
+    fieldset.tags {
+      line-height: 60px;
+      width: 28%;
+    }
+    fieldset.num-results {
+      line-height: 60px;
+      width: 11%;
+      text-align: center;
+      line-height: 15px;
+      p {
+        height: 60px;
+        display: table-cell;
+        vertical-align: middle;
+        text-align: center;
+        width: 99%
+      }
+    }
+    fieldset.menu {
+      line-height: 60px;
+      width: 10%;
+      text-align: center;
+      line-height: 65px;
+      float: right;
     }
     .tags {
       select {
-        width: 200px;
+        width: 100%;
       }
       li {
         list-style: none
@@ -63,7 +136,7 @@ body { width: 645px; height: 340px; margin: 0; }
 		position: absolute;
     bottom: 0;
 		z-index: 1000;
-		width: 100%; 
+		width: 100%;
     height: 200px;
 		overflow: hidden;
 		background-color: #ddd;
@@ -77,7 +150,11 @@ body { width: 645px; height: 340px; margin: 0; }
 		h3 {
 			color:#2880ca;
       font-weight: normal;
+      font-size: 1em;
 		}
+    span {
+      font-size: .9em;
+    }
 		.seperator {
       padding-bottom: 5px;
       margin-bottom: 5px;
@@ -115,9 +192,10 @@ body { width: 645px; height: 340px; margin: 0; }
       }
     }
     #list-container {
+      width: 89%;
       overflow-x: auto;
       overflow-y: hidden;
-      margin: 0 40px;
+      margin: auto 40px;
       ul {
         overflow-y: hidden;
         width: 99999px;

@@ -31,4 +31,4 @@ rivets.bind($('#map-widget'), {
   ui: ui,
   map: map,
   noop: _.noop
-}) 
+})

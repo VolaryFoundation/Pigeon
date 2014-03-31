@@ -20442,7 +20442,9 @@ var _ = require('lodash')
 var WidgetUI = Backbone.Model.extend({
 
   defaults: {
-    showMore: false, 
+    showMore: false,
+    showMenu: false,
+    showMenuText: "Menu +",
     showText: 'Show More',
     showingFilters: false,
     promptingForEmail: false,
@@ -20518,7 +20520,17 @@ var WidgetUI = Backbone.Model.extend({
 
   toggleShowFilters: function() {
     this.set('showingFilters', !this.get('showingFilters'))
+  },
+
+  toggleShowMenu: function() {
+    this.set('showMenu', !this.get('showMenu'))
+    if (this.get('showMenu') == true) {
+      this.set('showMenuText', "Menu -")
+    }else{
+      this.set('showMenuText', "Menu +")
+    }
   }
+
 })
 
 module.exports = WidgetUI
@@ -20547,6 +20559,10 @@ rivets.adapters[':'] = {
 
 rivets.formatters.toJSON = function(val) {
   return JSON.stringify(val)
+}
+
+rivets.formatters.resultPaginator = function(val) {
+  console.log(val);
 }
 
 rivets.binders.chosen = function(el) {

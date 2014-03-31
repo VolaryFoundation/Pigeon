@@ -30,12 +30,12 @@
       </div>
 
       <div id="simple-filters">
+        <h4>Filters:</h4>
         <fieldset id="location">
-          <h4>Filters</h4>
-          <div>
-            <input placeholder="State" type="text" size="2" rv-value="filters:location-state | toUpperCase" />
+          <div class='input_state'>
+            <input laceholder="State" type="text" size="2" rv-value="filters:location-state | toUpperCase" />
           </div>
-          <div>
+          <div class='input_city' >
             <input placeholder="City" type="text" rv-value="filters:location-city" />
           </div>
         </fieldset>
@@ -44,59 +44,19 @@
             <option rv-each-tag="filters.tags.models" rv-value="tag:name" rv-text="tag:name"></option>
           </select>
         </fieldset>
-        <fieldset>
+        <fieldset class='num-results'>
           <p>{ searcher:results | count } results</p>
         </fieldset>
+        <fieldset class='menu' rv-on-click="ui.toggleShowMenu">
+          <p><i class="fa fa-bars fa-2x"></i></p>
+        </fieldset>
       </div>
-
-      <header rv-class-showing="ui:showingFilters">
-        <button class="hide" rv-on-click="ui.toggleShowFilters | preventDefault">Hide</button>
-        <h3>Filters - <span>Refine your search here. <br /> { searcher:results | count } Results</span></h3>
-        <fieldset>
-          <label>Keywords</label>
-          <input type="text" rv-value="filters:keywords" />
-        </fieldset>
-        <fieldset>
-          <label>Range of group</label>
-          <div rv-class-active="size:active" class="dynamic checks" rv-each-size='filters.ranges.models'>
-            <p>
-              <input rv-id="size:text" rv-checked='size:active' type='checkbox'></input>
-              <label rv-for="size:text" rv-text='size:text'></label>
-            </p>
-          </div>
-        </fieldset>
-        <fieldset id="location">
-          <h4>Location</h4>
-          <!--
-          <div>
-            <label>Country</label>
-            <input type="text" rv-value="filters:location-country" />
-          </div>
-          -->
-          <div>
-            <label>State</label>
-            <input type="text" size="2" rv-value="filters:location-state | toUpperCase" />
-          </div>
-          <div>
-            <label>City</label>
-            <input type="text" rv-value="filters:location-city" />
-          </div>
-        </fieldset>
-        <fieldset>
-          <label>Member Count</label>
-          <div rv-class-active="membercount:active" class="dynamic checks" rv-each-membercount='filters.memberCounts.models'>
-            <p>
-              <input rv-id="membercount:text" rv-checked='membercount:active' type='checkbox'></input>
-              <label rv-for="membercount:text" rv-text='membercount:text'></label>
-            </p>
-          </div>
-        </fieldset>
-        <fieldset rv-show="filters.tags.models | count" class="tag-container">
-          <h4>Tags</h4>
-          <button rv-each-tag='filters.tags.models' class='tag' rv-class-on='tag:status | eq 1' rv-class-off='tag:status | eq 2' rv-text='tag:name' rv-on-click='tag.toggle | preventDefault'/>
-        </fieldset>
-      </header>
-
+      <div id='widget-menu' rv-show='ui:showMenu'>
+        <ul>
+          <li rv-on-click="ui.triggerCloner">Clone This Widget</li>
+          <!--<li>Email Button</li>-->
+        </ul>
+      </div>
       <footer rv-autoscroll="ui:activeResult">
         <i rv-on-click="ui.prevItem" class="prev fa fa-angle-left"></i>
         <i rv-on-click="ui.nextItem" class="next fa fa-angle-right"></i>
