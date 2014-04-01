@@ -20054,7 +20054,7 @@ rivets.bind($('#map-widget'), {
   ui: ui,
   map: map,
   noop: _.noop
-}) 
+})
 
 },{"./hub":7,"./modules/events":8,"./modules/filters":9,"./modules/groups":10,"./modules/map":11,"./modules/searcher":12,"./modules/widget_ui":13,"./rivets_config":14,"./utils":15,"./vendor/jquery.scrollintoview":17,"backbone":1,"jquery":3,"lodash":4,"rivets":5}],7:[function(require,module,exports){
 var Backbone = require('backbone')
