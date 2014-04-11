@@ -2,7 +2,8 @@
 
 body {
   background: #eee;
-  font-family: Helvetica, sans-serif;
+  font-family: 'lato',Helvetica, sans-serif;
+  color:;
 }
 
 .hidden {
@@ -14,6 +15,11 @@ body {
   border-bottom: none;
   border-radius: 5px 5px 0 0;
   padding: 5px;
+}
+
+.tagarea{
+      height:300px;
+      overflow: auto;
 }
 
 .tab:hover {
@@ -40,36 +46,59 @@ header a {
   margin-right: 20px;
 }
 
+.volary {
+  float:right;
+  font-size: 12px;
+  padding: 0 2px 0 0;
+}
+
 fieldset {
   border: none;
   margin-bottom: 15px;
 }
 
 #embedCode{
+
+}
+
+#embedCode .code{
   background:white;
   width: 500px;
   padding: 10px;
   border: 1px solid #888;
-  height: 100px;
-  margin-top: 10px;
+  height: 150px;
+  
 }
 
 #embedCode textarea {
+  margin-top: 5px;
   width: 480px;
-  height: 60px;
+  height: 135px;
   border: none;
 }
 
 fieldset#location div {
   display: inline-block;
+  float:left;
 }
 
+h2 {
+  margin-bottom: 10px;
+}
 h4 {
   margin-bottom: 6px;
 }
 
 #search {
   padding: 20px;
+  width:500px;
+  float:left;
+}
+
+#preview {
+  padding: 20px;
+  float:left;
+  
 }
 
 .checks p {
@@ -125,10 +154,51 @@ div#emmbedCode {
 	background: white;
 	color: black;
 }
-
+select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -ms-appearance: none;
+  -o-appearance: none;
+  appearance: none;
+  display:block;
+  padding: 3px;
+  margin: 2px 10px 0 0;
+  border: 1px solid #A0A0A0;
+  border-radius: 0;
+  font-family: "lato", Helvetica, sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.630769231em;
+  letter-spacing: 0.11em;
+  color: #555;
+  text-indent: 1px;
+  text-overflow: '';
+  min-width: 40px;
+}
 input, textarea {
   background: #fff;
-  border: 1px solid #ddd;
   padding: 5px;
   display: block;
+  color: #1B2130;
+  padding: 3px 3px 3px 8px;
+  margin: 2px 6px 5px 0;
+  border: 1px solid #A0A0A0;
+  background: #fbfbfb;
+  outline: 0;
+  -webkit-box-shadow: inset 1px 1px 2px rgba(200,200,200,0.2);
+  box-shadow: inset 1px 1px 2px rgba(200,200,200,0.2);
+  font-family: "lato", Helvetica, sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.630769231em;
+  letter-spacing: 0.11em;
+}
+
+select.tags{
+  width:300px;
+}
+
+.size {
+  float:left;
+  padding-right:10px;
 }

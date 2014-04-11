@@ -30,6 +30,7 @@
     }
     iframe.setAttribute('style', "width: " + width + "px; height: " + height +"px")
     iframe.style.overflow = 'hidden'
+    iframe.style.border = "1px solid #bbb"
     return iframe
   }
 

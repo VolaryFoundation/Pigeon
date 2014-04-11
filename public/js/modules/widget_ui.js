@@ -58,6 +58,7 @@ var WidgetUI = Backbone.Model.extend({
   initialize: function(config) {
     this.filters = config.filters
     this.searcher = config.searcher
+
     this.filters.tags.on('reset', function() {
       var actives = this.filters.tags.filter(function(tag) { return tag.get('status') })
       this.set('activeTags', _.invoke(actives, 'get', 'name'))
@@ -70,6 +71,7 @@ var WidgetUI = Backbone.Model.extend({
         else tag.set('status', 0)
       })
     }, this)
+    
     hub.on('activateResult', function(activeResult) {
       var current = this.get('activeResult')
       if (current) current.set('active', false)
@@ -81,6 +83,14 @@ var WidgetUI = Backbone.Model.extend({
   showMore: function(){
     this.set('showMore', !this.get('showMore'))
     this.set('showText', (this.get('showText') == 'Show More')? 'Show Less' : 'Show More')
+  },
+
+  toggleShowAsList: function(){
+    this.set('showAsList', !this.get('showAsList'))
+  },
+
+    toggleShowAsDark: function(){
+    this.set('showAsDark', !this.get('showAsDark'))
   },
 
   toggleShowFilters: function() {

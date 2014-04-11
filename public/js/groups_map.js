@@ -25,10 +25,17 @@ var map = new Map
 
 filters.fromQuery(window.location.search)
 
-rivets.bind($('#map-widget'), {
+var styles = utils.params.deserialize(window.location.search).styles
+
+rivets.bind(document.body, {
   searcher: searcher,
   filters: filters,
   ui: ui,
+  styles: styles,
   map: map,
   noop: _.noop
 })
+
+
+
+console.log (styles)

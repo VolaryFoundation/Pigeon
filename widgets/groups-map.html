@@ -8,7 +8,7 @@
   <link href='//api.tiles.mapbox.com/mapbox.js/v1.5.2/mapbox.css' rel='stylesheet' />
   <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
 </head>
-<body>
+<body rv-class-list="ui:showAsList" rv-useUrlColorScheme rv-useurlviewlist>
 
     <div id="map-widget">
 
@@ -22,18 +22,65 @@
         <button rv-on-click="ui.saveEmail | preventDefault">Save</button>
       </div>
 
-
-      <div id="controls">
-        <button rv-on-click="ui.toggleShowFilters | preventDefault">Filter</button>
-        <button rv-on-click="ui.triggerCloner | preventDefault">Clone</button>
-        <!--<button rv-on-click="ui.toggleEmailPrompt | preventDefault">Keep up to date</button>-->
-      </div>
-
       <div id="simple-filters">
         <h4>Filters:</h4>
         <fieldset id="location">
           <div class='input_state'>
-            <input laceholder="State" type="text" size="2" rv-value="filters:location-state | toUpperCase" />
+            <select name="state" rv-value="filters:location-state" >
+              <option value="">ALL</option>
+              <option value="AL">AL</option>
+              <option value="AK">AK</option>
+              <option value="AZ">AZ</option>
+              <option value="AR">AR</option>
+              <option value="CA">CA</option>
+              <option value="CO">CO</option>
+              <option value="CT">CT</option>
+              <option value="DE">DE</option>
+              <option value="DC">DC</option>
+              <option value="FL">FL</option>
+              <option value="GA">GA</option>
+              <option value="HI">HI</option>
+              <option value="ID">ID</option>
+              <option value="IL">IL</option>
+              <option value="IN">IN</option>
+              <option value="IA">IA</option>
+              <option value="KS">KS</option>
+              <option value="KY">KY</option>
+              <option value="LA">LA</option>
+              <option value="ME">ME</option>
+              <option value="MD">MD</option>
+              <option value="MA">MA</option>
+              <option value="MI">MI</option>
+              <option value="MN">MN</option>
+              <option value="MS">MS</option>
+              <option value="MO">MO</option>
+              <option value="MT">MT</option>
+              <option value="NE">NE</option>
+              <option value="NV">NV</option>
+              <option value="NH">NH</option>
+              <option value="NJ">NJ</option>
+              <option value="NM">NM</option>
+              <option value="NY">NY</option>
+              <option value="NC">NC</option>
+              <option value="ND">ND</option>
+              <option value="OH">OH</option>
+              <option value="OK">OK</option>
+              <option value="OR">OR</option>
+              <option value="PA">PA</option>
+              <option value="RI">RI</option>
+              <option value="SC">SC</option>
+              <option value="SD">SD</option>
+              <option value="TN">TN</option>
+              <option value="TX">TX</option>
+              <option value="UT">UT</option>
+              <option value="VT">VT</option>
+              <option value="VA">VA</option>
+              <option value="WA">WA</option>
+              <option value="WV">WV</option>
+              <option value="WI">WI</option>
+              <option value="WY">WY</option>
+            </select>
+            
           </div>
           <div class='input_city' >
             <input placeholder="City" type="text" rv-value="filters:location-city" />
@@ -53,7 +100,17 @@
       </div>
       <div id='widget-menu' rv-show='ui:showMenu'>
         <ul>
-          <li rv-on-click="ui.triggerCloner">Clone This Widget</li>
+          <li rv-on-click="ui.toggleShowAsList">
+            <span rv-show="ui:showAsList"><i class="fa fa-map-marker"></i>Map View</span>
+            <span rv-hide="ui:showAsList"><i class="fa fa-th-list"></i>List View</span>
+          </li>
+          <!--<li rv-on-click="ui.toggleShowAsDark">
+            <span rv-show="ui:showAsDark"><i class="fa fa fa-lightbulb-o"></i>Dark</span>
+            <span rv-hide="ui:showAsDark"><i class="fa fa fa-lightbulb-o"></i>Light</span>
+          </li> -->
+          
+          <li rv-on-click="ui.triggerCloner"><i class="fa fa-files-o"></i>Clone This</li>
+
           <!--<li>Email Button</li>-->
         </ul>
       </div>
@@ -62,7 +119,7 @@
         <i rv-on-click="ui.nextItem" class="next fa fa-angle-right"></i>
         <div id="list-container">
           <ul>
-            <li rv-each-result="searcher:results" rv-on-click="result.activate | preventDefault" rv-class-active="result:active" rv-id="result:_id">
+            <li rv-each-result="searcher:results | compact" rv-on-click="result.activate | preventDefault" rv-class-active="result:active" rv-id="result:_id">
               <h3 class='seperator'>{ result:name }</h3>
               <span class='tags seperator'>{ result:tags | asList 75 }</span>
               <div class="foot">
@@ -79,7 +136,7 @@
       </footer>
       <div rv-map="map" id="map"></div>
     </div>
-
+    <div class="volary">Powered by Volary</div>
     <script src='//api.tiles.mapbox.com/mapbox.js/v1.5.2/mapbox.js'></script>
     <script src="/js/build/groups_map.js"></script>
 </body>

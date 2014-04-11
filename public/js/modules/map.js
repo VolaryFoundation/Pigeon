@@ -6,11 +6,7 @@ var Backbone = require('backbone')
 function lat_lng(place) {
   if (!place.get('location')) return
   var ll = place.get('location').lng_lat
-  if (!ll[0]) {
-    var mb = _.find(place.get('props').location || [], function(loc) { return loc.source === 'mockingbird' })
-    ll = mb.value.lng_lat
-  }
-  return [ ll[1], ll[0] ]
+  return ll ? [ ll[1], ll[0] ] : null
 }
 
 var Map = Backbone.Model.extend({
@@ -19,12 +15,16 @@ var Map = Backbone.Model.extend({
     hub.on('results:updated', this.update, this)
     hub.on('activateResult', function(place) {
       this.panTo(place)
-      this.getMarker(place.get('name')).openPopup()
+      var marker = this.getMarker(place.get('name'))
+      if (!marker) return
+      marker.openPopup()
     }, this)
   },
 
   panTo: function(place) {
-    this.get('mb').panTo(lat_lng(place))
+    var ll = lat_lng(place)
+    if (!ll) return
+    this.get('mb').panTo(ll)
   },
 
   update: function(places) {
@@ -43,7 +43,7 @@ var Map = Backbone.Model.extend({
     places.forEach(function(place) {
       var ll = lat_lng(place)
       if (!ll) return
-      var marker = L.marker(lat_lng(place), { title: place.get('name') })
+      var marker = L.marker(ll, { title: place.get('name') })
       marker.bindPopup("<p style='margin: 10px 0 5px;'>" + place.get('name') + "</p>")
       marker.on('click', function(e) {
         hub.trigger('activateResult', place)
@@ -53,11 +53,11 @@ var Map = Backbone.Model.extend({
   },
 
   focus: function(places) {
-    this.get('mb').fitBounds(
-      places.map(function(place) {
-        return lat_lng(place)
-      })
-    )
+    var lls = _.compact(places.map(function(place) {
+      return lat_lng(place)
+    }))
+    if (lls.length == 0) return
+    this.get('mb').fitBounds(lls)
   }
 })
 

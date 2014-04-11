@@ -3,6 +3,8 @@
 
 <head>
   <link rel="stylesheet" href="app.css" />
+  <link href="css/chosen.css" rel="stylesheet" type="text/css">
+  <link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
 </head>
 <body id='builder-page'>
 
@@ -12,46 +14,132 @@
       <h3>Configure your widget</h3>
       <a href="#" rv-on-click="ui.showPreview" target="_blank">Preview</a>
       <a href="#" rv-on-click="ui.toggleShowingCode | preventDefault">View Code</a>
-      <div id="embedCode" rv-show="ui:showingCode">
-        <h5>Copy this code and paste it wherever you want this widget to be.</h5>
-        <textarea rv-autohighlight="ui:showingCode" readonly>
-          &lt;div class=&quot;volary-widget&quot; data-src=&quot;http://{ ui:currentHost }/groups-map.html?{ ui:embedQuery | toURLString }&quot;&gt;&lt;/div&gt;<br/>&lt;script src=&quot;http://{ ui:currentHost }/js/widget_loader.js&quot;&gt;&lt;/script&gt;
-        </textarea>
-      </div>
     </header>
   
     <div id='search'>
-
+<h2>Options</h2>
       <fieldset>
         <h4>Keywords</h4>
-        <input rv-value='filters:keywords' type='text' name='keyword'> </input>
+        <input rv-value='filters:keywords' placeholder="Keywords" type='text' name='keyword'> </input>
+        <p class="help-block">Keywords found in the group description</p>
+      </fieldset>
+
+      <fieldset id="look">
+        <h2>Look and Feel</h2>
+        <div class="size">
+        <h4>Size</h4>
+        <select name="size" rv-value="ui:size" >
+              <option value="" disabled="" selected="">Size</option>
+              <option value="650x600">Small</option>
+              <option value="800x600">Large</option>
+        </select>
+        </div>
+        <div class="size">
+        <h4>Theme</h4>
+        <select name="theme" rv-value="ui:colorScheme" >
+              <option value="" disabled="" selected="">Theme</option>
+              <option value="light" selected="">Light</option>
+              <option value="dark">Dark</option>
+        </select>
+        </div>
+        <div class="size">
+        <h4>View</h4>
+        <select name="list_view" rv-value="ui:viewMode" >
+              <option value="" disabled="" selected="">View</option>
+              <option value="list" selected="">List</option>
+              <option value="map">Map</option>
+        </select>
+        </div>
       </fieldset>
 
       <fieldset id="location">
         <h4>Location</h4>
+        <!--<div>
+          
+          <input type="text" placeholder="Country" rv-value="filters:location-country | toUpperCase" />
+        </div> -->
         <div>
-          <label>Country</label>
-          <input type="text" rv-value="filters:location-country | toUpperCase" />
+          
+           <select name="state" rv-value="filters:location-state" >
+              <option value="" disabled="" selected="">State</option>
+              <option value="AL">AL</option>
+              <option value="AK">AK</option>
+              <option value="AZ">AZ</option>
+              <option value="AR">AR</option>
+              <option value="CA">CA</option>
+              <option value="CO">CO</option>
+              <option value="CT">CT</option>
+              <option value="DE">DE</option>
+              <option value="DC">DC</option>
+              <option value="FL">FL</option>
+              <option value="GA">GA</option>
+              <option value="HI">HI</option>
+              <option value="ID">ID</option>
+              <option value="IL">IL</option>
+              <option value="IN">IN</option>
+              <option value="IA">IA</option>
+              <option value="KS">KS</option>
+              <option value="KY">KY</option>
+              <option value="LA">LA</option>
+              <option value="ME">ME</option>
+              <option value="MD">MD</option>
+              <option value="MA">MA</option>
+              <option value="MI">MI</option>
+              <option value="MN">MN</option>
+              <option value="MS">MS</option>
+              <option value="MO">MO</option>
+              <option value="MT">MT</option>
+              <option value="NE">NE</option>
+              <option value="NV">NV</option>
+              <option value="NH">NH</option>
+              <option value="NJ">NJ</option>
+              <option value="NM">NM</option>
+              <option value="NY">NY</option>
+              <option value="NC">NC</option>
+              <option value="ND">ND</option>
+              <option value="OH">OH</option>
+              <option value="OK">OK</option>
+              <option value="OR">OR</option>
+              <option value="PA">PA</option>
+              <option value="RI">RI</option>
+              <option value="SC">SC</option>
+              <option value="SD">SD</option>
+              <option value="TN">TN</option>
+              <option value="TX">TX</option>
+              <option value="UT">UT</option>
+              <option value="VT">VT</option>
+              <option value="VA">VA</option>
+              <option value="WA">WA</option>
+              <option value="WV">WV</option>
+              <option value="WI">WI</option>
+              <option value="WY">WY</option>
+            </select>
         </div>
         <div>
-          <label>State</label>
-          <input type="text" size="2" rv-value="filters:location-state | toUpperCase" />
-        </div>
-        <div>
-          <label>City</label>
-          <input type="text" rv-value="filters:location-city | toUpperCase" />
+          <input type="text" placeholder="City" rv-value="filters:location-city | toUpperCase" />
         </div>
       </fieldset>
-
-      <fieldset rv-show='filters:subject | eq groups'>
+     <!--  <fieldset rv-show='filters:subject | eq groups'>
         <h4>Membership size</h4>
         <div class="checks" rv-each-type='filters.memberCounts.models'>
           <p>
-            <input rv-checked='type:active' type='checkbox' rv-id="type:text" />
+           <input rv-checked='type:active' type='checkbox' rv-id="type:text" />
             <label rv-text='type:text' rv-for="type:text"></label>
           </p>
         </div>
       </fieldset>
+
+       <select name="checks" rv-value="filters:memberCounts" >
+              <option value="none">none</option>
+              <option value="1-10">1-10</option>
+              <option value="11-25">11-25</option>
+              <option value="26-50">26-50</option>
+              <option value="51-100">51-100</option>
+              <option value="101-250">101-250</option>
+              <option value="251-500">251-500</option>
+              <option value="501-1000">501-1000</option>
+              <option value="1000+">1000+</option>
+      </select>  -->
 
       <fieldset rv-show='filters:subject | eq groups'>
         <h4>Organizational Range</h4>
@@ -64,10 +152,25 @@
       </fieldset>
 
       <h4> Tags </h4>
+      <p>Select all tags you'd like to include in green and click again for red, which excludes the term</p>
+      <div class="tagarea">
       <button rv-each-tag='filters.tags.models' class='tag' rv-class-on='tag:status | eq 1' rv-class-off='tag:status | eq 2' rv-text='tag:name' rv-on-click='tag.toggle | preventDefault'/>
+      </div>
+    </div>
+    <div id='preview'>
+       <div id="embedCode" rv-show="ui:showingCode">
+          <h2>Code</h2>
+            <h5>Copy this code and paste it wherever you want this widget to be.</h5>
+              <div class="code">
+                <textarea rv-autohighlight="ui:showingCode" readonly>
+                &lt;div class=&quot;volary-widget&quot; data-src=&quot;http://{ ui:currentHost }/groups-map.html?{ ui:embedQuery | toURLString }&quot;&gt;&lt;/div&gt;<br/>&lt;script src=&quot;http://{ ui:currentHost }/js/widget_loader.js&quot;&gt;&lt;/script&gt;
+                </textarea>
+            </div>
+      </div>
+        <h2>Preview</h2>
+        <iframe rv-src="ui:embedQuery | toURLString | prefix /groups-map.html?" style="width: 645px; height: 600px; overflow: hidden; border: 1px solid #bbb;"></iframe> 
     </div>
   </div>
-
   <script src="/js/build/builder.js"></script>
 </body>
 </html>

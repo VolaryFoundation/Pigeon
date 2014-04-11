@@ -231,6 +231,13 @@ body {
 .message {
   display: none !important; }
 
+body.dark {
+  color: #fff;
+  background-color: #333; }
+
+.dark #map-widget #widget-menu {
+  background: #474747; }
+
 #nicks-test {
   position: absolute;
   top: 0;
@@ -240,11 +247,21 @@ body {
   z-index: 9999999999999999999999999999;
   background-color: white; }
 
+.fa {
+  width: 22px;
+  font-size: 18px;
+  display: inline-block;
+  text-align: right;
+  padding-right: 10px; }
+
+.fa-bars {
+  padding-top: 5px; }
+
 #map-widget {
   height: 100%;
   position: relative;
   padding-bottom: 200px;
-  padding-top: 60px; }
+  padding-top: 45px; }
   #map-widget #controls {
     position: absolute;
     bottom: -0;
@@ -259,10 +276,16 @@ body {
       #map-widget #map .leaflet-left .leaflet-control {
         margin-right: 10px; }
   #map-widget #widget-menu {
-    background: white;
+    background: #eee;
+    -webkit-border-radius: 0;
+    border-radius: 0;
+    -webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    -webkit-transition: opacity .218s;
+    transition: opacity .218s;
     position: absolute;
     right: 0;
-    top: 60px;
+    top: 45px;
     z-index: 10000000000000; }
     #map-widget #widget-menu ul {
       list-style-type: none; }
@@ -274,14 +297,17 @@ body {
     position: absolute;
     top: 0;
     left: 0;
-    right: 0; }
+    right: 0;
+    height: 45px;
+    box-shadow: 1px 2px 3px #757474;
+    z-index: 1000000; }
     #map-widget #simple-filters h4 {
-      line-height: 60px;
+      line-height: 45px;
       width: 12%;
       float: left;
-      font-size: 24px;
+      font-size: 20px;
       font-weight: normal;
-      margin: 0; }
+      margin: 0 0 0 10px; }
     #map-widget #simple-filters fieldset {
       margin: 0;
       padding: 0 1.5% 0 0;
@@ -292,11 +318,10 @@ body {
         height: 15px;
         border: 1px solid #aaa; }
     #map-widget #simple-filters fieldset#location {
-      width: 31%;
-      padding-top: 16px; }
+      width: 34%;
+      padding-top: 6px; }
       #map-widget #simple-filters fieldset#location .input_state {
-        padding: 0 7px 0 0;
-        width: 15%;
+        padding: 0 4px 0 0;
         line-height: 0; }
         #map-widget #simple-filters fieldset#location .input_state input {
           height: 20px;
@@ -309,24 +334,25 @@ body {
           height: 20px;
           width: 100%; }
     #map-widget #simple-filters fieldset.tags {
-      line-height: 60px;
-      width: 28%; }
+      line-height: 41px;
+      width: 28%;
+      color: #333; }
     #map-widget #simple-filters fieldset.num-results {
-      line-height: 60px;
+      line-height: 45px;
       width: 11%;
       text-align: center;
       line-height: 15px; }
       #map-widget #simple-filters fieldset.num-results p {
-        height: 60px;
+        height: 45px;
         display: table-cell;
         vertical-align: middle;
         text-align: center;
         width: 99%; }
     #map-widget #simple-filters fieldset.menu {
-      line-height: 60px;
-      width: 10%;
+      line-height: 45px;
+      width: 5%;
       text-align: center;
-      line-height: 65px;
+      line-height: 45px;
       float: right; }
     #map-widget #simple-filters .tags select {
       width: 100%; }
@@ -338,8 +364,7 @@ body {
     z-index: 1000;
     width: 100%;
     height: 200px;
-    overflow: hidden;
-    background-color: #ddd; }
+    overflow: hidden; }
     #map-widget footer span {
       font-size: 16px; }
     #map-widget footer a {
@@ -359,34 +384,34 @@ body {
       right: 0;
       top: 0;
       bottom: 0;
-      width: 40px;
-      background: #fff;
-      font-size: 60px;
+      width: 23px;
+      font-size: 50px;
       vertical-align: middle;
-      line-height: 186px;
-      background: #ddd;
-      text-indent: 11px; }
+      line-height: 200px;
+      text-indent: 11px;
+      z-index: 1000000;
+      color: #333; }
       #map-widget footer .next:hover {
         cursor: pointer; }
     #map-widget footer .prev {
       position: absolute;
-      left: 0;
+      left: -10px;
       top: 0;
       bottom: 0;
-      width: 40px;
-      background: #fff;
-      font-size: 60px;
+      width: 32px;
+      font-size: 50px;
       vertical-align: middle;
-      line-height: 186px;
+      line-height: 200px;
       text-indent: 11px;
-      background: #ddd; }
+      z-index: 1000000;
+      color: #333; }
       #map-widget footer .prev:hover {
         cursor: pointer; }
     #map-widget footer #list-container {
-      width: 89%;
+      width: 100%;
       overflow-x: auto;
       overflow-y: hidden;
-      margin: auto 40px; }
+      margin: auto 0px 0 0px; }
       #map-widget footer #list-container ul {
         overflow-y: hidden;
         width: 99999px; }
@@ -395,15 +420,17 @@ body {
           overflow-y: hidden;
           width: 280px;
           height: 180px;
-          margin: 10px 10px 10px 0;
+          margin: 10px 5px 10px 5px;
           padding: 10px;
           box-sizing: border-box;
           background: #fff;
+          box-shadow: 0 1px 4px #A5A5A5;
           border-radius: 4px;
           list-style: none;
-          float: left; }
+          float: left;
+          color: #333; }
           #map-widget footer #list-container ul li.active {
-            background-color: #eee; }
+            background-image: linear-gradient(to bottom, white 0, #d7d7d7 100%); }
           #map-widget footer #list-container ul li .tags {
             width: 100%;
             clear: both;
@@ -414,7 +441,7 @@ body {
             left: 0;
             right: 0;
             bottom: 0;
-            border-top: 1px solid #ddd;
+            border-top: 1px solid #adadad;
             background: #eee; }
             #map-widget footer #list-container ul li .foot .half {
               box-sizing: border-box;
@@ -422,7 +449,8 @@ body {
               width: 50%;
               text-align: center; }
               #map-widget footer #list-container ul li .foot .half:first-child {
-                border-right: 1px solid #ddd; }
+                border-right: 1px solid #adadad;
+                width: 49%; }
 
 body#builder-page {
   background-color: #eee;
@@ -512,3 +540,79 @@ body#builder-page {
     border: 1px solid #ddd;
     padding: 5px;
     display: block; }
+
+* {
+  margin: 0;
+  padding: 0; }
+
+.list.dark #map-widget #simple-filters {
+  background: #474747;
+  box-shadow: 1px 2px 2px #000000; }
+
+.list #map-widget {
+  height: auto; }
+  .list #map-widget #map {
+    display: none; }
+  .list #map-widget #simple-filters {
+    padding: 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: #eeeeee;
+    z-index: 1000000;
+    height: 45px;
+    box-shadow: 1px 2px 2px #ADADAD; }
+  .list #map-widget footer {
+    position: relative;
+    z-index: 1000;
+    width: 100%;
+    overflow: auto;
+    height: 100%; }
+    .list #map-widget footer .prev {
+      display: none; }
+    .list #map-widget footer .next {
+      display: none; }
+    .list #map-widget footer #list-container {
+      width: 89%;
+      overflow-x: auto;
+      overflow-y: auto;
+      margin: auto 40px; }
+      .list #map-widget footer #list-container ul {
+        overflow-y: auto;
+        width: 100%; }
+        .list #map-widget footer #list-container ul li {
+          position: relative;
+          overflow-y: hidden;
+          width: 98%;
+          height: 116px;
+          margin: 10px 10px 10px 5px;
+          padding: 10px;
+          box-sizing: border-box;
+          background: #fff;
+          box-shadow: 0 1px 4px #A5A5A5;
+          border-radius: 4px;
+          list-style: none;
+          float: none;
+          background-image: linear-gradient(to bottom, white 0, #d7d7d7 100%); }
+          .list #map-widget footer #list-container ul li.active {
+            background-image: linear-gradient(to bottom, white 0, #d7d7d7 100%); }
+          .list #map-widget footer #list-container ul li .tags {
+            width: 100%;
+            clear: both;
+            display: block; }
+          .list #map-widget footer #list-container ul li .foot {
+            line-height: 40px;
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-top: 1px solid #adadad;
+            background: #eee; }
+            .list #map-widget footer #list-container ul li .foot .half {
+              box-sizing: border-box;
+              float: left;
+              width: 50%;
+              text-align: center; }
+              .list #map-widget footer #list-container ul li .foot .half:first-child {
+                border-right: 1px solid #adadad; }

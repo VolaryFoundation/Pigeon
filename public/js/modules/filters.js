@@ -18,7 +18,8 @@ var Tags = Backbone.Collection.extend({ model: Tag })
 var Filters = Backbone.Model.extend({
 
   defaults: {
-    activeTags: []
+    activeTags: [],
+    
   },
 
   initialize: function() {
@@ -31,6 +32,7 @@ var Filters = Backbone.Model.extend({
       { text: 'national', name: 'national' },
       { text: 'international', name: 'international' }
     ])
+
 
     utils.bindArrayToCollection(this, 'prices', [
       { text: '$', name: '$' },

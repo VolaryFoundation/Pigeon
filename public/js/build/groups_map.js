@@ -20048,14 +20048,20 @@ var map = new Map
 
 filters.fromQuery(window.location.search)
 
-rivets.bind($('#map-widget'), {
+var styles = utils.params.deserialize(window.location.search).styles
+
+rivets.bind(document.body, {
   searcher: searcher,
   filters: filters,
   ui: ui,
+  styles: styles,
   map: map,
   noop: _.noop
 })
 
+
+
+console.log (styles)
 },{"./hub":7,"./modules/events":8,"./modules/filters":9,"./modules/groups":10,"./modules/map":11,"./modules/searcher":12,"./modules/widget_ui":13,"./rivets_config":14,"./utils":15,"./vendor/jquery.scrollintoview":17,"backbone":1,"jquery":3,"lodash":4,"rivets":5}],7:[function(require,module,exports){
 var Backbone = require('backbone')
 var _ = require('lodash')
@@ -20114,7 +20120,8 @@ var Tags = Backbone.Collection.extend({ model: Tag })
 var Filters = Backbone.Model.extend({
 
   defaults: {
-    activeTags: []
+    activeTags: [],
+    
   },
 
   initialize: function() {
@@ -20127,6 +20134,7 @@ var Filters = Backbone.Model.extend({
       { text: 'national', name: 'national' },
       { text: 'international', name: 'international' }
     ])
+
 
     utils.bindArrayToCollection(this, 'prices', [
       { text: '$', name: '$' },
@@ -20345,11 +20353,7 @@ var Backbone = require('backbone')
 function lat_lng(place) {
   if (!place.get('location')) return
   var ll = place.get('location').lng_lat
-  if (!ll[0]) {
-    var mb = _.find(place.get('props').location || [], function(loc) { return loc.source === 'mockingbird' })
-    ll = mb.value.lng_lat
-  }
-  return [ ll[1], ll[0] ]
+  return ll ? [ ll[1], ll[0] ] : null
 }
 
 var Map = Backbone.Model.extend({
@@ -20358,12 +20362,16 @@ var Map = Backbone.Model.extend({
     hub.on('results:updated', this.update, this)
     hub.on('activateResult', function(place) {
       this.panTo(place)
-      this.getMarker(place.get('name')).openPopup()
+      var marker = this.getMarker(place.get('name'))
+      if (!marker) return
+      marker.openPopup()
     }, this)
   },
 
   panTo: function(place) {
-    this.get('mb').panTo(lat_lng(place))
+    var ll = lat_lng(place)
+    if (!ll) return
+    this.get('mb').panTo(ll)
   },
 
   update: function(places) {
@@ -20382,7 +20390,7 @@ var Map = Backbone.Model.extend({
     places.forEach(function(place) {
       var ll = lat_lng(place)
       if (!ll) return
-      var marker = L.marker(lat_lng(place), { title: place.get('name') })
+      var marker = L.marker(ll, { title: place.get('name') })
       marker.bindPopup("<p style='margin: 10px 0 5px;'>" + place.get('name') + "</p>")
       marker.on('click', function(e) {
         hub.trigger('activateResult', place)
@@ -20392,11 +20400,11 @@ var Map = Backbone.Model.extend({
   },
 
   focus: function(places) {
-    this.get('mb').fitBounds(
-      places.map(function(place) {
-        return lat_lng(place)
-      })
-    )
+    var lls = _.compact(places.map(function(place) {
+      return lat_lng(place)
+    }))
+    if (lls.length == 0) return
+    this.get('mb').fitBounds(lls)
   }
 })
 
@@ -20493,6 +20501,7 @@ var WidgetUI = Backbone.Model.extend({
   initialize: function(config) {
     this.filters = config.filters
     this.searcher = config.searcher
+
     this.filters.tags.on('reset', function() {
       var actives = this.filters.tags.filter(function(tag) { return tag.get('status') })
       this.set('activeTags', _.invoke(actives, 'get', 'name'))
@@ -20505,6 +20514,7 @@ var WidgetUI = Backbone.Model.extend({
         else tag.set('status', 0)
       })
     }, this)
+    
     hub.on('activateResult', function(activeResult) {
       var current = this.get('activeResult')
       if (current) current.set('active', false)
@@ -20516,6 +20526,14 @@ var WidgetUI = Backbone.Model.extend({
   showMore: function(){
     this.set('showMore', !this.get('showMore'))
     this.set('showText', (this.get('showText') == 'Show More')? 'Show Less' : 'Show More')
+  },
+
+  toggleShowAsList: function(){
+    this.set('showAsList', !this.get('showAsList'))
+  },
+
+    toggleShowAsDark: function(){
+    this.set('showAsDark', !this.get('showAsDark'))
   },
 
   toggleShowFilters: function() {
@@ -20540,6 +20558,7 @@ var rivets = require('rivets')
 var $ = require('jquery')
 require('./vendor/chosen.jquery')
 var utils = require('./utils')
+var _ = require('lodash')
 var hub = require('./hub')
 
 rivets.adapters[':'] = {
@@ -20555,6 +20574,13 @@ rivets.adapters[':'] = {
   publish: function(obj, keypath, value) {
     obj.set(keypath, value)
   }
+}
+
+rivets.formatters.compact = function(arr) {
+  if (!arr) return []
+  return arr.filter(function(item) { 
+    return item && item.get('location')
+  })
 }
 
 rivets.formatters.toJSON = function(val) {
@@ -20575,6 +20601,19 @@ rivets.binders.chosen = function(el) {
 rivets.binders.map = function(el, mapModel) {
   mapModel.set('mb', L.mapbox.map(el, 'volary.gn97f0pd'))
   mapModel.bind()
+}
+rivets.binders.useurlcolorscheme = function(el) {
+  var query = utils.params.deserialize(location.search.substr(1))
+  if (query.colorScheme == 'dark') {
+    $(el).addClass('dark')
+  }
+}
+
+rivets.binders.useurlviewlist = function(el) {
+  var query = utils.params.deserialize(location.search.substr(1))
+  if (query.viewMode == 'list') {
+    $(el).addClass('list')
+  }
 }
 
 rivets.binders.autoscroll = function(el, target) {
@@ -20629,6 +20668,10 @@ rivets.formatters.capitalize = function(str) {
   return str.charAt(0).toUpperCase() + str.substr(1)
 }
 
+rivets.formatters.prefix =  function(a,b) {
+    return b + "" + a
+
+}
 rivets.formatters.asList = function(arr, cap) {
   cap = cap || Infinity
   var leftover = false
@@ -20741,7 +20784,7 @@ rivets.configure({
   }
 })
 
-},{"./hub":7,"./utils":15,"./vendor/chosen.jquery":16,"jquery":3,"rivets":5}],15:[function(require,module,exports){
+},{"./hub":7,"./utils":15,"./vendor/chosen.jquery":16,"jquery":3,"lodash":4,"rivets":5}],15:[function(require,module,exports){
 var Backbone = require('backbone')
 var _ = require('lodash')
 var $ = require('jquery')

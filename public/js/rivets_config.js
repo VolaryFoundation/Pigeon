@@ -2,6 +2,7 @@ var rivets = require('rivets')
 var $ = require('jquery')
 require('./vendor/chosen.jquery')
 var utils = require('./utils')
+var _ = require('lodash')
 var hub = require('./hub')
 
 rivets.adapters[':'] = {
@@ -17,6 +18,13 @@ rivets.adapters[':'] = {
   publish: function(obj, keypath, value) {
     obj.set(keypath, value)
   }
+}
+
+rivets.formatters.compact = function(arr) {
+  if (!arr) return []
+  return arr.filter(function(item) { 
+    return item && item.get('location')
+  })
 }
 
 rivets.formatters.toJSON = function(val) {
@@ -37,6 +45,19 @@ rivets.binders.chosen = function(el) {
 rivets.binders.map = function(el, mapModel) {
   mapModel.set('mb', L.mapbox.map(el, 'volary.gn97f0pd'))
   mapModel.bind()
+}
+rivets.binders.useurlcolorscheme = function(el) {
+  var query = utils.params.deserialize(location.search.substr(1))
+  if (query.colorScheme == 'dark') {
+    $(el).addClass('dark')
+  }
+}
+
+rivets.binders.useurlviewlist = function(el) {
+  var query = utils.params.deserialize(location.search.substr(1))
+  if (query.viewMode == 'list') {
+    $(el).addClass('list')
+  }
 }
 
 rivets.binders.autoscroll = function(el, target) {
@@ -91,6 +112,10 @@ rivets.formatters.capitalize = function(str) {
   return str.charAt(0).toUpperCase() + str.substr(1)
 }
 
+rivets.formatters.prefix =  function(a,b) {
+    return b + "" + a
+
+}
 rivets.formatters.asList = function(arr, cap) {
   cap = cap || Infinity
   var leftover = false
