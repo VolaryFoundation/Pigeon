@@ -36,7 +36,9 @@ var Group = Backbone.Model.extend({
 })
 
 var Groups = Backbone.Collection.extend({
-  url: 'http://api.secularconnect.org/groups',
+  url: function() {
+    return 'http://volary-eagle-staging.herokuapp.com/cache?type=group'
+  },
   model: Group,
   initialize: function() {
 
@@ -44,7 +46,7 @@ var Groups = Backbone.Collection.extend({
       if (filters.tags && _.isEmpty(filters.tags)) {
         delete filters.tags
       }
-      this.fetch({ data: _.extend(filters, { fields: { location: true, name: true, tags: true, refs: true } }) })
+      this.fetch({ data: _.extend({ q: filters }, { fields: { location: true, name: true, tags: true, _meta: true } }) })
     }, this)
 
     this.on('sync', function() {
