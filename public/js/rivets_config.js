@@ -21,7 +21,7 @@ rivets.adapters[':'] = {
 }
 
 rivets.formatters.eagleEyeLink = function(id) {
-  return 'http://volary-ee-staging.heroku.com/' + id
+  return 'http://volary-ee-staging.heroku.com/groups/' + id
 }
 
 function getRef(name, arr) {
