@@ -20120,11 +20120,11 @@ var Tags = Backbone.Collection.extend({ model: Tag })
 var Filters = Backbone.Model.extend({
 
   defaults: {
-    activeTags: [],
-    
+    activeTags: []
   },
 
   initialize: function() {
+    this.set('location-state', 'state')
 
     // bind a complex collection for the UI with a simple array in .attributes for serialization
     // this MAY need some refactoring in the future, but at least its encapsulated
@@ -20182,6 +20182,7 @@ var Filters = Backbone.Model.extend({
       if (city) this.attributes.keys['location.city'] = city
       else delete this.attributes.keys['location.city']
     }, this)
+
     this.on('change:location-state', function() {
       this.attributes.keys = this.attributes.keys || {}
       var state = this.get('location-state')
@@ -20325,7 +20326,9 @@ var Group = Backbone.Model.extend({
 })
 
 var Groups = Backbone.Collection.extend({
-  url: 'http://api.secularconnect.org/groups',
+  url: function() {
+    return 'http://volary-eagle-staging.herokuapp.com/cache?type=group'
+  },
   model: Group,
   initialize: function() {
 
@@ -20333,7 +20336,7 @@ var Groups = Backbone.Collection.extend({
       if (filters.tags && _.isEmpty(filters.tags)) {
         delete filters.tags
       }
-      this.fetch({ data: _.extend(filters, { fields: { location: true, name: true, tags: true, refs: true } }) })
+      this.fetch({ data: _.extend({ q: filters }, { fields: { location: true, name: true, tags: true, _refs: true } }) })
     }, this)
 
     this.on('sync', function() {
@@ -20573,6 +20576,22 @@ rivets.adapters[':'] = {
   },
   publish: function(obj, keypath, value) {
     obj.set(keypath, value)
+  }
+}
+
+rivets.formatters.eagleEyeLink = function(id) {
+  return 'http://volary-ee-staging.heroku.com/' + id
+}
+
+function getRef(name, arr) {
+  return _.find(arr, { adapter: name })
+}
+rivets.formatters.ref = function(refs, source) {
+  var ref = getRef(source, refs)
+  if (source == 'facebook') {
+    return /facebook\.com/.test(ref) ? ref : ('http://facebook.com/' + ref)
+  } else if (source == 'meetup') {
+    return /meetup\.com/.test(ref) ? ref : ('http://meetup.com/' + ref)
   }
 }
 

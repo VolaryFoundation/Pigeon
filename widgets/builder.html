@@ -17,13 +17,7 @@
     </header>
   
     <div id='search'>
-<h2>Options</h2>
-      <fieldset>
-        <h4>Keywords</h4>
-        <input rv-value='filters:keywords' placeholder="Keywords" type='text' name='keyword'> </input>
-        <p class="help-block">Keywords found in the group description</p>
-      </fieldset>
-
+      <h2>Options</h2>
       <fieldset id="look">
         <h2>Look and Feel</h2>
         <div class="size">
@@ -55,64 +49,63 @@
       <fieldset id="location">
         <h4>Location</h4>
         <!--<div>
-          
           <input type="text" placeholder="Country" rv-value="filters:location-country | toUpperCase" />
         </div> -->
         <div>
           
-           <select name="state" rv-value="filters:location-state" >
-              <option value="" disabled="" selected="">State</option>
-              <option value="AL">AL</option>
-              <option value="AK">AK</option>
-              <option value="AZ">AZ</option>
-              <option value="AR">AR</option>
-              <option value="CA">CA</option>
-              <option value="CO">CO</option>
-              <option value="CT">CT</option>
-              <option value="DE">DE</option>
-              <option value="DC">DC</option>
-              <option value="FL">FL</option>
-              <option value="GA">GA</option>
-              <option value="HI">HI</option>
-              <option value="ID">ID</option>
-              <option value="IL">IL</option>
-              <option value="IN">IN</option>
-              <option value="IA">IA</option>
-              <option value="KS">KS</option>
-              <option value="KY">KY</option>
-              <option value="LA">LA</option>
-              <option value="ME">ME</option>
-              <option value="MD">MD</option>
-              <option value="MA">MA</option>
-              <option value="MI">MI</option>
-              <option value="MN">MN</option>
-              <option value="MS">MS</option>
-              <option value="MO">MO</option>
-              <option value="MT">MT</option>
-              <option value="NE">NE</option>
-              <option value="NV">NV</option>
-              <option value="NH">NH</option>
-              <option value="NJ">NJ</option>
-              <option value="NM">NM</option>
-              <option value="NY">NY</option>
-              <option value="NC">NC</option>
-              <option value="ND">ND</option>
-              <option value="OH">OH</option>
-              <option value="OK">OK</option>
-              <option value="OR">OR</option>
-              <option value="PA">PA</option>
-              <option value="RI">RI</option>
-              <option value="SC">SC</option>
-              <option value="SD">SD</option>
-              <option value="TN">TN</option>
-              <option value="TX">TX</option>
-              <option value="UT">UT</option>
-              <option value="VT">VT</option>
-              <option value="VA">VA</option>
-              <option value="WA">WA</option>
-              <option value="WV">WV</option>
-              <option value="WI">WI</option>
-              <option value="WY">WY</option>
+           <select name="state" rv-value="filters:location-state">
+              <option value="state" selected="selected">State</option>
+              <option value="al">AL</option>
+              <option value="ak">AK</option>
+              <option value="az">AZ</option>
+              <option value="ar">AR</option>
+              <option value="ca">CA</option>
+              <option value="co">CO</option>
+              <option value="ct">CT</option>
+              <option value="de">DE</option>
+              <option value="dc">DC</option>
+              <option value="fl">FL</option>
+              <option value="ga">GA</option>
+              <option value="hi">HI</option>
+              <option value="id">ID</option>
+              <option value="il">IL</option>
+              <option value="in">IN</option>
+              <option value="ia">IA</option>
+              <option value="ks">KS</option>
+              <option value="ky">KY</option>
+              <option value="la">LA</option>
+              <option value="me">ME</option>
+              <option value="md">MD</option>
+              <option value="ma">MA</option>
+              <option value="mi">MI</option>
+              <option value="mn">MN</option>
+              <option value="ms">MS</option>
+              <option value="mo">MO</option>
+              <option value="mt">MT</option>
+              <option value="ne">NE</option>
+              <option value="nv">NV</option>
+              <option value="nh">NH</option>
+              <option value="nj">NJ</option>
+              <option value="nm">NM</option>
+              <option value="ny">NY</option>
+              <option value="nc">NC</option>
+              <option value="nd">ND</option>
+              <option value="oh">OH</option>
+              <option value="ok">OK</option>
+              <option value="or">OR</option>
+              <option value="pa">PA</option>
+              <option value="ri">RI</option>
+              <option value="sc">SC</option>
+              <option value="sd">SD</option>
+              <option value="tn">TN</option>
+              <option value="tx">TX</option>
+              <option value="ut">UT</option>
+              <option value="vt">VT</option>
+              <option value="va">VA</option>
+              <option value="wa">WA</option>
+              <option value="wv">WV</option>
+              <option value="wi">WI</option>
+              <option value="wy">WY</option>
             </select>
         </div>
         <div>
@@ -140,16 +133,6 @@
               <option value="501-1000">501-1000</option>
               <option value="1000+">1000+</option>
       </select>  -->
-
-      <fieldset rv-show='filters:subject | eq groups'>
-        <h4>Organizational Range</h4>
-        <div class="checks" rv-each-size='filters.ranges.models'>
-          <p>
-            <input rv-checked='size:active' type='checkbox' rv-id="size:text" />
-            <label rv-text='size:text' rv-for="size:text"></label>
-          </p>
-        </div>
-      </fieldset>
 
       <h4> Tags </h4>
       <p>Select all tags you'd like to include in green and click again for red, which excludes the term</p>

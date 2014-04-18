@@ -370,6 +370,11 @@ body.dark {
     #map-widget footer a {
       color: #2880ca;
       text-decoration: none; }
+    #map-widget footer .links a {
+      font-size: 25px;
+      line-height: 25px; }
+      #map-widget footer .links a img {
+        margin-bottom: -6px; }
     #map-widget footer h3 {
       color: #2880ca;
       font-weight: normal;

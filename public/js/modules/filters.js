@@ -18,11 +18,11 @@ var Tags = Backbone.Collection.extend({ model: Tag })
 var Filters = Backbone.Model.extend({
 
   defaults: {
-    activeTags: [],
-    
+    activeTags: []
   },
 
   initialize: function() {
+    this.set('location-state', 'state')
 
     // bind a complex collection for the UI with a simple array in .attributes for serialization
     // this MAY need some refactoring in the future, but at least its encapsulated
@@ -80,6 +80,7 @@ var Filters = Backbone.Model.extend({
       if (city) this.attributes.keys['location.city'] = city
       else delete this.attributes.keys['location.city']
     }, this)
+
     this.on('change:location-state', function() {
       this.attributes.keys = this.attributes.keys || {}
       var state = this.get('location-state')

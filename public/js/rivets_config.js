@@ -20,6 +20,22 @@ rivets.adapters[':'] = {
   }
 }
 
+rivets.formatters.eagleEyeLink = function(id) {
+  return 'http://volary-ee-staging.heroku.com/' + id
+}
+
+function getRef(name, arr) {
+  return _.find(arr, { adapter: name })
+}
+rivets.formatters.ref = function(refs, source) {
+  var ref = getRef(source, refs)
+  if (source == 'facebook') {
+    return /facebook\.com/.test(ref) ? ref : ('http://facebook.com/' + ref)
+  } else if (source == 'meetup') {
+    return /meetup\.com/.test(ref) ? ref : ('http://meetup.com/' + ref)
+  }
+}
+
 rivets.formatters.compact = function(arr) {
   if (!arr) return []
   return arr.filter(function(item) { 
