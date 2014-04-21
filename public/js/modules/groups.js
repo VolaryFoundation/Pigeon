@@ -37,7 +37,7 @@ var Group = Backbone.Model.extend({
 
 var Groups = Backbone.Collection.extend({
   url: function() {
-    return 'http://volary-eagle-staging.herokuapp.com/cache?type=group'
+    return 'http://volary-eagle' + (location.href.indexOf('localhost') > -1 ? '-staging' : '') + '.herokuapp.com/cache?type=group'
   },
   model: Group,
   initialize: function() {
