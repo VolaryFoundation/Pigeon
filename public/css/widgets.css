@@ -295,7 +295,7 @@ body.dark {
     position: absolute;
     right: 0;
     top: 45px;
-    z-index: 10000000000000; }
+    z-index: 1000; }
     #map-widget #widget-menu ul {
       list-style-type: none; }
       #map-widget #widget-menu ul li {
@@ -403,7 +403,7 @@ body.dark {
       vertical-align: middle;
       line-height: 200px;
       text-indent: 11px;
-      z-index: 1000000;
+      z-index: 1000;
       color: #333; }
       #map-widget footer .next:hover {
         cursor: pointer; }
@@ -417,7 +417,7 @@ body.dark {
       vertical-align: middle;
       line-height: 200px;
       text-indent: 11px;
-      z-index: 1000000;
+      z-index: 1000;
       color: #333; }
       #map-widget footer .prev:hover {
         cursor: pointer; }
