@@ -20593,6 +20593,10 @@ rivets.formatters.eagleEyeLink = function(id) {
   return 'http://volary-eagleeye.heroku.com/groups/' + id
 }
 
+rivets.formatters.toLowerCase = function(val) {
+  return val.toLowerCase()
+}
+
 function getRef(name, arr) {
   return _.find(arr, { adapter: name })
 }
