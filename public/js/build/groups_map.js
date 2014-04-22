@@ -20200,7 +20200,7 @@ var Filters = Backbone.Model.extend({
   },
 
   updateTags: function() {
-    $.get('http://api.secularconnect.org/groups/tags', function(tags) {
+    $.get('http://api.secularconnect.org/cache/aggregation?type=group&prop=tags', function(tags) {
       var existing = this.tags
       var filtered = (tags || [])
         .filter(function(tag) { return tag })
@@ -20590,7 +20590,7 @@ rivets.adapters[':'] = {
 }
 
 rivets.formatters.eagleEyeLink = function(id) {
-  return 'http://volary-ee-staging.heroku.com/groups/' + id
+  return 'http://volary-eagleeye.heroku.com/groups/' + id
 }
 
 function getRef(name, arr) {
@@ -20598,10 +20598,11 @@ function getRef(name, arr) {
 }
 rivets.formatters.ref = function(refs, source) {
   var ref = getRef(source, refs)
+   if (!ref) return
   if (source == 'facebook') {
-    return /facebook\.com/.test(ref) ? ref : ('http://facebook.com/' + ref)
+    return /facebook\.com/.test(ref.id) ? ref.id : ('http://facebook.com/' + ref.id)
   } else if (source == 'meetup') {
-    return /meetup\.com/.test(ref) ? ref : ('http://meetup.com/' + ref)
+    return /meetup\.com/.test(ref.id) ? ref.id : ('http://meetup.com/' + ref.id)
   }
 }
 

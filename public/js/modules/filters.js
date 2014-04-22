@@ -98,7 +98,7 @@ var Filters = Backbone.Model.extend({
   },
 
   updateTags: function() {
-    $.get('http://api.secularconnect.org/groups/tags', function(tags) {
+    $.get('http://api.secularconnect.org/cache/aggregation?type=group&prop=tags', function(tags) {
       var existing = this.tags
       var filtered = (tags || [])
         .filter(function(tag) { return tag })

@@ -256,15 +256,6 @@ body.dark {
 .dark #map-widget #widget-menu {
   background: #474747; }
 
-#nicks-test {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 9999999999999999999999999999;
-  background-color: white; }
-
 .fa {
   width: 22px;
   font-size: 18px;
