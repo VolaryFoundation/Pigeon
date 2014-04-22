@@ -21,6 +21,7 @@ var Searcher = Backbone.Model.extend({
   },
 
   search: function(filters) {
+    hub.trigger('search:started')
     hub.trigger('search:' + filters.get('subject'), filters.toApiUrl())
   }
 })

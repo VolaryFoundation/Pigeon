@@ -20437,6 +20437,7 @@ var Searcher = Backbone.Model.extend({
   },
 
   search: function(filters) {
+    hub.trigger('search:started')
     hub.trigger('search:' + filters.get('subject'), filters.toApiUrl())
   }
 })
@@ -20459,7 +20460,8 @@ var WidgetUI = Backbone.Model.extend({
     showText: 'Show More',
     showingFilters: false,
     promptingForEmail: false,
-    activeTags: []
+    activeTags: [],
+    loading: true
   },
 
   nextItem: function() {
@@ -20523,6 +20525,14 @@ var WidgetUI = Backbone.Model.extend({
       if (current) current.set('active', false)
       this.set('activeResult', activeResult)
       activeResult.set('active', true)
+    }, this)
+
+    hub.on('search:done', function() {
+      this.set('loading', false)
+    }, this)
+
+    hub.on('search:started', function() {
+      this.set('loading', true)
     }, this)
   },
 

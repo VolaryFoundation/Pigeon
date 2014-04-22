@@ -13,7 +13,8 @@ var WidgetUI = Backbone.Model.extend({
     showText: 'Show More',
     showingFilters: false,
     promptingForEmail: false,
-    activeTags: []
+    activeTags: [],
+    loading: true
   },
 
   nextItem: function() {
@@ -77,6 +78,14 @@ var WidgetUI = Backbone.Model.extend({
       if (current) current.set('active', false)
       this.set('activeResult', activeResult)
       activeResult.set('active', true)
+    }, this)
+
+    hub.on('search:done', function() {
+      this.set('loading', false)
+    }, this)
+
+    hub.on('search:started', function() {
+      this.set('loading', true)
     }, this)
   },
 

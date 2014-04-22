@@ -219,6 +219,24 @@ body {
           float: left;
           width: 25%; }
 
+#loading {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  z-index: 9999;
+  opacity: .7;
+  background: #fff;
+  display: none; }
+  #loading i {
+    top: 48%;
+    left: 48%;
+    position: absolute; }
+
+.loading #loading {
+  display: block; }
+
 * {
   margin: 0;
   padding: 0; }
@@ -300,7 +318,7 @@ body.dark {
     right: 0;
     height: 45px;
     box-shadow: 1px 2px 3px #757474;
-    z-index: 1000000; }
+    z-index: 1000; }
     #map-widget #simple-filters h4 {
       line-height: 45px;
       width: 12%;
