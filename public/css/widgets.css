@@ -295,7 +295,7 @@ body.dark {
     position: absolute;
     right: 0;
     top: 45px;
-    z-index: 1000; }
+    z-index: 2000; }
     #map-widget #widget-menu ul {
       list-style-type: none; }
       #map-widget #widget-menu ul li {
