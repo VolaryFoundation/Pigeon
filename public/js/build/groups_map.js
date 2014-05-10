@@ -20607,6 +20607,8 @@ rivets.formatters.ref = function(refs, source) {
     return /facebook\.com/.test(ref.id) ? ref.id : ('http://facebook.com/' + ref.id)
   } else if (source == 'meetup') {
     return /meetup\.com/.test(ref.id) ? ref.id : ('http://meetup.com/' + ref.id)
+  } else if (source == 'mockingbird') {
+    return "http://directory.secularconnect.org/groups/" + ref.id
   }
 }
 

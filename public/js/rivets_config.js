@@ -39,7 +39,7 @@ rivets.formatters.ref = function(refs, source) {
   } else if (source == 'meetup') {
     return /meetup\.com/.test(ref.id) ? ref.id : ('http://meetup.com/' + ref.id)
   } else if (source == 'mockingbird') {
-    return "http://directory.secularconnect.org/group/" + ref.id
+    return "http://directory.secularconnect.org/groups/" + ref.id
   }
 }
 
