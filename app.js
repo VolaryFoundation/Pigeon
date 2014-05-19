@@ -2,7 +2,7 @@ require('newrelic');
 var http = require('http')
 var PORT = process.env.PORT || 3001
 var static = require('node-static');
-var assetTypes = [ 'css', 'js', 'img' ]
+var assetTypes = [ 'css', 'js', 'img', 'png' ]
 var assets = new static.Server('./public', { cache: false })
 var widgets = new static.Server('./widgets', { cache: false })
 var lookingForAsset = function(req) {
