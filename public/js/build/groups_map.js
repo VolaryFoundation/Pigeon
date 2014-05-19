@@ -20590,7 +20590,7 @@ rivets.adapters[':'] = {
 }
 
 rivets.formatters.eagleEyeLink = function(id) {
-  return 'http://volary-eagleeye.heroku.com/groups/' + id
+  return 'http://ui.secularconnect.org/groups/' + id
 }
 
 rivets.formatters.toLowerCase = function(val) {
